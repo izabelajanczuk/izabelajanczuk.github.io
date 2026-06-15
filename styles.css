@@ -1,0 +1,98 @@
+/* ============================================================
+   styles.css  —  all the LOOKS of the page
+   (colors, the neon glow, where things sit)
+   ============================================================ */
+
+/* A "reset" so the page touches every edge with no white border */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;            /* no scrollbars — it's a single full-screen scene */
+}
+
+body {
+  /* the playful, colorful party background (pink -> purple) */
+  background: linear-gradient(160deg, #ff7eb3 0%, #ff6a9a 25%, #b66bff 70%, #7b5bff 100%);
+  font-family: "Baloo 2", system-ui, sans-serif;
+  position: relative;
+}
+
+/* a gentle glow that pulses behind everything on the birthday */
+body.party {
+  animation: partyPulse 1.6s ease-in-out infinite;
+}
+@keyframes partyPulse {
+  0%, 100% { filter: saturate(1)   brightness(1); }
+  50%      { filter: saturate(1.4) brightness(1.12); }
+}
+
+/* ---- THE CAT: pinned to the bottom, full width (full bleed).
+        min-height makes it fill most of the screen height on tall windows
+        so the head + torso dominate the page. ---- */
+#cat {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 88vh;
+  height: auto;
+  display: block;
+  z-index: 1;
+}
+
+/* ---- THE WALL CLOCK: hangs near the top, centered ---- */
+#clock {
+  position: fixed;
+  top: 2vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(150px, 20vw, 250px);  /* never too small, never too big */
+  height: auto;
+  z-index: 2;
+  filter: drop-shadow(0 12px 18px rgba(40, 10, 60, 0.35));
+}
+
+/* ---- THE CONFETTI LAYER: covers everything, but clicks pass through ---- */
+#confetti {
+  position: fixed;
+  inset: 0;                    /* top:0 right:0 bottom:0 left:0 */
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;        /* you can't accidentally click the confetti */
+}
+
+/* ============================================================
+   THE NEON TIMER TEXT
+   These classes are used on the <text> elements inside the cat.
+   "filter: url(#neonGlow)" turns on the green glow defined in the SVG.
+   ============================================================ */
+.neon-big {
+  font-family: "Orbitron", monospace;
+  font-weight: 900;
+  font-size: 56px;
+  letter-spacing: 0;
+  fill: #39ff14;               /* bright neon green */
+  filter: url(#neonGlow);
+}
+
+.neon-small {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+  font-size: 27px;
+  fill: #6bffb0;
+  filter: url(#neonGlow);
+}
+
+.neon-label {
+  font-family: "Orbitron", monospace;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: 1px;
+  fill: #b8ffd0;
+}
