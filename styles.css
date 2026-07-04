@@ -297,13 +297,19 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 .masonry {
   margin-top: clamp(40px, 6vw, 80px);
-  column-count: 3;
-  column-gap: 18px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.masonry-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 .masonry img {
   width: 100%;
-  margin-bottom: 18px;
-  break-inside: avoid;       /* keep each image in one column */
+  display: block;
   cursor: pointer;
   transition: opacity 0.2s;
 }
@@ -373,7 +379,6 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 @media (max-width: 900px) {
   .cv { grid-template-columns: repeat(2, 1fr); }
-  .masonry { column-count: 2; }
 }
 @media (max-width: 720px) {
   .about-intro { grid-template-columns: 1fr; }
@@ -396,7 +401,6 @@ a { color: inherit; text-decoration: none; }
   .nav a { font-size: 1.5rem; }
 }
 @media (max-width: 480px) {
-  .masonry { column-count: 1; }
   .home-labels { gap: 6px; }
 }
 

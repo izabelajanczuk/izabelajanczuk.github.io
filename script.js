@@ -123,11 +123,28 @@ function buildProjectDetail() {
 
 /* ============================================================
    GALLERY masonry + lightbox (runs only on gallery.html)
+   Photos are distributed round-robin across columns so each
+   category group appears at the same scroll depth in all columns
+   rather than filling column 1 entirely before starting column 2.
    ============================================================ */
 function buildGallery() {
   const masonry = document.getElementById("gallery-masonry");
   if (!masonry || typeof GALLERY === "undefined") return;
 
+  // column count matches CSS breakpoints
+  const w = window.innerWidth;
+  const numCols = w <= 480 ? 1 : w <= 900 ? 2 : 3;
+
+  // create column containers
+  const cols = [];
+  for (let i = 0; i < numCols; i++) {
+    const col = document.createElement("div");
+    col.className = "masonry-col";
+    masonry.appendChild(col);
+    cols.push(col);
+  }
+
+  // distribute photos round-robin so groups stay visually together
   GALLERY.forEach((src, i) => {
     const img = document.createElement("img");
     img.alt = "Photograph " + (i + 1);
@@ -135,7 +152,7 @@ function buildGallery() {
     withFallback(img, src);
     img.src = src;
     img.addEventListener("click", () => openLightbox(i));
-    masonry.appendChild(img);
+    cols[i % numCols].appendChild(img);
   });
 
   // ---- the enlarged view with prev/next arrows ----
@@ -144,7 +161,7 @@ function buildGallery() {
   let current = 0;
 
   function show(i) {
-    current = (i + GALLERY.length) % GALLERY.length;   // wrap around the ends
+    current = (i + GALLERY.length) % GALLERY.length;
     big.src = GALLERY[current];
   }
   window.openLightbox = function (i) {
