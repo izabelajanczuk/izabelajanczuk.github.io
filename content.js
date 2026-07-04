@@ -20,7 +20,7 @@ const PROJECTS = [
     slug: "ecobite",
     title: "EcoBite",
     link: "ecobite.html",          // EcoBite has its own full case-study page
-    cover: "images/projects/ecobite.jpg",
+    cover: "images/ecobite/hero.jpg",
     blurb: "A sustainability-focused mobile app concept.",
     body: [
       "Write about EcoBite here — the brief, your role, the process you went through, and what the outcome was.",
@@ -33,18 +33,18 @@ const PROJECTS = [
   },
   {
     slug: "project-two",
-    title: "Project Title",
+    title: "Soon...",
     cover: "images/projects/project-two.jpg",
-    blurb: "Short description shown on the project page.",
-    body: ["Describe this project here."],
+    blurb: "",
+    body: [],
     images: []
   },
   {
     slug: "project-three",
-    title: "Project Title",
+    title: "Soon...",
     cover: "images/projects/project-three.jpg",
-    blurb: "Short description shown on the project page.",
-    body: ["Describe this project here."],
+    blurb: "",
+    body: [],
     images: []
   }
 ];

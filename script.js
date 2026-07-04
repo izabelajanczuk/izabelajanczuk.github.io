@@ -12,9 +12,8 @@
 function placeholderSrc(label) {
   const svg =
     "<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'>" +
-    "<rect width='100%' height='100%' fill='#cfc7b5'/>" +
-    "<text x='50%' y='50%' fill='#8a8470' font-family='sans-serif' font-size='26' " +
-    "text-anchor='middle' dominant-baseline='middle'>add " + label + "</text></svg>";
+    "<rect width='100%' height='100%' fill='rgba(205,238,125,0.22)'/>" +
+    "</svg>";
   return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
 }
 // attach the fallback to an <img>
