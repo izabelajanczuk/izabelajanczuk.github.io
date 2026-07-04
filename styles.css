@@ -398,10 +398,18 @@ a { color: inherit; text-decoration: none; }
     transition: transform 0.3s ease;
   }
   .nav.open { transform: none; }
-  .nav a { font-size: 1.5rem; }
+  .nav a { font-size: 1.5rem; color: var(--lime); }
+
+  /* footer: smaller text so name + link don't crowd */
+  .footer-name { font-size: 1.15rem; }
+  .footer-link { font-size: 1rem; }
 }
 @media (max-width: 480px) {
   .home-labels { gap: 6px; }
+  /* CV single column on phones */
+  .cv { grid-template-columns: 1fr; }
+  /* reduce page top padding on phones (header is shorter) */
+  .page { padding-top: 90px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -498,5 +506,9 @@ a { color: inherit; text-decoration: none; }
 /* ---- responsive ---- */
 @media (max-width: 760px) {
   .eco-hero .wrap { grid-template-columns: 1fr; }
+  /* show title/text before the hero image when stacked */
+  .eco-hero-text { order: -1; }
   .personas { grid-template-columns: 1fr; }
+  /* mobile nav overlay on EcoBite should use lime, not white */
+  .eco-page .nav.open a { color: var(--lime); }
 }
