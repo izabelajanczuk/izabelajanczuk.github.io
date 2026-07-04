@@ -61,7 +61,6 @@ a { color: inherit; text-decoration: none; }
 .lead {                 /* the intro blurb under a heading */
   color: var(--body);
   font-size: clamp(1rem, 1.7vw, 1.25rem);
-  max-width: 70ch;
 }
 
 /* ============================================================
