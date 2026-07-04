@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Izabela Janczuk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html">I.J.</a>
+      <button class="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <div class="dogear" aria-hidden="true"></div>
+
+  <main class="page">
+    <div class="wrap">
+      <h1 class="display">Reach out!</h1>
+
+      <form id="contact-form" class="form">
+        <div class="field">
+          <label>Name</label>
+          <div class="row">
+            <div>
+              <label for="firstName">First Name <span class="req">(required)</span></label>
+              <input id="firstName" name="firstName" type="text" required />
+            </div>
+            <div>
+              <label for="lastName">Last Name <span class="req">(required)</span></label>
+              <input id="lastName" name="lastName" type="text" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email <span class="req">(required)</span></label>
+          <input id="email" name="email" type="email" required />
+        </div>
+
+        <div class="field">
+          <label for="message">Message <span class="req">(required)</span></label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+
+        <button class="btn-send" type="submit">SEND</button>
+        <p id="form-status" class="form-status" role="status"></p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span class="footer-name">IZABELA JANCZUK</span>
+      <a class="footer-link" href="https://www.linkedin.com/in/izabela-janczuk/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="script.js"></script>
+
+  <!-- ============================================================
+       CONTACT FORM — makes the form actually send to your inbox,
+       without your email ever appearing on the website.
+
+       SET-UP (one time, ~3 minutes):
+       1. Go to  https://formspree.io  and create a free account.
+       2. Make a new form; it gives you an address that looks like
+          https://formspree.io/f/abcwxyz
+       3. Paste that whole address between the quotes below,
+          replacing PASTE_YOUR_FORMSPREE_ADDRESS_HERE.
+       Until you do that, the form will show a friendly reminder.
+       ============================================================ -->
+  <script>
+    const FORMSPREE_ENDPOINT = "PASTE_YOUR_FORMSPREE_ADDRESS_HERE";
+
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (FORMSPREE_ENDPOINT === "PASTE_YOUR_FORMSPREE_ADDRESS_HERE") {
+        status.textContent = "⚙️ Almost there — the form needs its Formspree address added (see the note in contact.html).";
+        return;
+      }
+
+      status.textContent = "Sending…";
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: "POST",
+          headers: { "Accept": "application/json" },
+          body: new FormData(form),
+        });
+        if (res.ok) {
+          form.reset();
+          status.textContent = "Thank you! Your message has been sent. 🌿";
+        } else {
+          status.textContent = "Something went wrong — please try again in a moment.";
+        }
+      } catch {
+        status.textContent = "Couldn't send right now — please check your connection and try again.";
+      }
+    });
+  </script>
+</body>
+</html>

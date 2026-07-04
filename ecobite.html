@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoBite — Izabela Janczuk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="eco-page">
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html">I.J.</a>
+      <button class="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO (tan) ===================== -->
+  <section class="eco-hero">
+    <div class="wrap">
+      <figure class="drop-slot" data-key="eco-hero" data-src="images/ecobite/hero.jpg">
+        <img alt="EcoBite app" style="display:none" />
+        <span class="slot-hint">Drag your hero image here<br /><small>images/ecobite/hero.jpg</small></span>
+      </figure>
+
+      <div class="eco-hero-text">
+        <h1 class="eco-hero-title">Ecobite</h1>
+        <p class="sub">UX//UI</p>
+        <p class="tools">Tools: Figma, Illustrator, Miro</p>
+        <p>An app designed to empower users to uncover the environmental impact of ordinary products on the Amazon rainforest. With a focus on six UN SDGs and biodiversity loss prevention.</p>
+        <p>In collaboration with Anabelle Rosemberg, Camilla Alva Barrera, Dharika Raj Singh</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BODY (green) ===================== -->
+  <main class="eco-body">
+    <div class="wrap">
+
+      <a class="back" href="projects.html">← Back to projects</a>
+
+      <!-- ---------- 1. Ideation ---------- -->
+      <section class="eco-section">
+        <h2 class="eco-h">Ideation</h2>
+        <div class="acc-group">
+          <details class="acc">
+            <summary>Research</summary>
+            <div class="acc-body">
+              <ul>
+                <li>One of the most biodiverse places on earth, over 3 million species live in the rainforest</li>
+                <li>The balance between all the component parts of a biodiverse system helps to keep the ecosystem and its inhabitants healthy</li>
+                <li>Species are threatened as human activity expands deeper into the rainforest</li>
+                <li>Deforestation in Indigenous lands and protected areas has skyrocketed in recent years</li>
+                <li>The extinction of species has gone up to a thousand times faster than if it were to happen naturally</li>
+              </ul>
+            </div>
+          </details>
+          <details class="acc">
+            <summary>Brainstorming</summary>
+            <div class="acc-body">
+              <ul>
+                <li>Informative app</li>
+                <li>Digital passport</li>
+                <li>QR code scanning system</li>
+                <li>Disaster relief</li>
+                <li>Reliable news</li>
+                <li>Lifecycle analysis</li>
+                <li>Ingredient transparency</li>
+              </ul>
+            </div>
+          </details>
+          <details class="acc">
+            <summary>Focus on UN SDG's</summary>
+            <div class="acc-body">
+              <ul>
+                <li>SDG 9: Industry, Innovation, and Infrastructure</li>
+                <li>SDG 11: Sustainable Cities and Communities</li>
+                <li>SDG 12: Responsible Consumption and Production</li>
+                <li>SDG 13: Climate Action</li>
+                <li>SDG 14: Life Below Water</li>
+                <li>SDG 15: Life on Land</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ---------- 2. Target Audience ---------- -->
+      <section class="eco-section">
+        <h2 class="eco-h">Target Audience</h2>
+        <div class="personas">
+          <div class="persona">
+            <p class="eco-subh">Persona I</p>
+            <p class="line">Name: Camilla</p>
+            <p class="line">Age: 28</p>
+            <p class="line">Gender: Female</p>
+            <p class="line">Nationality: Brazilian</p>
+            <p class="line">Personality: Socially conscious, curious, and eco-minded, values sustainability and fairness.</p>
+            <p class="line">Interests: Environmental activism, ethical shopping, and supporting indigenous communities.</p>
+          </div>
+          <div class="persona">
+            <p class="eco-subh">Persona II</p>
+            <p class="line">Name: Julio</p>
+            <p class="line">Age: 65</p>
+            <p class="line">Gender: Male</p>
+            <p class="line">Nationality: Ecuadorian</p>
+            <p class="line">Personality: Caring, community-oriented, and deeply connected to nature. Values traditions and education.</p>
+            <p class="line">Interests: Julio enjoys spending time with his grandchildren, cooking traditional dishes, reading, and attending local events.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- 3. J.T.B.D. + 4. P.O.I.N.T ---------- -->
+      <section class="eco-section">
+        <div class="jtbd eco-text">
+          <p class="eco-subh">Job-To-Be-Done (J.T.B.D.) Analysis</p>
+          <p>Situation: When I…want to know what impact my food has on me and my environment.</p>
+          <p>Motivation: I want to…scan the given item</p>
+          <p>Expected Results: So I can…find out accurate results regarding my food impact</p>
+        </div>
+
+        <p class="eco-subh">Problems, Opportunities, Insights, Needs, Themes (P.O.I.N.T) Analysis</p>
+        <div class="acc-group">
+          <details class="acc">
+            <summary>Problems</summary>
+            <div class="acc-body"><p>Deforestation, resource over-use, exploitation of local communities, unsustainable farming practices.</p></div>
+          </details>
+          <details class="acc">
+            <summary>Opportunities</summary>
+            <div class="acc-body"><p>Petitions, volunteering, news, urgency, reporting illegal actions (mining, hunting, agricultural deforestation).</p></div>
+          </details>
+          <details class="acc">
+            <summary>Insights</summary>
+            <div class="acc-body"><p>Forest degradation increases greenhouse gas impacts, decline in species stabilizing the environment, goes from carbon sink to source.</p></div>
+          </details>
+          <details class="acc">
+            <summary>Needs</summary>
+            <div class="acc-body"><p>Awareness of product life cycles, transparency, partnerships with local news stations, and authenticity.</p></div>
+          </details>
+          <details class="acc">
+            <summary>Themes</summary>
+            <!-- The "Themes" content wasn't in the screenshots — add your text here -->
+            <div class="acc-body"><p>Add your Themes content here.</p></div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ---------- 5. Design Phase (prototype, post-its, brand guide) ---------- -->
+      <section class="eco-section">
+        <h2 class="eco-h">Design Phase</h2>
+
+        <p class="eco-subh">Paper Prototype &amp; Feedback</p>
+        <figure class="drop-slot" data-key="eco-prototype" data-src="images/ecobite/paper-prototype.jpg">
+          <img alt="Paper prototype screens" style="display:none" />
+          <span class="slot-hint">Drag your paper-prototype image here<br /><small>images/ecobite/paper-prototype.jpg</small></span>
+        </figure>
+        <figure class="drop-slot" data-key="eco-feedback" data-src="images/ecobite/feedback.jpg">
+          <img alt="Feedback sticky notes" style="display:none" />
+          <span class="slot-hint">Drag your post-its (feedback) image here<br /><small>images/ecobite/feedback.jpg</small></span>
+        </figure>
+
+        <p class="eco-subh">Brand Guide</p>
+        <figure class="drop-slot" data-key="eco-brand" data-src="images/ecobite/brand-guide.jpg">
+          <img alt="EcoBite brand guide — colors, typeface, icons" style="display:none" />
+          <span class="slot-hint">Drag your brand guide image here<br /><small>images/ecobite/brand-guide.jpg</small></span>
+        </figure>
+      </section>
+
+      <!-- ---------- 6. User Flow Diagram & Wireframe ---------- -->
+      <section class="eco-section">
+        <h2 class="eco-h">User Flow Diagram &amp; Wireframe</h2>
+        <figure class="drop-slot" data-key="eco-userflow" data-src="images/ecobite/user-flow.png">
+          <img alt="User flow diagram" style="display:none" />
+          <span class="slot-hint">Drag your user-flow image here<br /><small>images/ecobite/user-flow.jpg</small></span>
+        </figure>
+        <figure class="drop-slot" data-key="eco-wireframe" data-src="images/ecobite/wireframe.jpg">
+          <img alt="Wireframe" style="display:none" />
+          <span class="slot-hint">Drag your wireframe image here<br /><small>images/ecobite/wireframe.jpg</small></span>
+        </figure>
+      </section>
+
+      <!-- ---------- 7. Outcome (final showcase) ---------- -->
+      <section class="eco-section">
+        <h2 class="eco-h">Outcome</h2>
+
+        <!-- your project video, right under Outcome -->
+        <video class="eco-video" controls preload="metadata" playsinline>
+          <source src="images/ecobite/ecobite.mp4" type="video/mp4" />
+          Your browser doesn't support embedded video.
+        </video>
+
+        <!-- the annotated final design, under the video -->
+        <figure class="drop-slot" data-key="eco-mockup" data-src="images/ecobite/outcome-mockup.jpg">
+          <img alt="Annotated final design" style="display:none" />
+          <span class="slot-hint">Drag your annotated final-design image here<br /><small>images/ecobite/outcome-mockup.jpg</small></span>
+        </figure>
+
+        <p class="eco-subh">Notable Pages</p>
+        <figure class="drop-slot" data-key="eco-notable-1" data-src="images/ecobite/notable-1.jpg">
+          <img alt="Notable pages" style="display:none" />
+          <span class="slot-hint">Drag notable-pages image 1 here<br /><small>images/ecobite/notable-1.jpg</small></span>
+        </figure>
+        <figure class="drop-slot" data-key="eco-notable-2" data-src="images/ecobite/notable-2.jpg">
+          <img alt="Notable pages" style="display:none" />
+          <span class="slot-hint">Drag notable-pages image 2 here<br /><small>images/ecobite/notable-2.jpg</small></span>
+        </figure>
+        <figure class="drop-slot" data-key="eco-notable-3" data-src="images/ecobite/notable-3.jpg">
+          <img alt="Notable pages" style="display:none" />
+          <span class="slot-hint">Drag notable-pages image 3 here<br /><small>images/ecobite/notable-3.jpg</small></span>
+        </figure>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span class="footer-name">IZABELA JANCZUK</span>
+      <a class="footer-link" href="https://www.linkedin.com/in/izabela-janczuk/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

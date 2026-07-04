@@ -1,311 +1,296 @@
 /* ============================================================
-   script.js  —  all the BEHAVIOR
-   1. Show the real Pacific time on the clock
-   2. Swing the pendulum, and make the cat's eyes follow it
-   3. Count down to August 8th
-   4. On August 8th: zeros + birthday hat + confetti
+   script.js — the behavior shared across every page
+   - underlines the nav link for the page you're on
+   - opens/closes the mobile menu
+   - builds the Projects grid, a single Project page, and the
+     Gallery masonry + the click-to-enlarge lightbox
+   - shows a friendly placeholder when an image hasn't been
+     added yet (so nothing ever looks broken)
    ============================================================ */
 
-/* ---- The time zone we count down in. Using this NAMED zone means the
-        browser automatically uses PST in winter and PDT in summer, so the
-        countdown is never an hour off. ---- */
-const TIME_ZONE = "America/Los_Angeles";
-
-/* ---- Grab the pieces of the page we need to control ---- */
-const pendulum   = document.getElementById("pendulum");
-const leftPupil  = document.getElementById("leftPupil");
-const rightPupil = document.getElementById("rightPupil");
-const hourHand   = document.getElementById("hourHand");
-const minuteHand = document.getElementById("minuteHand");
-const secondHand = document.getElementById("secondHand");
-const tDays      = document.getElementById("tDays");
-const tHours     = document.getElementById("tHours");
-const tMins      = document.getElementById("tMins");
-const tSecs      = document.getElementById("tSecs");
-const caption    = document.getElementById("caption");
-const catHat     = document.getElementById("catHat");
-const canvas     = document.getElementById("confetti");
-const ctx        = canvas.getContext("2d");
-
-/* Where the clock hands and pendulum pivot (matches the SVG drawing) */
-const CLOCK_CENTER = { x: 200, y: 160 };
-const PENDULUM_PIVOT = { x: 200, y: 288 };
-
-/* How the pendulum/eyes move */
-const SWING_PERIOD = 2.6;   // seconds for one full left-right-left swing
-const SWING_ANGLE  = 13;    // how far the pendulum tips, in degrees
-const EYE_TRAVEL   = 16;    // how far the pupils slide left/right, in SVG units
-const EYE_LOOK_UP  = 22;    // how far the pupils lift UP toward the pendulum
-
-/* ============================================================
-   STEP 1 — Build the clock's tick marks and 12/3/6/9 numbers
-   (done once, when the page loads)
-   ============================================================ */
-(function buildClockFace() {
-  const ticks = document.getElementById("clockTicks");
-  const svgNS = "http://www.w3.org/2000/svg";
-
-  for (let i = 0; i < 12; i++) {
-    const angle = (i * 30) * Math.PI / 180;          // 30 degrees apart
-    const sin = Math.sin(angle), cos = Math.cos(angle);
-    const big = i % 3 === 0;                          // bigger tick at 12/3/6/9
-
-    const line = document.createElementNS(svgNS, "line");
-    line.setAttribute("x1", CLOCK_CENTER.x + sin * 104);
-    line.setAttribute("y1", CLOCK_CENTER.y - cos * 104);
-    line.setAttribute("x2", CLOCK_CENTER.x + sin * (big ? 86 : 94));
-    line.setAttribute("y2", CLOCK_CENTER.y - cos * (big ? 86 : 94));
-    line.setAttribute("stroke", "#3a2a55");
-    line.setAttribute("stroke-width", big ? 6 : 3);
-    line.setAttribute("stroke-linecap", "round");
-    ticks.appendChild(line);
-  }
-
-  // the four main numbers
-  [["12", 0, -70], ["3", 70, 6], ["6", 0, 80], ["9", -70, 6]].forEach(([num, dx, dy]) => {
-    const t = document.createElementNS(svgNS, "text");
-    t.setAttribute("x", CLOCK_CENTER.x + dx);
-    t.setAttribute("y", CLOCK_CENTER.y + dy);
-    t.setAttribute("text-anchor", "middle");
-    t.setAttribute("font-family", "Orbitron, monospace");
-    t.setAttribute("font-weight", "700");
-    t.setAttribute("font-size", "26");
-    t.setAttribute("fill", "#3a2a55");
-    t.textContent = num;
-    ticks.appendChild(t);
+/* ---- a soft placeholder shown if an image file is missing ---- */
+function placeholderSrc(label) {
+  const svg =
+    "<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'>" +
+    "<rect width='100%' height='100%' fill='#cfc7b5'/>" +
+    "<text x='50%' y='50%' fill='#8a8470' font-family='sans-serif' font-size='26' " +
+    "text-anchor='middle' dominant-baseline='middle'>add " + label + "</text></svg>";
+  return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+}
+// attach the fallback to an <img>
+function withFallback(img, path) {
+  const name = path.split("/").pop();
+  img.addEventListener("error", function handle() {
+    img.removeEventListener("error", handle);
+    img.src = placeholderSrc(name);
   });
-})();
+}
 
-/* ============================================================
-   TIME HELPERS — getting the real Pacific time
-   ============================================================ */
-
-/* Read the current Pacific time as plain numbers (year, month, day, h, m, s). */
-function getPacificParts(epochMs) {
-  const formatter = new Intl.DateTimeFormat("en-US", {
-    timeZone: TIME_ZONE,
-    year: "numeric", month: "numeric", day: "numeric",
-    hour: "numeric", minute: "numeric", second: "numeric",
-    hour12: false,
+/* ---- highlight the current page in the nav ---- */
+function markActiveNav() {
+  let page = location.pathname.split("/").pop();
+  if (page === "" ) page = "index.html";
+  if (page === "project.html") page = "projects.html";   // detail page counts as Projects
+  document.querySelectorAll(".nav a").forEach((a) => {
+    if (a.getAttribute("href") === page) a.classList.add("active");
   });
-  const parts = {};
-  for (const p of formatter.formatToParts(new Date(epochMs))) {
-    if (p.type !== "literal") parts[p.type] = Number(p.value);
-  }
-  if (parts.hour === 24) parts.hour = 0;   // some browsers say 24 at midnight
-  return parts;
 }
 
-/* How many milliseconds Pacific time is offset from UTC at a given moment.
-   (This quietly handles daylight-saving time for us.) */
-function pacificOffsetMs(epochMs) {
-  const d = new Date(epochMs);
-  const asUTC = new Date(d.toLocaleString("en-US", { timeZone: "UTC" }));
-  const asPac = new Date(d.toLocaleString("en-US", { timeZone: TIME_ZONE }));
-  return asUTC - asPac;
-}
-
-/* Turn a Pacific "wall clock" date (e.g. Aug 8, 00:00 Pacific) into a real
-   moment in time we can subtract from "now". */
-function pacificWallTimeToEpoch(year, month, day, hour, min, sec) {
-  let epoch = Date.UTC(year, month - 1, day, hour, min, sec);
-  // run twice so we stay correct right at a daylight-saving switch
-  for (let i = 0; i < 2; i++) {
-    epoch = Date.UTC(year, month - 1, day, hour, min, sec) + pacificOffsetMs(epoch);
-  }
-  return epoch;
-}
-
-/* The moment of the next August 8th (this year, or next year if it already passed). */
-function nextBirthdayEpoch(nowMs) {
-  const p = getPacificParts(nowMs);
-  let year = p.year;
-  const afterThisYears8th = p.month > 8 || (p.month === 8 && p.day > 8);
-  if (afterThisYears8th) year += 1;
-  return pacificWallTimeToEpoch(year, 8, 8, 0, 0, 0);
-}
-
-/* Is it August 8th right now (Pacific time)? */
-function isBirthdayToday(nowMs) {
-  const p = getPacificParts(nowMs);
-  return p.month === 8 && p.day === 8;
+/* ---- mobile menu open/close ---- */
+function setupMenu() {
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".nav");
+  if (!toggle || !nav) return;
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.textContent = open ? "×" : "☰";   // × or ☰
+  });
 }
 
 /* ============================================================
-   STEP 2 — The smooth animation loop:
-   pendulum swing, the cat's eyes, and the moving clock hands.
-   This runs ~60 times a second.
+   PROJECTS grid (runs only on projects.html)
    ============================================================ */
-function animate(timestampMs) {
-  const seconds = timestampMs / 1000;
+function buildProjectsGrid() {
+  const grid = document.getElementById("projects-grid");
+  if (!grid || typeof PROJECTS === "undefined") return;
 
-  // a value that smoothly goes -1 → +1 → -1 ... like a pendulum
-  const phase = Math.sin((2 * Math.PI * seconds) / SWING_PERIOD);
+  PROJECTS.forEach((p) => {
+    const card = document.createElement("a");
+    card.className = "project-card";
+    // a project can point to its own custom page via "link"; otherwise the generic template
+    card.href = p.link ? p.link : "project.html?p=" + encodeURIComponent(p.slug);
 
-  // swing the pendulum
-  const swing = phase * SWING_ANGLE;
-  pendulum.setAttribute("transform", `rotate(${swing} ${PENDULUM_PIVOT.x} ${PENDULUM_PIVOT.y})`);
+    const thumb = document.createElement("div");
+    thumb.className = "thumb";
+    const img = document.createElement("img");
+    img.alt = p.title;
+    withFallback(img, p.cover);
+    img.src = p.cover;
+    thumb.appendChild(img);
 
-  // Make BOTH eyes look UP at the pendulum, and slide to follow the bob.
-  // Note: a positive swing rotates the bob to the LEFT, so the pupils must
-  // shift by the OPPOSITE sign to actually point at it. (negative Y = up)
-  const eyeShift = -phase * EYE_TRAVEL;
-  leftPupil.setAttribute("transform", `translate(${eyeShift} ${-EYE_LOOK_UP})`);
-  rightPupil.setAttribute("transform", `translate(${eyeShift} ${-EYE_LOOK_UP})`);
+    const overlay = document.createElement("div");
+    overlay.className = "project-overlay";
+    overlay.textContent = p.title;
 
-  // set the clock hands to the real Pacific time
-  const now = Date.now();
-  const t = getPacificParts(now);
-  const ms = now % 1000;                                  // for a smooth second hand
-  const secAngle  = (t.second + ms / 1000) * 6;           // 360 / 60
-  const minAngle  = (t.minute + t.second / 60) * 6;
-  const hourAngle = ((t.hour % 12) + t.minute / 60) * 30; // 360 / 12
-
-  hourHand.setAttribute("transform",   `rotate(${hourAngle} ${CLOCK_CENTER.x} ${CLOCK_CENTER.y})`);
-  minuteHand.setAttribute("transform", `rotate(${minAngle} ${CLOCK_CENTER.x} ${CLOCK_CENTER.y})`);
-  secondHand.setAttribute("transform", `rotate(${secAngle} ${CLOCK_CENTER.x} ${CLOCK_CENTER.y})`);
-
-  requestAnimationFrame(animate);
+    card.appendChild(thumb);
+    card.appendChild(overlay);
+    grid.appendChild(card);
+  });
 }
-requestAnimationFrame(animate);
 
 /* ============================================================
-   STEP 3 — The countdown text + birthday check.
-   This runs about 4 times a second (plenty for a ticking timer).
+   Single PROJECT page (runs only on project.html)
+   reads ?p=slug from the address and shows that project
    ============================================================ */
-function pad(n, width = 2) {
-  return String(n).padStart(width, "0");
+function buildProjectDetail() {
+  const root = document.getElementById("project-detail");
+  if (!root || typeof PROJECTS === "undefined") return;
+
+  const slug = new URLSearchParams(location.search).get("p");
+  const p = PROJECTS.find((x) => x.slug === slug) || PROJECTS[0];
+
+  const h1 = document.createElement("h1");
+  h1.textContent = p.title;
+
+  const blurb = document.createElement("p");
+  blurb.className = "blurb";
+  blurb.textContent = p.blurb;
+
+  const body = document.createElement("div");
+  body.className = "body";
+  (p.body || []).forEach((para) => {
+    const el = document.createElement("p");
+    el.textContent = para;
+    body.appendChild(el);
+  });
+
+  const shots = document.createElement("div");
+  shots.className = "shots";
+  (p.images || []).forEach((src) => {
+    const img = document.createElement("img");
+    img.alt = p.title;
+    withFallback(img, src);
+    img.src = src;
+    shots.appendChild(img);
+  });
+
+  root.appendChild(h1);
+  root.appendChild(blurb);
+  root.appendChild(body);
+  root.appendChild(shots);
+  document.title = p.title + " — Izabela Janczuk";
 }
-
-let birthdayActive = false;   // remembers whether confetti is already running
-
-function updateCountdown() {
-  const now = Date.now();
-
-  if (isBirthdayToday(now)) {
-    // 🎉 IT'S THE BIG DAY 🎉
-    tDays.textContent = "000";
-    tHours.textContent = "00";
-    tMins.textContent = "00";
-    tSecs.textContent = "00";
-    caption.textContent = "🎉 HAPPY BIRTHDAY CHIANTI! 🎉";
-    catHat.style.display = "block";
-    document.body.classList.add("party");
-    if (!birthdayActive) {
-      birthdayActive = true;
-      startConfetti();
-    }
-    return;
-  }
-
-  // Otherwise: show the time left until August 8th
-  const msLeft = Math.max(0, nextBirthdayEpoch(now) - now);
-  const totalSeconds = Math.floor(msLeft / 1000);
-  const days    = Math.floor(totalSeconds / 86400);
-  const hours   = Math.floor((totalSeconds % 86400) / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const secs    = totalSeconds % 60;
-
-  tDays.textContent  = pad(days);
-  tHours.textContent = pad(hours);
-  tMins.textContent  = pad(minutes);
-  tSecs.textContent  = pad(secs);
-  caption.textContent = "🎂 COUNTDOWN TO CHIANTI'S BIRTHDAY 🎂";
-  catHat.style.display = "none";
-  document.body.classList.remove("party");
-  birthdayActive = false;
-}
-
-updateCountdown();
-setInterval(updateCountdown, 250);
 
 /* ============================================================
-   STEP 4 — The confetti (only used on August 8th)
-   Lots of little colored squares that fall and twirl down the screen.
+   GALLERY masonry + lightbox (runs only on gallery.html)
    ============================================================ */
-let confettiPieces = [];
-let confettiRunning = false;
-const PARTY_COLORS = ["#ff4d9d", "#ffd34d", "#39ff14", "#6be3ff", "#b66bff", "#ff7a3d", "#ffffff"];
+function buildGallery() {
+  const masonry = document.getElementById("gallery-masonry");
+  if (!masonry || typeof GALLERY === "undefined") return;
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
+  GALLERY.forEach((src, i) => {
+    const img = document.createElement("img");
+    img.alt = "Photograph " + (i + 1);
+    img.loading = "lazy";
+    withFallback(img, src);
+    img.src = src;
+    img.addEventListener("click", () => openLightbox(i));
+    masonry.appendChild(img);
+  });
 
-function startConfetti() {
-  // make a big batch of confetti, scattered above the screen
-  confettiPieces = [];
-  for (let i = 0; i < 280; i++) {
-    confettiPieces.push(makeConfettiPiece(true));
+  // ---- the enlarged view with prev/next arrows ----
+  const box = document.getElementById("lightbox");
+  const big = document.getElementById("lightbox-img");
+  let current = 0;
+
+  function show(i) {
+    current = (i + GALLERY.length) % GALLERY.length;   // wrap around the ends
+    big.src = GALLERY[current];
   }
-  if (!confettiRunning) {
-    confettiRunning = true;
-    requestAnimationFrame(drawConfetti);
-  }
-}
-
-// "spread" = true means start scattered everywhere (initial burst);
-// otherwise the piece starts just above the top, ready to fall in.
-function makeConfettiPiece(spread) {
-  const i = confettiPieces.length;          // used to vary pieces without randomness gaps
-  return {
-    x: ((i * 73) % window.innerWidth),
-    y: spread ? ((i * 137) % window.innerHeight) - window.innerHeight
-              : -20 - ((i * 53) % 200),
-    size: 7 + ((i * 13) % 9),
-    color: PARTY_COLORS[i % PARTY_COLORS.length],
-    speedY: 1.6 + ((i % 7) * 0.45),
-    swayAmount: 14 + (i % 10),
-    swaySpeed: 0.6 + (i % 5) * 0.25,
-    spin: ((i % 12) - 6) * 0.04,
-    angle: i,
-    phase: i % 100,
+  window.openLightbox = function (i) {
+    show(i);
+    box.classList.add("open");
   };
+  function close() { box.classList.remove("open"); }
+
+  document.querySelector(".lb-prev").addEventListener("click", () => show(current - 1));
+  document.querySelector(".lb-next").addEventListener("click", () => show(current + 1));
+  document.querySelector(".lb-close").addEventListener("click", close);
+  box.addEventListener("click", (e) => { if (e.target === box) close(); });
+  document.addEventListener("keydown", (e) => {
+    if (!box.classList.contains("open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(current - 1);
+    if (e.key === "ArrowRight") show(current + 1);
+  });
 }
 
-function drawConfetti(timestampMs) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+/* ---- static images in the HTML get the same soft placeholder ---- */
+function initStaticFallbacks() {
+  document.querySelectorAll("img.ph-img").forEach((img) => {
+    const name = (img.getAttribute("src") || "image").split("/").pop();
+    function fix() { img.removeEventListener("error", fix); img.src = placeholderSrc(name); }
+    img.addEventListener("error", fix);
+    if (img.complete && img.naturalWidth === 0) fix();   // already failed before we attached
+  });
+}
 
-  if (!confettiRunning) return;
+/* ============================================================
+   HOME — drag an image onto the page to set the background.
+   The choice is remembered in this browser (localStorage), so it
+   sticks when you come back. NOTE: this preview lives only in YOUR
+   browser. To show the background to everyone who visits, the image
+   also needs to be saved as images/home-bg.jpg (which is the file
+   the page loads by default).
+   ============================================================ */
+function setupHomeDropzone() {
+  const home = document.querySelector(".home");
+  const bg = document.querySelector(".home-bg");
+  const hint = document.getElementById("drop-hint");
+  if (!home || !bg) return;
 
-  const t = timestampMs / 1000;
-  for (const p of confettiPieces) {
-    // fall down, and sway gently side to side
-    p.y += p.speedY;
-    p.x += Math.sin(t * p.swaySpeed + p.phase) * (p.swayAmount * 0.06);
-    p.angle += p.spin;
+  // restore a previously dropped image
+  try {
+    const saved = localStorage.getItem("home-bg-image");
+    if (saved) {
+      bg.style.backgroundImage = "url(" + saved + ")";
+      if (hint) hint.textContent = "Drag a new image here to replace your background";
+    }
+  } catch (e) {}
 
-    // once it falls off the bottom, send it back to the top to fall again
-    if (p.y > canvas.height + 20) {
-      p.y = -20;
-      p.x = (p.x + 137) % canvas.width;
+  ["dragenter", "dragover"].forEach((ev) =>
+    home.addEventListener(ev, (e) => { e.preventDefault(); home.classList.add("dragover"); })
+  );
+  ["dragleave", "dragend", "drop"].forEach((ev) =>
+    home.addEventListener(ev, () => home.classList.remove("dragover"))
+  );
+
+  home.addEventListener("drop", (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (!file || !file.type.startsWith("image/")) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const url = reader.result;
+      bg.style.backgroundImage = "url(" + url + ")";
+      try {
+        localStorage.setItem("home-bg-image", url);
+      } catch (err) {
+        console.warn("That image is a bit large to remember in the browser — it's showing for now, but save it as images/home-bg.jpg to make it permanent.");
+      }
+      if (hint) hint.textContent = "Background set! Drag a new image to replace it.";
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ============================================================
+   DRAG-AND-DROP IMAGE SLOTS (used on the EcoBite page)
+   Each .drop-slot shows, in order of preference:
+     1. an image you dragged in (remembered in this browser), or
+     2. the committed file at its data-src (shown to all visitors), or
+     3. a "drag an image here" hint.
+   Drag an image file onto a slot to preview it instantly.
+   ============================================================ */
+function setupDropSlots() {
+  document.querySelectorAll(".drop-slot").forEach((slot) => {
+    const key = slot.dataset.key;
+    const src = slot.dataset.src;
+    const img = slot.querySelector("img");
+    const hint = slot.querySelector(".slot-hint");
+
+    function showImage(url) {
+      img.src = url;
+      img.style.display = "block";
+      if (hint) hint.style.display = "none";
+      slot.classList.add("filled");
+    }
+    function showHint() {
+      img.style.display = "none";
+      if (hint) hint.style.display = "";
+      slot.classList.remove("filled");
     }
 
-    // draw the little spinning square
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate(p.angle);
-    ctx.fillStyle = p.color;
-    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
-    ctx.restore();
-  }
+    // 1) a previously dropped image?  2) else the committed file?  3) else the hint
+    let saved = null;
+    try { saved = localStorage.getItem(key); } catch (e) {}
+    if (saved) {
+      showImage(saved);
+    } else if (src) {
+      img.onload = () => showImage(src);
+      img.onerror = () => { img.onerror = null; showHint(); };
+      img.src = src;
+    }
 
-  requestAnimationFrame(drawConfetti);
+    ["dragenter", "dragover"].forEach((ev) =>
+      slot.addEventListener(ev, (e) => { e.preventDefault(); slot.classList.add("drag"); })
+    );
+    ["dragleave", "dragend", "drop"].forEach((ev) =>
+      slot.addEventListener(ev, () => slot.classList.remove("drag"))
+    );
+    slot.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+      if (!file || !file.type.startsWith("image/")) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try { localStorage.setItem(key, reader.result); }
+        catch (err) { console.warn("Image too large to remember in browser; showing this session only."); }
+        showImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
 }
 
-/* ---- A tiny test helper ----
-   August 8th is far away, so to SEE the birthday version right now,
-   open the page, then in the browser's Console type:   testBirthday()
-   Reload the page to go back to normal. */
-window.testBirthday = function () {
-  tDays.textContent = "000";
-  tHours.textContent = "00";
-  tMins.textContent = "00";
-  tSecs.textContent = "00";
-  caption.textContent = "🎉 HAPPY BIRTHDAY CHIANTI! 🎉";
-  catHat.style.display = "block";
-  document.body.classList.add("party");
-  startConfetti();
-};
+/* ---- run everything once the page is ready ---- */
+document.addEventListener("DOMContentLoaded", () => {
+  markActiveNav();
+  setupMenu();
+  initStaticFallbacks();
+  buildProjectsGrid();
+  buildProjectDetail();
+  buildGallery();
+  setupHomeDropzone();
+  setupDropSlots();
+});

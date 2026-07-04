@@ -1,98 +1,498 @@
 /* ============================================================
-   styles.css  —  all the LOOKS of the page
-   (colors, the neon glow, where things sit)
+   styles.css — shared styles for the whole portfolio
+   Sage-green background, lime headings, rounded friendly type.
+
+   The variables below are your "control panel": change a value
+   here and it updates everywhere, on every page.
    ============================================================ */
+:root {
+  --green:  #828a5f;   /* the sage-olive page background */
+  --lime:   #cdee7d;   /* bright lime — name, headings, nav */
+  --body:   #cdee7d;   /* body text — exact same lime as the headings */
+  --tan:    #a3915f;   /* the SEND button */
+  --tan-dk: #8c7c4d;   /* tan button hover */
+  --link:   #7d6f3e;   /* the LinkedIn underline color */
+  --white:  #ffffff;
+  --maxw:   1320px;
 
-/* A "reset" so the page touches every edge with no white border */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  --font: "Poppins", system-ui, -apple-system, sans-serif;
 }
 
-html, body {
-  height: 100%;
-  overflow: hidden;            /* no scrollbars — it's a single full-screen scene */
-}
+/* ---- reset ---- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  /* the playful, colorful party background (pink -> purple) */
-  background: linear-gradient(160deg, #ff7eb3 0%, #ff6a9a 25%, #b66bff 70%, #7b5bff 100%);
-  font-family: "Baloo 2", system-ui, sans-serif;
-  position: relative;
+  background: var(--green);
+  color: var(--body);
+  font-family: var(--font);
+  font-size: 18px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  /* prevents a lone word from "hanging" on its own line in paragraphs,
+     automatically, at every screen width (better than manual line breaks) */
+  text-wrap: pretty;
 }
 
-/* a gentle glow that pulses behind everything on the birthday */
-body.party {
-  animation: partyPulse 1.6s ease-in-out infinite;
-}
-@keyframes partyPulse {
-  0%, 100% { filter: saturate(1)   brightness(1); }
-  50%      { filter: saturate(1.4) brightness(1.12); }
-}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
 
-/* ---- THE CAT: pinned to the bottom, full width (full bleed).
-        min-height makes it fill most of the screen height on tall windows
-        so the head + torso dominate the page. ---- */
-#cat {
-  position: fixed;
-  left: 0;
-  bottom: 0;
+/* centered content column */
+.wrap {
   width: 100%;
-  min-height: 88vh;
-  height: auto;
-  display: block;
-  z-index: 1;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 clamp(22px, 5vw, 60px);
 }
 
-/* ---- THE WALL CLOCK: hangs near the top, centered ---- */
-#clock {
-  position: fixed;
-  top: 2vh;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(150px, 20vw, 250px);  /* never too small, never too big */
-  height: auto;
-  z-index: 2;
-  filter: drop-shadow(0 12px 18px rgba(40, 10, 60, 0.35));
+/* big page headings (Hej!, Reach out!, etc.) */
+.display {
+  color: var(--lime);
+  font-weight: 300;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 26px;
+  text-wrap: balance;   /* keeps headings evenly balanced, no single hanging word */
 }
-
-/* ---- THE CONFETTI LAYER: covers everything, but clicks pass through ---- */
-#confetti {
-  position: fixed;
-  inset: 0;                    /* top:0 right:0 bottom:0 left:0 */
-  width: 100%;
-  height: 100%;
-  z-index: 5;
-  pointer-events: none;        /* you can't accidentally click the confetti */
+.lead {                 /* the intro blurb under a heading */
+  color: var(--body);
+  font-size: clamp(1rem, 1.7vw, 1.25rem);
+  max-width: 70ch;
 }
 
 /* ============================================================
-   THE NEON TIMER TEXT
-   These classes are used on the <text> elements inside the cat.
-   "filter: url(#neonGlow)" turns on the green glow defined in the SVG.
+   HEADER + NAV  (same on every page; sits over the page)
    ============================================================ */
-.neon-big {
-  font-family: "Orbitron", monospace;
-  font-weight: 900;
-  font-size: 56px;
-  letter-spacing: 0;
-  fill: #39ff14;               /* bright neon green */
-  filter: url(#neonGlow);
+.site-header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 30;
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 26px;
+  padding-bottom: 26px;
+}
+.logo {
+  color: var(--lime);
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+}
+.nav { display: flex; gap: clamp(18px, 2.6vw, 40px); }
+.nav a {
+  color: var(--lime);
+  font-size: 1.05rem;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, opacity 0.2s;
+}
+.nav a:hover { opacity: 0.75; }
+.nav a.active { border-color: var(--lime); }   /* underline the current page */
+
+/* the folded-paper corner has been removed */
+.dogear { display: none; }
+
+/* hamburger button — only shows on small screens */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--lime);
+  font-size: 1.7rem;
+  cursor: pointer;
+  line-height: 1;
 }
 
-.neon-small {
-  font-family: "Baloo 2", sans-serif;
-  font-weight: 800;
-  font-size: 27px;
-  fill: #6bffb0;
-  filter: url(#neonGlow);
+/* ============================================================
+   FOOTER (white band: name left, LinkedIn right)
+   ============================================================ */
+.site-footer {
+  background: var(--white);
+  padding: 34px 0;
+}
+.site-footer .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.footer-name { color: var(--lime); font-size: 1.5rem; letter-spacing: 0.06em; }
+.footer-link {
+  color: var(--link);
+  font-size: 1.3rem;
+  border-bottom: 2px solid var(--link);
+  padding-bottom: 2px;
 }
 
-.neon-label {
-  font-family: "Orbitron", monospace;
-  font-weight: 700;
-  font-size: 19px;
-  letter-spacing: 1px;
-  fill: #b8ffd0;
+/* shared: push page content below the fixed header */
+.page { padding-top: 120px; padding-bottom: 90px; min-height: 70vh; }
+
+/* ============================================================
+   HOME — background photo, scrolling name, three labels
+   ============================================================ */
+.home { position: relative; min-height: 100vh; display: flex; flex-direction: column; }
+.home-bg {
+  position: absolute; inset: 0;
+  /* sand-colored fallback shows if the photo isn't added yet */
+  background: #cfc7b5 center / cover no-repeat;
+  background-image: url("images/home-bg.jpg");
+  z-index: -1;
+}
+
+/* hint + highlight for dragging an image onto the home page */
+.drop-hint {
+  position: absolute;
+  top: 100px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  color: var(--lime);
+  background: rgba(40, 44, 28, 0.35);
+  backdrop-filter: blur(4px);
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  text-align: center;
+  max-width: 90vw;
+  pointer-events: none;
+  opacity: 0.85;
+  display: none;                 /* hidden for visitors... */
+}
+.home.dragover .drop-hint { display: block; }   /* ...shown only while you drag an image over */
+.home.dragover .home-bg { filter: brightness(0.78); }
+.home.dragover::after {
+  content: "";
+  position: absolute; inset: 14px;
+  border: 3px dashed var(--lime);
+  border-radius: 18px;
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* the giant name that scrolls across and loops */
+.marquee {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 52s linear infinite;   /* slowed to half speed (2x slower) */
+}
+.marquee-track span {
+  color: var(--lime);
+  font-weight: 300;
+  font-size: clamp(3.5rem, 15vw, 11rem);
+  line-height: 1;
+  white-space: nowrap;
+  padding-right: 0.5em;
+  letter-spacing: -0.01em;
+}
+/* moves from left toward the right, seamlessly */
+@keyframes marquee {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* Creative Projects / Design / Photography */
+.home-labels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-bottom: clamp(40px, 8vh, 90px);
+  padding-top: 30px;
+}
+.home-labels a { color: var(--lime); font-size: clamp(1.1rem, 2.2vw, 1.6rem); }
+.home-labels a:nth-child(1) { text-align: left; }
+.home-labels a:nth-child(2) { text-align: center; }
+.home-labels a:nth-child(3) { text-align: right; }
+.home-labels a:hover { opacity: 0.75; }
+
+/* ============================================================
+   ABOUT — intro (text + photo) and the CV columns
+   ============================================================ */
+.about-intro {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(36px, 6vw, 80px);
+  align-items: start;
+  margin-bottom: clamp(60px, 9vw, 110px);
+}
+.about-text p { margin-bottom: 20px; max-width: 60ch; }
+.about-photo img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* the CV / experience grid */
+.cv {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(26px, 3vw, 48px);
+}
+.cv-head {
+  color: var(--lime);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.45rem;
+  margin-bottom: 18px;
+  margin-top: 34px;
+}
+.cv-head:first-child { margin-top: 0; }
+.cv ul { list-style: none; padding: 0; }
+.cv ul li { margin-bottom: 12px; }
+.cv-entry { margin-bottom: 26px; }
+.cv-entry .t { color: var(--lime); }      /* entry title */
+.cv-entry .s { }                            /* sub line / dates */
+
+/* ============================================================
+   PROJECTS — image grid; title appears on hover
+   ============================================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: clamp(20px, 2.5vw, 36px);
+  margin-top: clamp(50px, 7vw, 90px);
+}
+.project-card { position: relative; display: block; overflow: hidden; }
+.project-card .thumb {
+  aspect-ratio: 4 / 3;
+  background: #cfc7b5;
+  overflow: hidden;
+}
+.project-card .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.project-card:hover .thumb img { transform: scale(1.04); }
+.project-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 20px;
+  background: rgba(130, 138, 95, 0.72);
+  color: var(--lime);
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.project-card:hover .project-overlay { opacity: 1; }
+
+/* single project detail page */
+.project-detail .back { color: var(--lime); display: inline-block; margin-bottom: 30px; }
+.project-detail .back:hover { opacity: 0.75; }
+.project-detail h1 { color: var(--lime); font-weight: 300; font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 18px; }
+.project-detail .blurb { max-width: 70ch; margin-bottom: 16px; }
+.project-detail .body { max-width: 70ch; }
+.project-detail .body p { margin-bottom: 18px; }
+.project-detail .shots { margin-top: 40px; display: grid; gap: 24px; }
+
+/* ============================================================
+   GALLERY — masonry; images enlarge in a lightbox
+   ============================================================ */
+.masonry {
+  margin-top: clamp(40px, 6vw, 80px);
+  column-count: 3;
+  column-gap: 18px;
+}
+.masonry img {
+  width: 100%;
+  margin-bottom: 18px;
+  break-inside: avoid;       /* keep each image in one column */
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.masonry img:hover { opacity: 0.9; }
+
+/* the full-screen enlarged view */
+.lightbox {
+  position: fixed; inset: 0;
+  background: rgba(40, 44, 28, 0.94);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 86vw; max-height: 86vh; object-fit: contain; }
+.lightbox button {
+  position: absolute;
+  background: none; border: none;
+  color: var(--lime);
+  font-size: 2.6rem;
+  cursor: pointer;
+  padding: 18px;
+  line-height: 1;
+}
+.lb-prev { left: 2vw; }
+.lb-next { right: 2vw; }
+.lb-close { top: 1vh; right: 2vw; font-size: 2.2rem; }
+
+/* ============================================================
+   CONTACT — the form
+   ============================================================ */
+.form { max-width: 860px; margin-top: clamp(30px, 5vw, 60px); }
+.form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.field { margin-bottom: 26px; }
+.field label { display: block; color: var(--body); margin-bottom: 10px; }
+.field label .req { opacity: 0.7; font-size: 0.85em; }
+.field input, .field textarea {
+  width: 100%;
+  background: transparent;
+  border: 1.5px solid var(--lime);
+  border-radius: 26px;
+  color: var(--lime);
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 14px 20px;
+}
+.field textarea { border-radius: 22px; min-height: 150px; resize: vertical; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--white); }
+.btn-send {
+  background: var(--tan);
+  color: var(--white);
+  border: none;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  padding: 18px 46px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-send:hover { background: var(--tan-dk); }
+.form-status { margin-top: 18px; color: var(--lime); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .cv { grid-template-columns: repeat(2, 1fr); }
+  .masonry { column-count: 2; }
+}
+@media (max-width: 720px) {
+  .about-intro { grid-template-columns: 1fr; }
+  .form .row { grid-template-columns: 1fr; }
+
+  /* turn the nav into a tap-to-open overlay */
+  .menu-toggle { display: block; z-index: 40; }
+  .nav {
+    position: fixed; inset: 0;
+    background: var(--green);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    font-size: 1.4rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .nav.open { transform: none; }
+  .nav a { font-size: 1.5rem; }
+}
+@media (max-width: 480px) {
+  .masonry { column-count: 1; }
+  .home-labels { gap: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================================
+   ECOBITE PROJECT PAGE
+   ============================================================ */
+/* on this page the nav sits over a tan hero, so make it white */
+.eco-page .nav a, .eco-page .logo { color: #ffffff; }
+.eco-page .nav a.active { border-color: #ffffff; }
+.eco-page .menu-toggle { color: #ffffff; }
+@media (max-width: 720px) { .eco-page .nav { background: var(--tan); } }
+
+/* ---- hero (tan) ---- */
+.eco-hero { background: var(--tan); color: #fff; padding: 130px 0 clamp(50px, 8vw, 90px); }
+.eco-hero .wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(30px, 5vw, 70px);
+  align-items: center;
+}
+.eco-hero-title { font-weight: 300; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.04; margin-bottom: 10px; }
+.eco-hero .sub { font-size: 1.3rem; letter-spacing: 0.05em; margin-bottom: 28px; }
+.eco-hero .tools { font-size: clamp(1.2rem, 2.2vw, 1.55rem); font-weight: 600; margin-bottom: 18px; }
+.eco-hero p { margin-bottom: 16px; max-width: 52ch; }
+
+/* ---- body (green) ---- */
+.eco-body { background: var(--green); padding: clamp(50px, 8vw, 100px) 0 clamp(60px, 9vw, 110px); }
+.eco-body .back { color: var(--lime); display: inline-block; margin-bottom: clamp(40px, 6vw, 70px); }
+.eco-body .back:hover { opacity: 0.75; }
+.eco-section { margin-bottom: clamp(56px, 9vw, 110px); }
+.eco-section:last-child { margin-bottom: 0; }
+.eco-h { color: var(--lime); font-weight: 300; font-size: clamp(1.9rem, 4.5vw, 2.8rem); margin-bottom: 30px; }
+.eco-subh { color: var(--lime); font-weight: 600; font-size: 1.2rem; margin: 30px 0 18px; }
+.eco-body p, .eco-body li { color: var(--body); }
+.eco-text { max-width: 72ch; }
+.eco-text p { margin-bottom: 16px; }
+
+/* personas: two columns */
+.personas { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 70px); }
+.persona .line { margin-bottom: 14px; max-width: 46ch; }
+.jtbd p { margin-bottom: 16px; }
+
+/* ---- accordions (click to expand) ---- */
+.acc-group { border-top: 1px solid var(--lime); margin-top: 12px; }
+.acc { border-bottom: 1px solid var(--lime); }
+.acc summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 0;
+  color: var(--lime);
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.acc summary::-webkit-details-marker { display: none; }
+.acc summary::after { content: "+"; font-weight: 300; font-size: 1.1rem; line-height: 1; }
+.acc[open] summary::after { content: "\2212"; }   /* minus sign */
+.acc-body { padding: 4px 0 clamp(24px, 3vw, 34px); max-width: 74ch; }
+.acc-body p { margin-bottom: 14px; }
+.acc-body ul { padding-left: 1.2em; }
+.acc-body li { margin-bottom: 14px; }
+
+/* ---- drag-and-drop image slots ---- */
+.drop-slot {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed rgba(205, 238, 125, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 6px 0 18px;
+}
+.eco-hero .drop-slot { border-color: rgba(255, 255, 255, 0.45); min-height: 300px; }
+.drop-slot.filled { border: none; min-height: 0; display: block; }
+.drop-slot.drag { border-color: var(--lime); background: rgba(0, 0, 0, 0.12); }
+.drop-slot img { width: 100%; display: block; }
+.slot-hint { color: var(--body); text-align: center; font-size: 0.95rem; line-height: 1.5; padding: 24px; pointer-events: none; }
+.eco-hero .slot-hint { color: rgba(255, 255, 255, 0.85); }
+.slot-hint small { opacity: 0.7; }
+
+/* ---- video ---- */
+.eco-video { width: 100%; border-radius: 8px; display: block; margin-bottom: 26px; background: #000; }
+
+/* ---- responsive ---- */
+@media (max-width: 760px) {
+  .eco-hero .wrap { grid-template-columns: 1fr; }
+  .personas { grid-template-columns: 1fr; }
 }

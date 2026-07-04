@@ -1,0 +1,47 @@
+HOW TO ADD YOUR IMAGES
+======================
+
+Drop your image files into this "images" folder (and its sub-folders)
+using the exact file names below. As soon as a file with the right
+name is here, it shows up on the site automatically. Until then, a
+soft "add ..." placeholder is shown so nothing ever looks broken.
+
+Tip: file names are case-sensitive and must match exactly, including
+the ".jpg". You can use .jpg or .png — if you use .png, just change
+the file name in content.js to end in .png too.
+
+
+1) HOME PAGE BACKGROUND
+   Put one photo here:
+     images/home-bg.jpg
+
+
+2) ABOUT PAGE PHOTO (the picture of you)
+   Put one photo here:
+     images/about-me.jpg
+
+
+3) PROJECTS  (folder: images/projects/)
+   One "cover" image per project. The names come from content.js.
+   Right now it expects:
+     images/projects/ecobite.jpg
+     images/projects/project-two.jpg
+     images/projects/project-three.jpg
+   Extra images shown inside the EcoBite project page:
+     images/projects/ecobite-1.jpg
+     images/projects/ecobite-2.jpg
+   To add a new project: open content.js, copy a project block,
+   give it a new "slug" and image name, then drop the image here.
+
+
+4) GALLERY  (folder: images/gallery/)
+   Your photography. The list lives in content.js. Right now:
+     images/gallery/forest.jpg
+     images/gallery/river.jpg
+     images/gallery/sunset.jpg
+     images/gallery/donkey.jpg
+     images/gallery/photo-5.jpg
+     images/gallery/photo-6.jpg
+   To add more: drop the photo in this folder and add its file
+   name to the GALLERY list in content.js. The masonry layout and
+   the click-to-enlarge arrows handle the rest automatically.
