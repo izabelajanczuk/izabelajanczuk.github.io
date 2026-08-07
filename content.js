@@ -32,10 +32,11 @@ const PROJECTS = [
     ]
   },
   {
-    slug: "project-two",
-    title: "Soon...",
-    cover: "images/projects/project-two.jpg",
-    blurb: "",
+    slug: "segostop",
+    title: "SegoStop",
+    link: "segostop.html",
+    cover: "images/segostop/hero-assembly.png",
+    blurb: "Modular bus stop seating for Segovia's historic streets.",
     body: [],
     images: []
   },

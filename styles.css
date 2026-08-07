@@ -421,6 +421,39 @@ body:not(.home-page) .site-header {
 }
 
 /* ============================================================
+   SHARED PROJECT PAGE — image helpers (SegoStop + future pages)
+   ============================================================ */
+.sego-hero-fig {
+  margin: 0;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sego-hero-fig img { width: 100%; display: block; }
+
+.sego-img-full { margin: clamp(24px, 4vw, 48px) 0; }
+.sego-img-full img { width: 100%; display: block; border-radius: 6px; }
+
+.sego-render { background: #fff; border-radius: 12px; overflow: hidden; padding: 0; }
+.sego-render img { width: 100%; display: block; }
+
+.sego-img-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(14px, 2vw, 24px);
+  margin: clamp(24px, 4vw, 48px) 0;
+}
+.sego-img-grid figure { margin: 0; overflow: hidden; border-radius: 6px; }
+.sego-img-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+
+@media (max-width: 600px) {
+  .sego-img-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
    ECOBITE PROJECT PAGE
    ============================================================ */
 /* on this page the nav sits over a tan hero, so make it white */
