@@ -421,10 +421,15 @@ body:not(.home-page) .site-header {
 }
 
 /* ============================================================
-   SHARED PROJECT PAGE — image helpers (SegoStop + future pages)
+   SEGOSTOP PROJECT PAGE — layout helpers
    ============================================================ */
 
-/* hero: white-bg product render inside tan section */
+/* tighter section spacing — EcoBite's default is too open for this page */
+.sego-page .eco-section { margin-bottom: clamp(28px, 4vw, 48px); }
+.sego-page .eco-subh    { margin: 18px 0 10px; }
+.sego-page .eco-text    { margin-bottom: 0; }
+
+/* hero: white product render inside tan section */
 .sego-hero-fig {
   margin: 0;
   background: #fff;
@@ -433,36 +438,43 @@ body:not(.home-page) .site-header {
 }
 .sego-hero-fig img { width: 100%; display: block; }
 
-/* 2-up gallery grid for process photos — fixed height, cropped */
-.sego-img-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin: 28px 0;
+/* gallery strip — flex, natural aspect ratios, like the gallery page */
+.sego-gallery {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 16px 0 20px;
 }
-.sego-img-grid figure { margin: 0; overflow: hidden; border-radius: 6px; }
-.sego-img-grid img { width: 100%; height: 240px; object-fit: cover; display: block; }
+.sego-gallery figure { flex: 1; margin: 0; border-radius: 6px; overflow: hidden; }
+.sego-gallery img    { width: 100%; height: auto; display: block; }
 
-/* single process photo — constrained, centered */
-.sego-img-mid { max-width: 480px; margin: 28px auto; }
-.sego-img-mid img { width: 100%; display: block; border-radius: 6px; }
-
-/* single landscape process photo — slightly wider */
-.sego-img-wide { max-width: 620px; margin: 28px auto; }
-.sego-img-wide img { width: 100%; display: block; border-radius: 6px; }
+/* single image floated right so text wraps around it */
+.sego-float {
+  float: right;
+  width: 42%;
+  margin: 4px 0 20px 28px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.sego-float img { width: 100%; height: auto; display: block; }
+.sego-clearfix::after { content: ""; display: table; clear: both; }
 
 /* final renders — full width, white background */
 .sego-render {
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
-  margin: 28px 0;
+  margin: 16px 0 20px;
 }
 .sego-render img { width: 100%; display: block; }
 
-@media (max-width: 600px) {
-  .sego-img-grid { grid-template-columns: 1fr; }
-  .sego-img-grid img { height: 200px; }
+@media (max-width: 720px) {
+  .sego-gallery { flex-wrap: wrap; }
+  .sego-gallery figure { flex: 1 1 45%; }
+  .sego-float { float: none; width: 100%; margin: 0 0 16px 0; }
+}
+@media (max-width: 480px) {
+  .sego-gallery figure { flex: 1 1 100%; }
 }
 
 /* ============================================================
