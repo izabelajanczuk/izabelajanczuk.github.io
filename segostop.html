@@ -28,240 +28,498 @@
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="eco-hero">
-    <div class="wrap">
-      <figure class="sego-hero-fig">
-        <img src="images/segostop/hero-assembly.png" alt="SegoStop — three modular segments assembled around a bus stop pole" />
-      </figure>
-      <div class="eco-hero-text">
-        <h1 class="eco-hero-title">SegoStop</h1>
-        <p class="sub">Industrial Design&nbsp;// Urban Usability</p>
-        <p class="tools">Tools: Rhino,&nbsp;Laser Cutter,&nbsp;3D Printer</p>
-        <p>An accessibility-focused modular seating system for Segovia's historic bus stops. Quarter-circle segments clamp around existing poles and adapt to uneven cobblestone terrain through independently adjustable legs — so everyone can sit.</p>
-        <p>In collaboration with Amina&nbsp;Magomedova, Ana&nbsp;Cotoi, Veer&nbsp;Chaudhary, Fergus&nbsp;Condon</p>
+  <!-- SIDE NAV — dot strip -->
+  <ul class="sg-nav" aria-label="Page sections">
+    <li><a href="#overview"  data-label="Overview"  aria-label="Overview"></a></li>
+    <li><a href="#research"  data-label="Research"  aria-label="Research"></a></li>
+    <li><a href="#ideation"  data-label="Ideation"  aria-label="Ideation"></a></li>
+    <li><a href="#terrain"   data-label="Terrain"   aria-label="Terrain pivot"></a></li>
+    <li><a href="#process"   data-label="Process"   aria-label="Making process"></a></li>
+    <li><a href="#final"     data-label="Final"     aria-label="Final design"></a></li>
+  </ul>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="sg-hero" id="overview">
+    <div class="sg-hero-top">
+      <p class="sg-hero-overline">Industrial Design &mdash; Urban Usability &mdash; Segovia 2024</p>
+      <h1 class="sg-hero-title">SEGO<br>STOP</h1>
+      <p class="sg-hero-tagline">A modular, terrain-adaptive seating system for Segovia's historic bus stops — quarter-circle segments that clamp around existing poles and level on cobblestone.</p>
+    </div>
+    <div class="sg-hero-img">
+      <img src="images/segostop/hero-assembly.png"
+           alt="SegoStop — three modular quarter-circle segments assembled around a bus stop pole, rendered 3D model"
+           loading="eager" />
+    </div>
+    <div class="sg-hero-foot">
+      <div>
+        <p class="sg-hero-foot-label">Team</p>
+        <p class="sg-hero-foot-val">Izabela Janczuk, Amina&nbsp;Magomedova, Ana&nbsp;Cotoi,<br>Veer&nbsp;Chaudhary, Fergus&nbsp;Condon</p>
+      </div>
+      <div>
+        <p class="sg-hero-foot-label">Tools &amp; Methods</p>
+        <p class="sg-hero-foot-val">Rhino 3D &mdash; Laser Cutter &mdash; 3D Printer &mdash; Cardboard prototyping &mdash; Field interviews</p>
       </div>
     </div>
   </section>
 
-  <!-- BODY -->
-  <main class="eco-body">
-    <div class="wrap">
+  <main>
 
-      <a class="back" href="projects.html">← Back to projects</a>
-
-      <!-- 1. Design Problem -->
-      <section class="eco-section">
-        <h2 class="eco-h">The Design Problem</h2>
-        <div class="eco-text">
-          <p>Segovia's bus stop infrastructure lacks adjustable, accessible seating — especially for elderly residents. Harsh weather and uneven cobblestone terrain create additional barriers, leaving many riders with no choice but to stand or sit on the ground.</p>
-        </div>
-        <div class="sego-gallery">
-          <figure><img src="images/segostop/context-busstop.jpg" alt="Segovia bus stop sign with the Roman aqueduct in the background" /></figure>
-          <figure><img src="images/segostop/field-friend-busstop.jpg" alt="Team member demonstrating the lack of seating at a Segovia bus stop" /></figure>
-        </div>
-        <div class="acc-group">
-          <details class="acc">
-            <summary>Citizen Research — 14 Interviews</summary>
-            <div class="acc-body">
-              <ul>
-                <li>The lack of seating was a consistent annoyance, especially in newer parts of Segovia</li>
-                <li>A significant portion cited it as a particular problem for newer residents and tourists unfamiliar with schedules</li>
-                <li>3 participants noted it affected them most when waiting without knowing arrival times</li>
-                <li>Results confirmed the problem was widespread enough to warrant a design intervention</li>
-              </ul>
-            </div>
-          </details>
-          <details class="acc">
-            <summary>Key Insights</summary>
-            <div class="acc-body">
-              <ul>
-                <li>68% of surveyed users were over 60 years old</li>
-                <li>Key pain points: physical discomfort, exposure to weather, lack of stability on sloped ground</li>
-                <li>Existing solutions failed to adapt to Segovia's varied, uneven historic terrain</li>
-              </ul>
-            </div>
-          </details>
-        </div>
-      </section>
-
-      <!-- 2. Target Users -->
-      <section class="eco-section">
-        <h2 class="eco-h">Target Users</h2>
-        <div class="personas">
-          <div class="persona">
-            <p class="eco-subh">Persona I — Maria</p>
-            <p class="line">Age: 72</p>
-            <p class="line">Gender: Female</p>
-            <p class="line">Nationality: Spanish</p>
-            <p class="line">Personality: Uses the bus 3–4 times weekly for errands and doctor visits. Has mild arthritis making long periods of standing painful. Concerned about slipping in rainy weather.</p>
-            <p class="line">Frustrations: The lack of bus stop seating makes commuting increasingly difficult at her age.</p>
-          </div>
-          <div class="persona">
-            <p class="eco-subh">Persona II — Luis</p>
-            <p class="line">Age: 65</p>
-            <p class="line">Gender: Male</p>
-            <p class="line">Nationality: Spanish</p>
-            <p class="line">Personality: Recently retired teacher who uses public transit daily. Has back pain that worsens with prolonged standing. Appreciates thoughtful urban design that respects all citizens.</p>
-            <p class="line">Frustrations: Absence of comfortable seating makes it harder to manage his back pain on longer waits.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3. Ideation -->
-      <section class="eco-section">
-        <h2 class="eco-h">Ideation</h2>
-        <div class="sego-clearfix">
-          <figure class="sego-float">
-            <img src="images/segostop/brainstorm-flipchart.jpg" alt="Ideation flipchart showing V1, V2, V3 concepts with dimensions" />
-          </figure>
-          <div class="eco-text">
-            <p>Three directions were developed — each with a different form, placement logic, and functionality. Concepts were mapped on a shared flipchart and evaluated against usability, durability, and the spatial constraints of real Segovia bus stop poles.</p>
-          </div>
-        </div>
-        <div class="sego-gallery">
-          <figure><img src="images/segostop/workshop.jpg" alt="Team brainstorming session at IE University" /></figure>
-          <figure><img src="images/segostop/sketch-doughnut.jpg" alt="Coloured concept sketch of the doughnut design" /></figure>
-        </div>
-        <div class="acc-group">
-          <details class="acc">
-            <summary>V1 — Foldable Chair Attachment</summary>
-            <div class="acc-body">
-              <p><strong>Pros:</strong> Foldable, compact, weather-resistant. Minimal footprint — does not require clear space around the pole.</p>
-              <p><strong>Cons:</strong> Seats at most two people. Complex anti-theft attachment. Hard to maintain.</p>
-            </div>
-          </details>
-          <details class="acc">
-            <summary>V2 — Pull Bench</summary>
-            <div class="acc-body">
-              <p><strong>Pros:</strong> Can accommodate more people than V1.</p>
-              <p><strong>Cons:</strong> Easily destructible by weather and vandalism. Difficult to construct durably.</p>
-            </div>
-          </details>
-          <details class="acc">
-            <summary>V3 — Modular "Doughnut" Segments <span style="font-size:0.85em;opacity:0.65">(selected)</span></summary>
-            <div class="acc-body">
-              <p><strong>Pros:</strong> Uses the full footprint of the stop. Seats the most people. Easiest to maintain. Modular — can be partially deployed where space is limited.</p>
-              <p><strong>Cons:</strong> Larger footprint; not all poles have clear space around them.</p>
-              <p>Follow-up survey: <strong>8 out of 14 votes for the Doughnut</strong>, versus 4 for the flip-chair and 2 for the extendable bench.</p>
-            </div>
-          </details>
-        </div>
-      </section>
-
-      <!-- 4. Making Process (includes sketching, 3D modeling, prototyping, fabrication) -->
-      <section class="eco-section">
-        <h2 class="eco-h">Making Process</h2>
-        <div class="eco-text">
-          <p>Four stages took the concept from pencil lines to a 3D-printed and laser-cut physical model alongside a fully rendered 3D model.</p>
-        </div>
-
-        <!-- Process bar -->
-        <div class="sego-process">
-          <div class="sego-step">
-            <div class="sego-step-dot">1</div>
-            <span class="sego-step-label">Sketching</span>
-          </div>
-          <div class="sego-step">
-            <div class="sego-step-dot">2</div>
-            <span class="sego-step-label">Cardboard Prototyping</span>
-          </div>
-          <div class="sego-step">
-            <div class="sego-step-dot">3</div>
-            <span class="sego-step-label">Laser Cutting &amp; 3D Printing</span>
-          </div>
-          <div class="sego-step">
-            <div class="sego-step-dot">4</div>
-            <span class="sego-step-label">Scaled Model</span>
-          </div>
-        </div>
-
-        <!-- Step 1 — Sketching & Refinement -->
-        <div class="sego-tag s1"><div class="sego-tag-dot">1</div>Sketching &amp; Refinement</div>
-        <div class="sego-clearfix">
-          <figure class="sego-float">
-            <img src="images/segostop/sketch-structure.jpg" alt="Annotated structural sketch showing skeleton, support beams, and base" />
-          </figure>
-          <div class="eco-text">
-            <p>Sketches explored methods of attachment to the pole and how seat segments might extend or retract — letting the team eliminate ideas early that couldn't be realised or didn't truly solve the problem.</p>
-          </div>
-        </div>
-        <div class="sego-gallery">
-          <figure><img src="images/segostop/proc-IMG_2724.jpg" alt="Sketchbook page with two pen studies of the final form" /></figure>
-          <figure><img src="images/segostop/proc-IMG_2726.jpg" alt="Sketchbook page with detailed design studies" /></figure>
-          <figure><img src="images/segostop/proc-IMG_2808.jpg" alt="Final pen sketches — multiple quarter-circle segment views" /></figure>
-        </div>
-        <div class="sego-aside"><strong>Terrain pivot —</strong> The original full-ring doughnut couldn't level on Segovia's uneven cobblestone. Solution: independently adjustable legs per segment, so each quarter-circle finds its own footing regardless of ground slope.</div>
-
-        <p class="eco-subh">3D Modeling</p>
-        <div class="sego-clearfix">
-          <figure class="sego-float">
-            <img src="images/segostop/rhino-model.jpg" alt="Rhino 3D wireframe model showing the segmented seating structure" />
-          </figure>
-          <div class="eco-text">
-            <p>Before any physical prototype, each concept was modelled in Rhino. 3D modelling revealed structural flaws — complex attachment geometry and unclear part movement — that were invisible in two-dimensional sketches.</p>
-          </div>
-        </div>
-
-        <!-- Step 2 — Cardboard Prototyping -->
-        <div class="sego-tag s2"><div class="sego-tag-dot">2</div>Cardboard Prototyping</div>
-        <div class="eco-text">
-          <p>Paper and cardboard models tested the ring-to-pole relationship and segment locking — first at 1:10, then 1:5. Cardboard let the team cut, adjust, and re-test in hours without committing to any material.</p>
-        </div>
-        <div class="sego-gallery">
-          <figure><img src="images/segostop/prototype-assembly.jpg" alt="Cardboard doughnut prototype assembled on a pole model" /></figure>
-          <figure><img src="images/segostop/prototype-ring.jpg" alt="Top-down view of the cardboard ring with pole cutout" /></figure>
-          <figure><img src="images/segostop/cardboard-model.jpg" alt="Hand holding a curved cardboard quarter-circle segment" /></figure>
-        </div>
-        <div class="sego-gallery">
-          <figure><img src="images/segostop/prototype-cutting.jpg" alt="Cutting cardboard segments on a cutting mat" /></figure>
-          <figure><img src="images/segostop/making-cardboard.jpg" alt="Team member constructing the prototype" /></figure>
-        </div>
-        <div class="sego-aside">1:5 scale — four quarter-circle segments testing pole attachment and the ring's overall proportions before committing to final materials.</div>
-
-        <!-- Step 3 — Laser Cutting & 3D Printing -->
-        <div class="sego-tag s3"><div class="sego-tag-dot">3</div>Laser Cutting &amp; 3D Printing</div>
-        <div class="eco-text">
-          <p>The structural frame was 3D-printed directly from the Rhino model. The seat slats were laser-cut from wood veneer board. Combining both materials for the first time tested assembly logic, feel, and the finished visual language.</p>
-        </div>
-        <div class="sego-gallery">
-          <figure><img src="images/segostop/3d-print.jpg" alt="3D printer producing a structural frame segment" /></figure>
-          <figure><img src="images/segostop/laser-cut.jpg" alt="Laser cutter cutting the radiating wooden seat slats" /></figure>
-        </div>
-        <div class="sego-aside">Produced at the IE University FabLab — frame and seat slats assembled at final scale for the first time.</div>
-
-        <!-- Step 4 — Scaled Model -->
-        <div class="sego-tag s4"><div class="sego-tag-dot">4</div>Scaled Model</div>
-        <div class="sego-clearfix">
-          <figure class="sego-float">
-            <img src="images/segostop/scale-model.jpg" alt="Scale figures seated on the assembled model" />
-          </figure>
-          <div class="eco-text">
-            <p>Scale figures placed on the assembled model confirmed seating capacity, human proportion, and sight lines — communicating the design's usability to reviewers without a full-size prototype.</p>
-          </div>
-        </div>
-        <div class="sego-gallery">
-          <figure><img src="images/segostop/proc-IMG_2951.jpg" alt="Assembled laser-cut and 3D-printed segment with scale figure, top view" /></figure>
-          <figure><img src="images/segostop/proc-IMG_2952.jpg" alt="Assembled segment with scale figure, angled view" /></figure>
-          <figure><img src="images/segostop/proc-IMG_2953.jpg" alt="Full assembled model with scale figure" /></figure>
-        </div>
-      </section>
-
-      <!-- 5. Final Design -->
-      <section class="eco-section">
-        <h2 class="eco-h">Final Design</h2>
-        <div class="eco-text">
-          <p>The final SegoStop is a modular, terrain-adaptive seating system for Segovia's existing bus stop network. Quarter-circle segments clamp around the existing sign pole — each with independently adjustable legs that level the seat on any cobblestone or sloped surface. Any number of segments can be deployed around a single pole depending on available space.</p>
-        </div>
-        <figure class="sego-render">
-          <img src="images/segostop/hero-assembly.png" alt="SegoStop — three segments assembled around a bus stop pole, rendered 3D model" />
-        </figure>
-        <figure class="sego-render">
-          <img src="images/segostop/hero-seat.png" alt="SegoStop — single quarter-circle segment, rendered 3D model" />
-        </figure>
-      </section>
-
+    <!-- back link -->
+    <div class="sg-back-wrap">
+      <a class="sg-back" href="projects.html">&larr; Back to projects</a>
     </div>
+
+    <!-- ============================================================
+         RESEARCH
+         ============================================================ -->
+    <section class="sg-section sg-reveal" id="research">
+      <p class="sg-label">01 &mdash; Research</p>
+      <h2 class="sg-h">The Design Problem</h2>
+      <div class="sg-body">
+        <p>Segovia's bus stop infrastructure lacks adjustable, accessible seating — especially for elderly residents. Harsh weather and uneven cobblestone terrain create additional barriers, leaving many riders with no choice but to stand or sit on the ground.</p>
+      </div>
+
+      <div class="sg-img-pair sg-reveal">
+        <figure>
+          <img src="images/segostop/context-busstop.jpg"
+               alt="Segovia bus stop sign with the Roman aqueduct visible in the background"
+               loading="lazy" />
+        </figure>
+        <figure>
+          <img src="images/segostop/field-friend-busstop.jpg"
+               alt="Team member demonstrating the lack of seating at a Segovia bus stop"
+               loading="lazy" />
+        </figure>
+      </div>
+
+      <!-- Stats -->
+      <div class="sg-stats sg-reveal">
+        <div>
+          <span class="sg-stat-num">14</span>
+          <span class="sg-stat-label">Citizen interviews conducted</span>
+        </div>
+        <div>
+          <span class="sg-stat-num">68%</span>
+          <span class="sg-stat-label">Of users surveyed were over 60</span>
+        </div>
+      </div>
+
+      <!-- Pain points -->
+      <p class="sg-subh">Key Pain Points</p>
+      <div class="sg-pain sg-reveal">
+        <div class="sg-pain-item">
+          <span class="sg-pain-dash">&mdash;</span>
+          <span class="sg-pain-text">Physical discomfort from prolonged standing, particularly affecting elderly residents with arthritis and back pain</span>
+        </div>
+        <div class="sg-pain-item">
+          <span class="sg-pain-dash">&mdash;</span>
+          <span class="sg-pain-text">Exposure to weather with no shelter or support — especially problematic in rain when cobblestones become slippery</span>
+        </div>
+        <div class="sg-pain-item">
+          <span class="sg-pain-dash">&mdash;</span>
+          <span class="sg-pain-text">Existing solutions fail to adapt to Segovia's varied, uneven historic terrain — a flat bench simply doesn't work on a slope</span>
+        </div>
+      </div>
+
+      <!-- Personas -->
+      <p class="sg-subh">User Personas</p>
+      <div class="sg-personas sg-reveal">
+        <div class="sg-persona">
+          <p class="sg-persona-name">Maria</p>
+          <p class="sg-persona-meta"><span>Age 72</span><span>Female</span><span>Segovia resident</span></p>
+          <p>Uses the bus 3&ndash;4 times weekly for errands and doctor visits. Has mild arthritis making long periods of standing painful.</p>
+          <p>Concerned about slipping in rainy weather. The lack of seating makes commuting increasingly difficult at her age.</p>
+        </div>
+        <div class="sg-persona">
+          <p class="sg-persona-name">Luis</p>
+          <p class="sg-persona-meta"><span>Age 65</span><span>Male</span><span>Segovia resident</span></p>
+          <p>Recently retired teacher who uses public transit daily. Has back pain that worsens with prolonged standing.</p>
+          <p>Appreciates thoughtful urban design that respects all citizens. The absence of seating makes longer waits increasingly hard.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         IDEATION
+         ============================================================ -->
+    <section class="sg-section sg-reveal" id="ideation">
+      <p class="sg-label">02 &mdash; Ideation</p>
+      <h2 class="sg-h">Three Directions</h2>
+      <div class="sg-body">
+        <p>Three concept directions were developed — each with a different form, placement logic, and functionality. They were mapped on a shared flipchart and evaluated against usability, durability, and the spatial constraints of real Segovia bus stop poles.</p>
+      </div>
+
+      <div class="sg-img-pair sg-reveal">
+        <figure>
+          <img src="images/segostop/workshop.jpg"
+               alt="Team brainstorming session at IE University with sketches spread across the table"
+               loading="lazy" />
+        </figure>
+        <figure>
+          <img src="images/segostop/brainstorm-flipchart.jpg"
+               alt="Ideation flipchart showing V1, V2, V3 concepts with dimensions and annotations"
+               loading="lazy" />
+        </figure>
+      </div>
+
+      <!-- Concepts -->
+      <div class="sg-concepts sg-reveal">
+
+        <div class="sg-concept">
+          <span class="sg-concept-id">V1</span>
+          <p class="sg-concept-name">Foldable Chair Attachment</p>
+          <p>A compact seat that folds out from the pole. Minimal footprint — does not require clear space around the pole.</p>
+          <p><strong style="color:rgba(205,238,125,.5)">Pros:</strong> Foldable, compact, weather-resistant.</p>
+          <p><strong style="color:rgba(205,238,125,.5)">Cons:</strong> Seats at most two people. Complex anti-theft attachment. Hard to maintain.</p>
+        </div>
+
+        <div class="sg-concept">
+          <span class="sg-concept-id">V2</span>
+          <p class="sg-concept-name">Pull Bench</p>
+          <p>An extendable bench that slides out from the pole base, allowing more people to sit side by side.</p>
+          <p><strong style="color:rgba(205,238,125,.5)">Pros:</strong> Can accommodate more people than V1.</p>
+          <p><strong style="color:rgba(205,238,125,.5)">Cons:</strong> Easily destructible by weather and vandalism. Difficult to construct durably.</p>
+        </div>
+
+        <div class="sg-concept sg-selected">
+          <span class="sg-concept-badge">Selected</span>
+          <div class="sg-concept-img">
+            <img src="images/segostop/sketch-doughnut.jpg"
+                 alt="Coloured concept sketch of the doughnut modular seating design"
+                 loading="lazy" />
+          </div>
+          <span class="sg-concept-id">V3</span>
+          <p class="sg-concept-name">Modular &ldquo;Doughnut&rdquo; Segments</p>
+          <p>Quarter-circle segments that ring the pole, using its full footprint. Modular — can be partially deployed where space is limited.</p>
+          <p><strong style="color:rgba(205,238,125,.5)">Pros:</strong> Seats the most people. Easiest to maintain. Adapts to available space.</p>
+          <p><strong style="color:rgba(205,238,125,.5)">Cons:</strong> Larger footprint; not all poles have clear space around them.</p>
+        </div>
+
+      </div>
+
+      <!-- Voting -->
+      <p class="sg-vote-head sg-reveal">Concept vote &mdash; 14 participants</p>
+      <div class="sg-vote sg-reveal">
+        <div class="sg-vote-row">
+          <span class="sg-vote-name">V3 Doughnut</span>
+          <div class="sg-vote-track"><div class="sg-vote-bar" style="width:57%"></div></div>
+          <span class="sg-vote-n">8 / 14</span>
+        </div>
+        <div class="sg-vote-row">
+          <span class="sg-vote-name">V1 Flip Chair</span>
+          <div class="sg-vote-track"><div class="sg-vote-bar dim" style="width:28%"></div></div>
+          <span class="sg-vote-n">4 / 14</span>
+        </div>
+        <div class="sg-vote-row">
+          <span class="sg-vote-name">V2 Pull Bench</span>
+          <div class="sg-vote-track"><div class="sg-vote-bar dim" style="width:14%"></div></div>
+          <span class="sg-vote-n">2 / 14</span>
+        </div>
+      </div>
+      <p class="sg-note">V3 received a clear majority — 8 of 14 votes — moving it forward as the direction to develop.</p>
+    </section>
+
+    <!-- ============================================================
+         TERRAIN PIVOT — dark interstitial
+         ============================================================ -->
+    <section class="sg-terrain" id="terrain">
+      <div class="sg-terrain-inner sg-reveal">
+        <p class="sg-terrain-label">Design Pivot</p>
+        <p class="sg-terrain-quote">&ldquo;The problem wasn&rsquo;t the ring. It was the ground.&rdquo;</p>
+        <p class="sg-terrain-body">The original full-ring doughnut couldn&rsquo;t level on Segovia&rsquo;s uneven cobblestone. A rigid ring on an uneven surface rocks — or worse, tips. The solution: independently adjustable legs per segment, so each quarter-circle finds its own footing regardless of ground slope. The ring became four autonomous pieces that cooperate around the pole.</p>
+
+        <!-- Diagram: Original → Problem → Solution -->
+        <div class="sg-diagram">
+
+          <div class="sg-diag-step">
+            <div class="sg-diag-vis">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <!-- Circle outline -->
+                <circle cx="40" cy="32" r="18" />
+                <!-- Flat ground line -->
+                <line x1="10" y1="58" x2="70" y2="58" />
+                <!-- Pole -->
+                <line x1="40" y1="14" x2="40" y2="58" stroke-dasharray="3,3" stroke-width="1.5" />
+              </svg>
+            </div>
+            <p class="sg-diag-name">Original</p>
+            <p class="sg-diag-desc">Full rigid ring — works on flat ground</p>
+          </div>
+
+          <div class="sg-diag-arrow" aria-hidden="true">&rsaquo;</div>
+
+          <div class="sg-diag-step">
+            <div class="sg-diag-vis">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <!-- Tilted circle -->
+                <ellipse cx="40" cy="32" rx="18" ry="12" transform="rotate(-15 40 32)" />
+                <!-- Jagged / uneven ground lines -->
+                <polyline points="8,58 22,52 36,60 50,50 64,56 72,58" />
+                <!-- Pole -->
+                <line x1="40" y1="20" x2="44" y2="58" stroke-dasharray="3,3" stroke-width="1.5" />
+              </svg>
+            </div>
+            <p class="sg-diag-name">Problem</p>
+            <p class="sg-diag-desc">Rigid ring tilts on cobblestone</p>
+          </div>
+
+          <div class="sg-diag-arrow" aria-hidden="true">&rsaquo;</div>
+
+          <div class="sg-diag-step">
+            <div class="sg-diag-vis">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <!-- Four quarter arcs, each slightly offset vertically to show independence -->
+                <!-- Top-right arc -->
+                <path d="M40,14 A18,18 0 0,1 58,32" />
+                <!-- Bottom-right arc -->
+                <path d="M58,34 A18,18 0 0,1 40,52" transform="translate(0,2)" />
+                <!-- Bottom-left arc -->
+                <path d="M38,52 A18,18 0 0,1 20,34" transform="translate(-2,1)" />
+                <!-- Top-left arc -->
+                <path d="M20,32 A18,18 0 0,1 38,14" transform="translate(-2,-2)" />
+                <!-- Pole center -->
+                <circle cx="40" cy="33" r="3" fill="currentColor" opacity="0.4" />
+              </svg>
+            </div>
+            <p class="sg-diag-name">Solution</p>
+            <p class="sg-diag-desc">Four independent segments, each levels itself</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MAKING PROCESS
+         ============================================================ -->
+    <section class="sg-section" id="process">
+      <p class="sg-label">03 &mdash; Making</p>
+      <h2 class="sg-h sg-reveal">Making Process</h2>
+      <div class="sg-body sg-reveal">
+        <p>Five stages took the concept from pencil lines to a 3D-printed and laser-cut physical model alongside a fully rendered 3D model in Rhino.</p>
+      </div>
+
+      <!-- Step 01 — Sketching -->
+      <div class="sg-step sg-reveal">
+        <div class="sg-step-num">01</div>
+        <div>
+          <h3 class="sg-step-title">Sketching</h3>
+          <div class="sg-split">
+            <div>
+              <p class="sg-step-body">Sketches explored methods of attachment to the pole and how seat segments might extend or retract — letting the team eliminate ideas early that couldn&rsquo;t be realised or didn&rsquo;t truly solve the problem. The terrain pivot emerged here: fixed legs were replaced with independently adjustable ones.</p>
+            </div>
+            <figure>
+              <img src="images/segostop/sketch-structure.jpg"
+                   alt="Annotated structural sketch showing skeleton, support beams, and adjustable base legs"
+                   loading="lazy" />
+            </figure>
+          </div>
+          <div class="sg-img-trio">
+            <figure>
+              <img src="images/segostop/proc-IMG_2724.jpg"
+                   alt="Sketchbook page with two pen studies of the final quarter-circle form"
+                   loading="lazy" />
+            </figure>
+            <figure>
+              <img src="images/segostop/proc-IMG_2726.jpg"
+                   alt="Sketchbook page with detailed design studies and dimension notes"
+                   loading="lazy" />
+            </figure>
+            <figure>
+              <img src="images/segostop/proc-IMG_2808.jpg"
+                   alt="Final pen sketches showing multiple quarter-circle segment views"
+                   loading="lazy" />
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 02 — Digital Model -->
+      <div class="sg-step sg-reveal">
+        <div class="sg-step-num">02</div>
+        <div>
+          <h3 class="sg-step-title">Digital Model</h3>
+          <div class="sg-split">
+            <figure>
+              <img src="images/segostop/rhino-model.jpg"
+                   alt="Rhino 3D wireframe model showing the segmented seating structure with pole"
+                   loading="lazy" />
+            </figure>
+            <div>
+              <p class="sg-rhino-annotation">&ldquo;Rhino revealed what sketches could not: the geometry of the clamping ring and leg attachment had to be rethought entirely.&rdquo;</p>
+              <p class="sg-step-body">Before any physical prototype, each concept was modelled in Rhino. 3D modelling revealed structural flaws — complex attachment geometry and unclear part movement — that were invisible in two-dimensional sketches. The digital model became the source for both laser-cut profiles and 3D-printed frame components.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 03 — Cardboard Prototyping -->
+      <div class="sg-step sg-reveal">
+        <div class="sg-step-num">03</div>
+        <div>
+          <h3 class="sg-step-title">Cardboard Prototyping</h3>
+          <p class="sg-step-scale">Scale: 1:10 &rarr; 1:5</p>
+          <p class="sg-step-body">Paper and cardboard models tested the ring-to-pole relationship and segment locking — first at 1:10, then 1:5. Cardboard let the team cut, adjust, and re-test in hours without committing to any material.</p>
+          <div class="sg-img-trio">
+            <figure>
+              <img src="images/segostop/prototype-assembly.jpg"
+                   alt="Cardboard doughnut prototype assembled around a pole model, showing segment fit"
+                   loading="lazy" />
+            </figure>
+            <figure>
+              <img src="images/segostop/prototype-ring.jpg"
+                   alt="Top-down view of the cardboard ring with pole cutout at centre"
+                   loading="lazy" />
+            </figure>
+            <figure>
+              <img src="images/segostop/cardboard-model.jpg"
+                   alt="Hand holding a curved cardboard quarter-circle segment"
+                   loading="lazy" />
+            </figure>
+          </div>
+          <div class="sg-img-pair">
+            <figure>
+              <img src="images/segostop/prototype-cutting.jpg"
+                   alt="Cutting cardboard segments on a cutting mat with a craft knife"
+                   loading="lazy" />
+            </figure>
+            <figure>
+              <img src="images/segostop/making-cardboard.jpg"
+                   alt="Team member constructing and gluing the cardboard prototype"
+                   loading="lazy" />
+            </figure>
+          </div>
+          <p class="sg-note">1:5 scale — four quarter-circle segments testing pole attachment and the ring&rsquo;s overall proportions before committing to final materials.</p>
+        </div>
+      </div>
+
+      <!-- Step 04 — Fabrication -->
+      <div class="sg-step sg-reveal">
+        <div class="sg-step-num">04</div>
+        <div>
+          <h3 class="sg-step-title">Fabrication</h3>
+          <p class="sg-step-body">The structural frame was 3D-printed directly from the Rhino model. The seat slats were laser-cut from wood veneer board. Combining both materials for the first time tested assembly logic, feel, and the finished visual language.</p>
+          <div class="sg-img-pair">
+            <figure>
+              <img src="images/segostop/3d-print.jpg"
+                   alt="3D printer producing a structural frame segment layer by layer"
+                   loading="lazy" />
+            </figure>
+            <figure>
+              <img src="images/segostop/laser-cut.jpg"
+                   alt="Laser cutter cutting the radiating wooden seat slats from veneer board"
+                   loading="lazy" />
+            </figure>
+          </div>
+          <p class="sg-note">Produced at the IE University FabLab — frame and seat slats assembled at final scale for the first time.</p>
+        </div>
+      </div>
+
+      <!-- Step 05 — Scaled Model -->
+      <div class="sg-step sg-reveal">
+        <div class="sg-step-num">05</div>
+        <div>
+          <h3 class="sg-step-title">Scaled Model</h3>
+          <div class="sg-split">
+            <figure>
+              <img src="images/segostop/scale-model.jpg"
+                   alt="Scale figures seated on the assembled SegoStop model, showing proportions"
+                   loading="lazy" />
+            </figure>
+            <div>
+              <p class="sg-step-body">Scale figures placed on the assembled model confirmed seating capacity, human proportion, and sight lines — communicating the design&rsquo;s usability to reviewers without a full-size prototype. The model demonstrated how three of the four segments could be deployed around a single pole.</p>
+            </div>
+          </div>
+          <div class="sg-img-trio">
+            <figure>
+              <img src="images/segostop/proc-IMG_2951.jpg"
+                   alt="Assembled laser-cut and 3D-printed segment with scale figure, top-down view"
+                   loading="lazy" />
+            </figure>
+            <figure>
+              <img src="images/segostop/proc-IMG_2952.jpg"
+                   alt="Assembled segment with scale figure seated, angled three-quarter view"
+                   loading="lazy" />
+            </figure>
+            <figure>
+              <img src="images/segostop/proc-IMG_2953.jpg"
+                   alt="Full assembled three-segment model with scale figure at bus stop pole"
+                   loading="lazy" />
+            </figure>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================================================
+         FINAL DESIGN
+         ============================================================ -->
+    <section id="final">
+      <div class="sg-final-hero">
+        <img src="images/segostop/hero-assembly.png"
+             alt="SegoStop final design — three modular segments assembled around a bus stop pole, full 3D render"
+             loading="eager" />
+      </div>
+      <div class="sg-final-body">
+        <div class="sg-final-text sg-reveal">
+          <p class="sg-label">04 &mdash; Final Design</p>
+          <h2 class="sg-h">SegoStop</h2>
+          <p style="color:var(--body);line-height:1.65;margin-bottom:14px;">The final SegoStop is a modular, terrain-adaptive seating system for Segovia&rsquo;s existing bus stop network. Quarter-circle segments clamp around the existing sign pole — each with independently adjustable legs that level the seat on any cobblestone or sloped surface.</p>
+          <p style="color:var(--body);line-height:1.65;">Any number of segments can be deployed around a single pole depending on available space. The system requires no ground fixings and no changes to existing infrastructure.</p>
+        </div>
+        <div class="sg-final-split sg-reveal">
+          <div class="sg-final-detail">
+            <img src="images/segostop/hero-seat.png"
+                 alt="SegoStop — single quarter-circle segment detail, rendered 3D model showing seat slats and leg structure"
+                 loading="lazy" />
+          </div>
+          <div>
+            <p class="sg-subh" style="margin-top:0">Design Features</p>
+            <div class="sg-anno-list">
+              <div class="sg-anno-item">
+                <div class="sg-anno-dot"></div>
+                <div>
+                  <p class="sg-anno-title">Quarter-circle modularity</p>
+                  <p class="sg-anno-desc">Each segment is independent — one, two, three, or four can be placed around any pole depending on available pavement space.</p>
+                </div>
+              </div>
+              <div class="sg-anno-item">
+                <div class="sg-anno-dot"></div>
+                <div>
+                  <p class="sg-anno-title">Adjustable legs</p>
+                  <p class="sg-anno-desc">Four independently height-adjustable legs per segment let each piece find level on sloped or uneven cobblestone without shimming.</p>
+                </div>
+              </div>
+              <div class="sg-anno-item">
+                <div class="sg-anno-dot"></div>
+                <div>
+                  <p class="sg-anno-title">Pole-clamp attachment</p>
+                  <p class="sg-anno-desc">Segments clamp to the existing sign pole — no drilling, no ground fixings, no infrastructure changes required.</p>
+                </div>
+              </div>
+              <div class="sg-anno-item">
+                <div class="sg-anno-dot"></div>
+                <div>
+                  <p class="sg-anno-title">Radiating wood seat slats</p>
+                  <p class="sg-anno-desc">Laser-cut wood veneer slats fan outward from the pole centre, referencing Segovia&rsquo;s craft heritage while keeping weight low.</p>
+                </div>
+              </div>
+              <div class="sg-anno-item">
+                <div class="sg-anno-dot"></div>
+                <div>
+                  <p class="sg-anno-title">Accessible ergonomics</p>
+                  <p class="sg-anno-desc">Seat height and depth sized for comfortable use by elderly users — the 68% majority of the surveyed waiting population.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
@@ -273,5 +531,51 @@
 
   <script src="content.js"></script>
   <script src="script.js"></script>
+  <script>
+  (function () {
+    // Respect prefers-reduced-motion: skip animation, mark everything visible immediately
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      document.querySelectorAll('.sg-reveal').forEach(function (el) {
+        el.classList.add('sg-visible');
+      });
+      return;
+    }
+
+    // Scroll reveal — add .sg-visible when element enters viewport
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('sg-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.sg-reveal').forEach(function (el) {
+      revealObserver.observe(el);
+    });
+
+    // Side nav active state — highlight dot for whichever section is in the viewport centre
+    var sections = document.querySelectorAll('[id]');
+    var navLinks = document.querySelectorAll('.sg-nav a');
+
+    var navObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.getAttribute('id');
+          navLinks.forEach(function (link) {
+            link.classList.toggle('sg-active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -40% 0px' });
+
+    sections.forEach(function (section) {
+      navObserver.observe(section);
+    });
+  })();
+  </script>
+
 </body>
 </html>
