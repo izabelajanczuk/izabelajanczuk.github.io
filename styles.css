@@ -424,57 +424,116 @@ body:not(.home-page) .site-header {
    SEGOSTOP PROJECT PAGE — layout helpers
    ============================================================ */
 
-/* tighter section spacing — EcoBite's default is too open for this page */
 .sego-page .eco-section { margin-bottom: clamp(28px, 4vw, 48px); }
-.sego-page .eco-subh    { margin: 18px 0 10px; }
+.sego-page .eco-subh    { margin: 14px 0 8px; }
 .sego-page .eco-text    { margin-bottom: 0; max-width: none; }
+.sego-page .eco-h       { margin-bottom: 10px; }
 
 /* hero: white product render inside tan section */
-.sego-hero-fig {
-  margin: 0;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-}
+.sego-hero-fig { margin: 0; background: #fff; border-radius: 12px; overflow: hidden; }
 .sego-hero-fig img { width: 100%; display: block; }
 
-/* gallery strip — images stretch to same height so bottom edges align */
+/* gallery strip — images stretch to same row height so bottom edges align */
 .sego-gallery {
   display: flex;
   gap: 10px;
   align-items: stretch;
-  margin: 16px 0 20px;
+  margin: 12px 0 18px;
 }
 .sego-gallery figure { flex: 1; margin: 0; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
 .sego-gallery img    { flex: 1; width: 100%; object-fit: cover; display: block; min-height: 160px; }
 
-/* single image floated right so text wraps around it */
-.sego-float {
-  float: right;
-  width: 42%;
-  margin: 4px 0 20px 28px;
-  border-radius: 8px;
-  overflow: hidden;
-}
+/* single image floated right — text wraps around it */
+.sego-float { float: right; width: 42%; margin: 4px 0 20px 28px; border-radius: 8px; overflow: hidden; }
 .sego-float img { width: 100%; height: auto; display: block; }
 .sego-clearfix::after { content: ""; display: table; clear: both; }
 
 /* final renders — full width, white background */
-.sego-render {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  margin: 16px 0 20px;
-}
+.sego-render { background: #fff; border-radius: 12px; overflow: hidden; margin: 14px 0 18px; }
 .sego-render img { width: 100%; display: block; }
+
+/* side annotation — tan left border, italic note */
+.sego-aside {
+  border-left: 3px solid var(--tan);
+  padding: 4px 0 4px 14px;
+  margin: 10px 0 16px;
+  font-size: 0.9rem;
+  font-style: italic;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* process timeline bar */
+.sego-process {
+  display: flex;
+  position: relative;
+  margin: 22px 0 36px;
+}
+.sego-process::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: linear-gradient(to right, var(--tan), #8a9a60, #6a8a4f, var(--lime));
+  z-index: 0;
+}
+.sego-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 9px;
+  position: relative;
+  z-index: 1;
+}
+.sego-step-dot {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.sego-step:nth-child(1) .sego-step-dot { background: var(--tan);    color: #fff; }
+.sego-step:nth-child(2) .sego-step-dot { background: #8a9a60;       color: #fff; }
+.sego-step:nth-child(3) .sego-step-dot { background: #6a8a4f;       color: #fff; }
+.sego-step:nth-child(4) .sego-step-dot { background: var(--lime);   color: #3a3f20; }
+.sego-step-label {
+  font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--lime); line-height: 1.35; max-width: 90px;
+}
+
+/* numbered step tag before each sub-section */
+.sego-tag {
+  display: inline-flex; align-items: center; gap: 9px;
+  margin: 20px 0 8px;
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--lime);
+}
+.sego-tag-dot {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
+}
+.sego-tag.s1 .sego-tag-dot { background: var(--tan);  color: #fff; }
+.sego-tag.s2 .sego-tag-dot { background: #8a9a60;     color: #fff; }
+.sego-tag.s3 .sego-tag-dot { background: #6a8a4f;     color: #fff; }
+.sego-tag.s4 .sego-tag-dot { background: var(--lime); color: #3a3f20; }
 
 @media (max-width: 720px) {
   .sego-gallery { flex-wrap: wrap; }
   .sego-gallery figure { flex: 1 1 45%; }
   .sego-float { float: none; width: 100%; margin: 0 0 16px 0; }
+  .sego-step-label { font-size: 0.65rem; max-width: 70px; }
 }
 @media (max-width: 480px) {
   .sego-gallery figure { flex: 1 1 100%; }
+  .sego-process::before { display: none; }
 }
 
 /* ============================================================
