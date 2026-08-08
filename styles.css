@@ -427,7 +427,7 @@ body:not(.home-page) .site-header {
 /* tighter section spacing — EcoBite's default is too open for this page */
 .sego-page .eco-section { margin-bottom: clamp(28px, 4vw, 48px); }
 .sego-page .eco-subh    { margin: 18px 0 10px; }
-.sego-page .eco-text    { margin-bottom: 0; }
+.sego-page .eco-text    { margin-bottom: 0; max-width: none; }
 
 /* hero: white product render inside tan section */
 .sego-hero-fig {
@@ -438,15 +438,15 @@ body:not(.home-page) .site-header {
 }
 .sego-hero-fig img { width: 100%; display: block; }
 
-/* gallery strip — flex, natural aspect ratios, like the gallery page */
+/* gallery strip — images stretch to same height so bottom edges align */
 .sego-gallery {
   display: flex;
   gap: 10px;
-  align-items: flex-start;
+  align-items: stretch;
   margin: 16px 0 20px;
 }
-.sego-gallery figure { flex: 1; margin: 0; border-radius: 6px; overflow: hidden; }
-.sego-gallery img    { width: 100%; height: auto; display: block; }
+.sego-gallery figure { flex: 1; margin: 0; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+.sego-gallery img    { flex: 1; width: 100%; object-fit: cover; display: block; min-height: 160px; }
 
 /* single image floated right so text wraps around it */
 .sego-float {
