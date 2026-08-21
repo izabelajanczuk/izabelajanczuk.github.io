@@ -6,7 +6,7 @@
   <title>Izabela Janczuk</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -14,7 +14,6 @@
 </head>
 <body class="home-page">
 
-  <!-- ===== header (same on every page) ===== -->
   <header class="site-header">
     <div class="wrap">
       <a class="logo" href="index.html">I.J.</a>
@@ -30,13 +29,11 @@
   </header>
   <div class="dogear" aria-hidden="true"></div>
 
-  <!-- ===== home ===== -->
+  <!-- fullscreen hero with scrolling name -->
   <main class="home">
     <div class="home-bg"></div>
     <p class="drop-hint" id="drop-hint">Drag an image here to set your background</p>
 
-    <!-- the giant name scrolling across in a loop.
-         It's repeated several times so the loop is seamless. -->
     <div class="marquee" aria-label="Izabela Janczuk">
       <div class="marquee-track">
         <span>IZABELA JANCZUK</span><span>IZABELA JANCZUK</span>
@@ -46,18 +43,48 @@
       </div>
     </div>
 
-    <!-- the three labels along the bottom -->
     <div class="home-labels wrap">
-      <a href="projects.html">Creative Projects</a>
       <a href="projects.html">Design</a>
-      <a href="gallery.html">Photography</a>
+      <a href="projects.html">Environment + Objects</a>
+      <a href="gallery.html">Images</a>
     </div>
   </main>
 
-  <!-- ===== footer (same on every page) ===== -->
+  <!-- editorial work preview -->
+  <section class="home-work">
+    <div class="wrap">
+      <p class="home-work-label">Selected Work</p>
+      <div class="home-work-grid">
+        <a href="ecobite.html" class="hw-card hw-large">
+          <figure>
+            <img src="images/ecobite/hero.jpg" alt="EcoBite — sustainability UX" />
+          </figure>
+          <div class="hw-info">
+            <span class="hw-num">01</span>
+            <h2 class="hw-title">EcoBite</h2>
+            <p class="hw-meta">UX / UI Design · Sustainability</p>
+          </div>
+        </a>
+        <a href="segostop.html" class="hw-card hw-small">
+          <figure>
+            <img src="images/segostop/hero-assembly.png" alt="SegoStop — urban furniture" />
+          </figure>
+          <div class="hw-info">
+            <span class="hw-num">02</span>
+            <h2 class="hw-title">SegoStop</h2>
+            <p class="hw-meta">Industrial Design · Urban Usability</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <footer class="site-footer">
     <div class="wrap">
-      <span class="footer-name">IZABELA JANCZUK</span>
+      <div class="footer-left">
+        <span class="footer-name">IZABELA JANCZUK</span>
+        <span class="footer-sub">Design · Environment · Objects · Images</span>
+      </div>
       <a class="footer-link" href="https://www.linkedin.com/in/izabela-janczuk/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </footer>
