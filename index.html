@@ -6,7 +6,7 @@
   <title>Izabela Janczuk</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -27,56 +27,106 @@
       </nav>
     </div>
   </header>
-  <div class="dogear" aria-hidden="true"></div>
 
-  <!-- fullscreen hero with scrolling name -->
+  <!-- editorial magazine cover — keep class="home" for drag JS -->
   <main class="home">
     <div class="home-bg"></div>
-    <p class="drop-hint" id="drop-hint">Drag an image here to set your background</p>
+    <p class="drop-hint" id="drop-hint">drag to set your cover</p>
 
-    <div class="marquee" aria-label="Izabela Janczuk">
-      <div class="marquee-track">
-        <span>IZABELA JANCZUK</span><span>IZABELA JANCZUK</span>
-        <span>IZABELA JANCZUK</span><span>IZABELA JANCZUK</span>
-        <span>IZABELA JANCZUK</span><span>IZABELA JANCZUK</span>
-        <span>IZABELA JANCZUK</span><span>IZABELA JANCZUK</span>
+    <div class="cover-inner wrap">
+      <div class="cover-head">
+        <span class="cover-issue">001</span>
+        <span class="cover-head-rule"></span>
+        <span class="cover-year">2026</span>
       </div>
-    </div>
 
-    <div class="home-labels wrap">
-      <a href="projects.html">Design</a>
-      <a href="projects.html">Environment + Objects</a>
-      <a href="gallery.html">Images</a>
+      <div class="cover-name-block">
+        <h1 class="cover-name">IZABELA<br>JANCZUK</h1>
+      </div>
+
+      <div class="cover-foot">
+        <p class="cover-desc">Design, Environment,<br>Objects &amp; Images</p>
+        <div class="cover-cats">
+          <a href="projects.html">Design</a>
+          <a href="projects.html">Environment + Objects</a>
+          <a href="gallery.html">Images</a>
+        </div>
+      </div>
     </div>
   </main>
 
-  <!-- editorial work preview -->
+  <!-- editorial work spreads -->
   <section class="home-work">
+
+    <!-- section header -->
     <div class="wrap">
-      <p class="home-work-label">Selected Work</p>
-      <div class="home-work-grid">
-        <a href="ecobite.html" class="hw-card hw-large">
-          <figure>
-            <img src="images/ecobite/hero.jpg" alt="EcoBite — sustainability UX" />
-          </figure>
-          <div class="hw-info">
-            <span class="hw-num">01</span>
-            <h2 class="hw-title">EcoBite</h2>
-            <p class="hw-meta">UX / UI Design · Sustainability</p>
-          </div>
-        </a>
-        <a href="segostop.html" class="hw-card hw-small">
-          <figure>
-            <img src="images/segostop/hero-assembly.png" alt="SegoStop — urban furniture" />
-          </figure>
-          <div class="hw-info">
-            <span class="hw-num">02</span>
-            <h2 class="hw-title">SegoStop</h2>
-            <p class="hw-meta">Industrial Design · Urban Usability</p>
-          </div>
-        </a>
+      <div class="work-header">
+        <div class="work-rule"></div>
+        <div class="work-label">
+          <span class="work-num">01</span>
+          <span class="work-section-label">Selected Work</span>
+        </div>
       </div>
     </div>
+
+    <!-- EcoBite: large image left, text right -->
+    <article class="work-entry we-ecobite">
+      <div class="wrap">
+        <div class="we-layout">
+          <a href="ecobite.html" class="we-img-col">
+            <figure class="we-fig">
+              <img src="images/ecobite/hero.jpg" alt="EcoBite — sustainability UX" />
+              <figcaption class="we-caption">Fig. 01 — interface study, 2024</figcaption>
+            </figure>
+          </a>
+          <div class="we-text-col">
+            <span class="we-proj-num">01</span>
+            <a href="ecobite.html" class="we-proj-link">
+              <h2 class="we-proj-title">EcoBite</h2>
+              <p class="we-proj-type">UX / UI Design</p>
+              <p class="we-proj-tags">Sustainability · Systems Thinking</p>
+              <p class="we-proj-note">Food, sustainability<br>and digital systems</p>
+            </a>
+            <span class="we-annotation">food / systems / ux</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div class="wrap"><div class="work-divider"></div></div>
+
+    <!-- SegoStop: text left, large image right -->
+    <article class="work-entry we-segostop">
+      <div class="wrap">
+        <div class="we-layout we-layout-rev">
+          <div class="we-text-col">
+            <span class="we-proj-num">02</span>
+            <a href="segostop.html" class="we-proj-link">
+              <h2 class="we-proj-title">SegoStop</h2>
+              <p class="we-proj-type">Industrial Design</p>
+              <p class="we-proj-tags">Urban Usability · Materials</p>
+              <p class="we-proj-note">Wood, steel, and<br>Segovia's cobblestones</p>
+            </a>
+            <span class="we-annotation">material / urban / craft</span>
+          </div>
+          <a href="segostop.html" class="we-img-col">
+            <figure class="we-fig">
+              <img src="images/segostop/hero-assembly.png" alt="SegoStop — urban furniture" />
+              <figcaption class="we-caption">Fig. 02 — assembly render, Segovia 2024</figcaption>
+            </figure>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- all-projects link -->
+    <div class="wrap">
+      <div class="work-footer">
+        <div class="work-rule"></div>
+        <a href="projects.html" class="work-all-link">All Projects →</a>
+      </div>
+    </div>
+
   </section>
 
   <footer class="site-footer">
