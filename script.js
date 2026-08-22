@@ -335,6 +335,32 @@ function setupStaticGallery() {
   });
 }
 
+/* ============================================================
+   VIDEO AUTOPLAY ON SCROLL
+   Plays the case-study video when it enters the viewport,
+   pauses when it scrolls out. Requires muted attribute on
+   the element (browsers block unmuted autoplay).
+   ============================================================ */
+function setupVideoAutoplay() {
+  const video = document.querySelector(".cs-video");
+  if (!video || !("IntersectionObserver" in window)) return;
+
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  obs.observe(video);
+}
+
 /* ---- run everything once the page is ready ---- */
 document.addEventListener("DOMContentLoaded", () => {
   markActiveNav();
@@ -346,4 +372,5 @@ document.addEventListener("DOMContentLoaded", () => {
   setupStaticGallery();
   setupHomeDropzone();
   setupDropSlots();
+  setupVideoAutoplay();
 });
