@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="home-page">
 <div class="grain"></div>
 
   <header class="site-header">
@@ -29,29 +29,44 @@
     </div>
   </header>
 
-  <!-- class="home" kept for drag-to-bg JS compat -->
-  <main class="home">
+  <main>
 
-    <section class="hero">
-      <div>
-        <div class="tag">Cat. 001 — 2026, Designer &amp; Art Director</div>
-        <h1 class="hero-h1">Izabela<span>Janczuk</span></h1>
-        <p class="hero-sub">Design, environment, objects &amp; images — work at the intersection of sustainability, branding, and community-centered practice.</p>
-        <div class="hero-links">
-          <a href="projects.html">View projects</a>
-          <a href="about.html">About</a>
+    <!-- Editorial cover: dark photo background, huge name in dusty rose -->
+    <div class="home">
+      <div class="home-bg"></div>
+      <p class="drop-hint" id="drop-hint">select your cover</p>
+      <div class="ed-canvas wrap">
+        <div class="ed-topbar">
+          <span class="ed-initials">I.J.</span>
+          <span class="ed-rule-sm"></span>
+          <span class="ed-issue">001</span>
+          <span class="ed-rule-sm"></span>
+          <span class="ed-year">2026</span>
+          <span class="ed-rule-lg"></span>
+          <span class="ed-role">Designer &amp; Art Director</span>
+        </div>
+        <div class="ed-body">
+          <h1 class="ed-name-1">IZABELA</h1>
+          <h1 class="ed-name-2">JANCZUK</h1>
+        </div>
+        <div class="ed-foot">
+          <p class="ed-desc"><em>Design, Environment,<br>Objects &amp; Images</em></p>
+          <nav class="ed-cats">
+            <a href="projects.html">Design</a>
+            <a href="projects.html">Environment + Objects</a>
+            <a href="gallery.html">Images</a>
+          </nav>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="hero-visual-cap">Fig. 01 — field notes, Segovia</div>
-      </div>
-    </section>
+    </div>
 
+    <!-- Intro note -->
     <section class="intro">
       <div class="intro-eyebrow">Note</div>
       <p class="intro-text">My work moves between <em>research and material</em> — reading a place through its systems, then giving that reading a physical, sensory form.</p>
     </section>
 
+    <!-- Work entries -->
     <div class="section-head">
       <h2 class="section-title">Selected work</h2>
       <span class="section-count">02 entries</span>
