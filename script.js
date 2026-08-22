@@ -361,6 +361,91 @@ function setupVideoAutoplay() {
   obs.observe(video);
 }
 
+/* ---- home page name: a chain of letters where each one is locked
+   to a fixed distance from the letter before it (like a rope with
+   rigid links). The head chases the cursor and every other letter
+   is pulled along in order, so the word curls and coils through
+   turns but the spacing never collapses -- letters can't ever land
+   on top of each other. ---- */
+function setupNameFollow() {
+  const el = document.getElementById("ed-name-row");
+  const container = document.querySelector(".home");
+  if (!el || !container) return;
+
+  const text = el.textContent.trim();
+  el.textContent = "";
+  const letters = text.split("").map((ch) => {
+    const span = document.createElement("span");
+    span.className = "ltr";
+    span.textContent = ch === " " ? " " : ch;
+    el.appendChild(span);
+    return span;
+  });
+
+  // measure natural letter width so the fixed link length always clears it
+  let maxW = 0;
+  letters.forEach((span) => { maxW = Math.max(maxW, span.getBoundingClientRect().width); });
+  const segment = maxW + 6;
+
+  let rect = container.getBoundingClientRect();
+  window.addEventListener("resize", () => { rect = container.getBoundingClientRect(); });
+
+  let targetX = rect.width / 2;
+  let targetY = rect.height / 2;
+  let headX = targetX;
+  let headY = targetY;
+  let started = false;
+
+  // seed the leading letter exactly at the head (so tick() doesn't
+  // yank it elsewhere on frame 1) and trail the rest off to the
+  // right in reading order — never coincident, so the chain
+  // constraint always has a direction to resolve
+  const pos = letters.map((_, i) => ({ x: headX + i * segment, y: headY }));
+
+  container.addEventListener("mousemove", (e) => {
+    rect = container.getBoundingClientRect();
+    targetX = e.clientX - rect.left;
+    targetY = e.clientY - rect.top;
+    if (!started) {
+      headX = targetX;
+      headY = targetY;
+      started = true;
+    }
+  });
+
+  function tick() {
+    headX += (targetX - headX) * 0.18;
+    headY += (targetY - headY) * 0.18;
+
+    pos[0].x = headX;
+    pos[0].y = headY;
+
+    for (let i = 1; i < pos.length; i++) {
+      const prev = pos[i - 1];
+      const cur = pos[i];
+      const dx = cur.x - prev.x;
+      const dy = cur.y - prev.y;
+      const dist = Math.hypot(dx, dy) || 0.0001;
+      const ratio = segment / dist;
+      cur.x = prev.x + dx * ratio;
+      cur.y = prev.y + dy * ratio;
+    }
+
+    letters.forEach((span, i) => {
+      const p = pos[i];
+      // always measure the local tangent in the same direction (head-ward
+      // neighbor -> tail-ward neighbor) so every letter orients consistently
+      const a = i === 0 ? pos[0] : pos[i - 1];
+      const b = i === 0 ? pos[1] : pos[i];
+      const angle = Math.atan2(b.y - a.y, b.x - a.x) * (180 / Math.PI);
+      span.style.transform = `translate(${p.x}px, ${p.y}px) translate(-50%, -50%) rotate(${angle}deg)`;
+    });
+
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
 /* ---- run everything once the page is ready ---- */
 document.addEventListener("DOMContentLoaded", () => {
   markActiveNav();
@@ -373,4 +458,5 @@ document.addEventListener("DOMContentLoaded", () => {
   setupHomeDropzone();
   setupDropSlots();
   setupVideoAutoplay();
+  setupNameFollow();
 });

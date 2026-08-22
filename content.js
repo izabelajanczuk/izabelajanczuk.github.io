@@ -41,10 +41,11 @@ const PROJECTS = [
     images: []
   },
   {
-    slug: "project-three",
-    title: "Soon...",
-    cover: "images/projects/project-three.jpg",
-    blurb: "",
+    slug: "relume",
+    title: "ReLume",
+    link: "relume.html",
+    cover: "images/relume/detail-glow.jpg",
+    blurb: "A modular table lamp made from recycled plastic and wood.",
     body: [],
     images: []
   }
