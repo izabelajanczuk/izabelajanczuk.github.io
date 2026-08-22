@@ -410,7 +410,7 @@ ul, ol { list-style: none; }
 }
 
 .page-lead {
-  font-size: 15px; color: var(--ink-soft); max-width: 58ch; line-height: 1.7;
+  font-size: 15px; color: var(--ink-soft); line-height: 1.7;
 }
 
 .projects-grid {
@@ -496,7 +496,7 @@ ul, ol { list-style: none; }
 }
 .cs-subh { font-family: var(--serif); font-weight: 500; font-size: 16px; margin: 28px 0 14px; }
 
-.cs-text { max-width: 68ch; }
+.cs-text { max-width: none; }
 .cs-text p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 16px; }
 
 /* Ecobite accent — moss */
