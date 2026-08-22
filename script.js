@@ -299,6 +299,42 @@ function setupDropSlots() {
   });
 }
 
+/* ============================================================
+   STATIC GALLERY (gallery.html with categorized .gallery-thumb images)
+   Wires the lightbox to all .gallery-thumb elements on the page.
+   ============================================================ */
+function setupStaticGallery() {
+  const thumbs = Array.from(document.querySelectorAll(".gallery-thumb"));
+  if (!thumbs.length) return;
+
+  const box = document.getElementById("lightbox");
+  const big = document.getElementById("lightbox-img");
+  if (!box || !big) return;
+
+  let current = 0;
+
+  function show(i) {
+    current = (i + thumbs.length) % thumbs.length;
+    big.src = thumbs[current].src;
+  }
+  function close() { box.classList.remove("open"); }
+
+  thumbs.forEach((img, i) => {
+    img.addEventListener("click", () => { show(i); box.classList.add("open"); });
+  });
+
+  document.querySelector(".lb-prev").addEventListener("click", () => show(current - 1));
+  document.querySelector(".lb-next").addEventListener("click", () => show(current + 1));
+  document.querySelector(".lb-close").addEventListener("click", close);
+  box.addEventListener("click", (e) => { if (e.target === box) close(); });
+  document.addEventListener("keydown", (e) => {
+    if (!box.classList.contains("open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(current - 1);
+    if (e.key === "ArrowRight") show(current + 1);
+  });
+}
+
 /* ---- run everything once the page is ready ---- */
 document.addEventListener("DOMContentLoaded", () => {
   markActiveNav();
@@ -307,6 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
   buildProjectsGrid();
   buildProjectDetail();
   buildGallery();
+  setupStaticGallery();
   setupHomeDropzone();
   setupDropSlots();
 });
