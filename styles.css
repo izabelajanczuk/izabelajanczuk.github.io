@@ -572,16 +572,16 @@ ul, ol { list-style: none; }
 
 /* Image layouts */
 .sego-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 20px 0 28px; }
-.sego-pair figure { margin: 0; overflow: hidden; border-radius: 2px; display: flex; flex-direction: column; }
-.sego-pair img { flex: 1; width: 100%; object-fit: cover; display: block; min-height: 220px; }
+.sego-pair figure { margin: 0; overflow: hidden; border-radius: 2px; }
+.sego-pair img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
 .sego-pair figcaption {
   font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--ink-soft); margin-top: 8px;
 }
 
 .sego-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 20px 0 28px; }
-.sego-trio figure { margin: 0; overflow: hidden; border-radius: 2px; display: flex; flex-direction: column; }
-.sego-trio img { flex: 1; width: 100%; object-fit: cover; display: block; min-height: 170px; }
+.sego-trio figure { margin: 0; overflow: hidden; border-radius: 2px; }
+.sego-trio img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
 
 .sego-lead { margin: 20px 0 28px; overflow: hidden; border-radius: 2px; }
 .sego-lead img { width: 100%; height: auto; display: block; }
@@ -604,10 +604,10 @@ ul, ol { list-style: none; }
 .cs-fig img { width: 100%; height: auto; display: block; }
 .cs-fig-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 20px 0 28px; }
 .cs-fig-pair figure { margin: 0; overflow: hidden; border-radius: 2px; }
-.cs-fig-pair img { width: 100%; height: auto; display: block; }
+.cs-fig-pair img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
 .cs-fig-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 20px 0 28px; }
 .cs-fig-trio figure { margin: 0; overflow: hidden; border-radius: 2px; }
-.cs-fig-trio img { width: 100%; height: auto; display: block; }
+.cs-fig-trio img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
 
 /* Research metrics */
 .sego-metrics { display: flex; gap: clamp(32px, 6vw, 72px); margin: 24px 0 32px; flex-wrap: wrap; }
@@ -662,12 +662,26 @@ ul, ol { list-style: none; }
 
 /* 4-up figure grid (pattern studies etc.) */
 .fig-quad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 20px 0 28px; }
-.fig-quad figure { margin: 0; overflow: hidden; border-radius: 2px; display: flex; flex-direction: column; }
-.fig-quad img { flex: 1; width: 100%; object-fit: cover; display: block; min-height: 140px; }
+.fig-quad figure { margin: 0; overflow: hidden; border-radius: 2px; }
+.fig-quad img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+
+/* Aspect-ratio overrides for a grouping whose source photos don't fit
+   the 4/3 default without cropping away the actual subject — apply to
+   the row/grid container (.sego-pair, .sego-trio, .fig-quad, .cs-fig-pair,
+   .cs-fig-trio) when its images are portrait or unusually wide/panoramic */
+.ar-tall.sego-pair img, .ar-tall.sego-trio img, .ar-tall.fig-quad img { aspect-ratio: 3/4; }
+.ar-square.sego-pair img, .ar-square.sego-trio img { aspect-ratio: 1/1; }
+.ar-wide.sego-pair img, .ar-wide.cs-fig-pair img { aspect-ratio: 3/1; }
 .fig-quad figcaption {
   font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--ink-soft); margin-top: 8px;
 }
+
+/* Documentary treatment — one uniform filter applied across a set of
+   photos whose original exposure/color temperature doesn't match, so
+   the mismatch reads as an intentional archival tone rather than
+   several unrelated photos. Don't hand-correct individual images. */
+.doc-treatment { filter: sepia(0.35) saturate(0.65) contrast(0.9) brightness(1.08); }
 
 /* Materials & cost block */
 .cost-block {
