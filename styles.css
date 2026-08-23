@@ -15,6 +15,7 @@
   --rose-deep: #a9726d;
   --terracotta: #b06a45;
   --moss: #767a5c;
+  --moss-deep: #64684a; /* darker moss for text on light backgrounds — 5.1:1 contrast on --bone */
   --stone: #d8cfbf;
   --line: rgba(43,38,33,0.16);
 
@@ -268,12 +269,12 @@ ul, ol { list-style: none; }
 }
 .intro-eyebrow {
   font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgb(148,168,108); padding-top: 6px;
+  color: var(--moss-deep); padding-top: 6px;
 }
 .intro-text {
   font-family: var(--serif); font-weight: 400;
   font-size: clamp(20px, 2.4vw, 26px); line-height: 1.5; max-width: 760px;
-  color: rgb(148,168,108);
+  color: var(--moss-deep);
 }
 .intro-text em { color: var(--rose-deep); font-style: italic; }
 .intro-text strong { font-weight: 600; }
@@ -296,6 +297,8 @@ ul, ol { list-style: none; }
   display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px;
   padding: 56px 0; border-top: 1px solid var(--line); align-items: start;
 }
+.entry:hover .entry-visual { opacity: 0.92; }
+.entry:hover .entry-view { opacity: 0.55; }
 .entry-body {
   display: flex; flex-direction: column;
 }
@@ -305,6 +308,7 @@ ul, ol { list-style: none; }
 
 .entry-visual {
   aspect-ratio: 4/3; border-radius: 2px; position: relative; overflow: hidden;
+  transition: opacity 0.2s;
 }
 .vis-a { background: linear-gradient(160deg, #c9b9a3, var(--moss)); }
 .vis-b { background: linear-gradient(160deg, var(--rose), var(--terracotta)); }
@@ -586,6 +590,21 @@ ul, ol { list-style: none; }
 .sego-lead { margin: 20px 0 28px; overflow: hidden; border-radius: 2px; }
 .sego-lead img { width: 100%; height: auto; display: block; }
 
+/* Framed treatment for a photo that can't be swapped for a better
+   original — smaller and bordered like a specimen label, with the
+   site's warm duotone filter, so a lower-quality drop-in still reads
+   as an intentional archival artifact rather than a broken image. */
+.fig-framed { max-width: 420px; margin: 20px 0 28px; }
+.fig-framed img {
+  width: 100%; display: block; border-radius: 2px;
+  border: 6px solid var(--paper); outline: 1px solid var(--line);
+  filter: sepia(0.18) saturate(0.82) contrast(0.94) brightness(1.03);
+}
+.fig-framed figcaption {
+  font-family: var(--serif); font-style: italic; font-size: 13px;
+  color: var(--ink-soft); margin-top: 10px;
+}
+
 .sego-split {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(24px, 4vw, 56px); align-items: start; margin: 20px 0 28px;
@@ -621,7 +640,7 @@ ul, ol { list-style: none; }
 }
 
 /* Terrain pivot callout */
-.sego-pivot { border-left: 2px solid; padding: 12px 0 12px 20px; margin: 24px 0 32px; }
+.sego-pivot { border-left: 2px solid; padding: 12px 0 12px 20px; margin: 20px 0 28px; }
 .sego-pivot-title { font-family: var(--serif); font-weight: 500; font-size: 16px; margin-bottom: 8px; }
 .sego-pivot p { font-size: 15px; color: var(--ink-soft); line-height: 1.7; max-width: 62ch; }
 
@@ -652,7 +671,7 @@ ul, ol { list-style: none; }
 /* Brief grid — What / Who / Why / How (or similar short structured facts) */
 .brief-grid {
   display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: clamp(20px, 3vw, 32px); margin: 24px 0 8px;
+  gap: clamp(20px, 3vw, 32px); margin: 20px 0 28px;
 }
 .brief-grid dt {
   font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
