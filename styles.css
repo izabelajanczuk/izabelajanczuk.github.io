@@ -614,6 +614,14 @@ ul, ol { list-style: none; }
 
 .sego-render { margin: 20px 0 28px; overflow: hidden; border-radius: 2px; background: var(--paper); }
 .sego-render img { width: 100%; height: auto; display: block; }
+.sego-render figcaption {
+  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-soft); padding: 10px 14px 14px;
+}
+
+/* Two renders side by side, each on its own paper-tinted card */
+.render-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 20px 0 28px; }
+.render-pair .sego-render { margin: 0; }
 
 .sego-hero-fig { margin: 0; overflow: hidden; border-radius: 2px; background: var(--paper); }
 .sego-hero-fig img { width: 100%; display: block; height: auto; }
@@ -833,6 +841,7 @@ ul, ol { list-style: none; }
   .brief-grid { grid-template-columns: 1fr 1fr; }
   .fig-quad { grid-template-columns: 1fr 1fr; }
   .cost-block { grid-template-columns: 1fr; }
+  .render-pair { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .site-footer .wrap { flex-direction: column; align-items: flex-start; gap: 20px; }
   .footer-meta { text-align: left; }
