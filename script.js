@@ -361,6 +361,32 @@ function setupVideoAutoplay() {
   obs.observe(video);
 }
 
+/* ---- fade + rise elements into view once as they enter the viewport,
+   instead of everything snapping into place on load/scroll ---- */
+function setupScrollReveal() {
+  const els = document.querySelectorAll(".reveal");
+  if (!els.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    els.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  els.forEach((el) => obs.observe(el));
+}
+
 /* ---- home page name: a chain of letters where each one is locked
    to a fixed distance from the letter before it (like a rope with
    rigid links). The head chases the cursor and every other letter
@@ -459,4 +485,5 @@ document.addEventListener("DOMContentLoaded", () => {
   setupDropSlots();
   setupVideoAutoplay();
   setupNameFollow();
+  setupScrollReveal();
 });

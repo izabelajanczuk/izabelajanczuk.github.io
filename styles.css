@@ -166,7 +166,11 @@ ul, ol { list-style: none; }
 .home-bg::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(160deg, rgba(14,9,5,0.18) 0%, rgba(14,9,5,0.28) 55%, rgba(14,9,5,0.65) 100%);
+  /* fade the photo into the page below (fixes the hard cut at the hero's
+     bottom edge) layered under the existing diagonal vignette */
+  background:
+    linear-gradient(to bottom, transparent 0%, transparent 80%, var(--bone) 100%),
+    linear-gradient(160deg, rgba(14,9,5,0.18) 0%, rgba(14,9,5,0.28) 55%, rgba(14,9,5,0.65) 100%);
 }
 
 .home > * { position: relative; z-index: 1; }
@@ -263,7 +267,7 @@ ul, ol { list-style: none; }
 
 .intro {
   border-top: 1px solid var(--line);
-  padding: 64px var(--pad) 100px;
+  padding: 56px var(--pad) 56px;
   max-width: var(--maxw); margin: 0 auto;
   display: grid; grid-template-columns: 160px 1fr; gap: 40px;
 }
@@ -341,6 +345,32 @@ ul, ol { list-style: none; }
   border-bottom: 1px solid var(--ink); padding-bottom: 2px; transition: opacity 0.2s;
 }
 .entry-view:hover { opacity: 0.55; }
+
+/* Process strip — a quiet filmstrip of real fabrication photos (sketching,
+   cutting, hands mid-assembly) between the Note and Selected Work, so the
+   home page shows process, not just finished outcomes. Full width, small
+   in visual weight relative to the project cards below it. */
+.process-strip {
+  display: grid; grid-template-columns: repeat(10, 1fr);
+  gap: 3px;
+}
+.process-strip img {
+  width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block;
+  filter: sepia(0.14) saturate(0.8) contrast(1.03) brightness(0.99);
+  transition: filter 0.3s;
+}
+.process-strip img:hover { filter: sepia(0.04) saturate(0.95) contrast(1.02) brightness(1.02); }
+
+/* Scroll reveal — one shared easing/timing across the page so content
+   settles in rather than snapping into place */
+.reveal {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
 
 /* ============================================================
    ABOUT PAGE
@@ -826,6 +856,10 @@ ul, ol { list-style: none; }
 @media (max-width: 820px) {
   .intro { grid-template-columns: 1fr; gap: 18px; padding-bottom: 70px; }
   .section-head { padding-bottom: 32px; }
+  .process-strip {
+    grid-template-columns: repeat(10, 110px);
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
   .entry, .entry:nth-child(even) { grid-template-columns: 1fr; gap: 24px; }
   .entry:nth-child(even) .entry-visual { order: 0; }
   .about-lead { grid-template-columns: 1fr; }
