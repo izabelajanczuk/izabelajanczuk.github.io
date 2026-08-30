@@ -3,13 +3,23 @@
    Only two typefaces, site-wide:
      --sans  = Helvetica — main page titles + all body/UI text
      --serif = Fraunces  — subtitles (the "fancier" face, also the I.J. mark)
-   Bone palette
+
+   Editorial palette: warm ivory/parchment base, dusty rose as the
+   through-line accent, with pale blue, denim, forest, and oxblood used
+   sparingly as single-moment interruptions — never backgrounds applied
+   everywhere at once.
    ============================================================ */
 
 :root {
   --bone: #f4efe6;
   --paper: #eee7da;
-  --ink: #2b2621;
+  --chalk: #f7f3ec;      /* warm ivory — primary editorial bg */
+  --parchment: #ece3d3;  /* soft paper, one shade warmer than --paper */
+  --pale-blue: #dde4e2;  /* chalky pale blue-green, quiet section wash */
+  --denim: #7c8ea0;      /* faded denim blue accent */
+  --forest: #4f5a43;     /* deeper muted forest green, sparing use */
+  --oxblood: #7a2e28;    /* brick/oxblood — rules & marks only, never a fill */
+  --ink: #241f1b;        /* dark brown-black, not pure black */
   --ink-soft: #5a5248;
   --rose: #c79a94;
   --rose-deep: #a9726d;
@@ -17,7 +27,7 @@
   --moss: #767a5c;
   --moss-deep: #64684a; /* darker moss for text on light backgrounds — 5.1:1 contrast on --bone */
   --stone: #d8cfbf;
-  --line: rgba(43,38,33,0.16);
+  --line: rgba(36,31,27,0.16);
 
   --serif: 'Fraunces', Georgia, serif;
   --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -32,9 +42,9 @@ html { scroll-behavior: smooth; }
 
 body {
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(199,154,148,0.10), transparent 60%),
-    radial-gradient(900px 500px at 100% 0%, rgba(118,122,92,0.08), transparent 55%),
-    var(--bone);
+    radial-gradient(1200px 600px at 10% -10%, rgba(199,154,148,0.09), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(124,142,160,0.07), transparent 55%),
+    var(--chalk);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 16px;
@@ -49,6 +59,43 @@ button { font-family: inherit; cursor: pointer; }
 ul, ol { list-style: none; }
 
 .dogear { display: none; }
+
+/* ============================================================
+   EDITORIAL PRIMITIVES — small composable pieces used to build a
+   different layout per section, instead of one repeated card
+   ============================================================ */
+
+.eyebrow {
+  display: block; font-family: var(--sans); font-size: 12px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+}
+
+.rule { height: 1px; background: var(--line); border: none; }
+.rule--short { width: 48px; }
+.rule--denim { background: var(--denim); opacity: 0.55; }
+
+.cap-num {
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+.cap-num em {
+  font-family: var(--serif); font-style: italic; color: var(--oxblood);
+  margin-right: 6px;
+}
+
+/* one small woven/textile accent mark — abstracted geometry, not a
+   photo of fabric; used once on the home hero */
+.weave-mark {
+  width: 34px; height: 34px; opacity: 0.65; flex-shrink: 0;
+  background-image:
+    repeating-linear-gradient(45deg, var(--denim) 0 2px, transparent 2px 8px),
+    repeating-linear-gradient(-45deg, var(--rose-deep) 0 2px, transparent 2px 8px);
+  background-blend-mode: multiply;
+}
+
+/* wash — a full-bleed section tint, used sparingly for one moment at a time */
+.wash-blue { background: var(--pale-blue); }
+.wash-parchment { background: var(--parchment); }
 
 /* Grain overlay */
 .grain {
@@ -91,11 +138,11 @@ ul, ol { list-style: none; }
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
-.home-page .logo { color: rgba(148,168,108,0.95); }
-.home-page .nav { color: rgba(148,168,108,0.78); }
-.home-page .nav a { color: rgba(148,168,108,0.78); border-bottom-color: transparent; }
-.home-page .nav a:hover, .home-page .nav a.active { color: rgb(148,168,108); border-color: var(--rose); }
-.home-page .menu-toggle { color: rgba(148,168,108,0.95); }
+.home-page .logo { color: rgba(247,243,236,0.95); }
+.home-page .nav { color: rgba(247,243,236,0.75); }
+.home-page .nav a { color: rgba(247,243,236,0.75); border-bottom-color: transparent; }
+.home-page .nav a:hover, .home-page .nav a.active { color: rgb(247,243,236); border-color: var(--rose); }
+.home-page .menu-toggle { color: rgba(247,243,236,0.95); }
 
 .site-header .wrap {
   display: flex; align-items: center; justify-content: space-between;
@@ -169,7 +216,7 @@ ul, ol { list-style: none; }
   /* fade the photo into the page below (fixes the hard cut at the hero's
      bottom edge) layered under the existing diagonal vignette */
   background:
-    linear-gradient(to bottom, transparent 0%, transparent 80%, var(--bone) 100%),
+    linear-gradient(to bottom, transparent 0%, transparent 80%, var(--chalk) 100%),
     linear-gradient(160deg, rgba(14,9,5,0.18) 0%, rgba(14,9,5,0.28) 55%, rgba(14,9,5,0.65) 100%);
 }
 
@@ -186,13 +233,22 @@ ul, ol { list-style: none; }
 /* Top metadata strip */
 .ed-topbar {
   display: flex; align-items: center; gap: 10px; padding-bottom: 24px;
-  color: rgba(148,168,108,0.48);
+  color: rgba(247,243,236,0.5);
 }
 .ed-initials { font-family: var(--serif); font-size: 0.88rem; letter-spacing: 0.12em; }
-.ed-rule-sm { width: 20px; height: 1px; background: rgba(148,168,108,0.28); flex-shrink: 0; }
+.ed-rule-sm { width: 20px; height: 1px; background: rgba(247,243,236,0.3); flex-shrink: 0; }
 .ed-issue, .ed-year { font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; }
-.ed-rule-lg { width: 36px; height: 1px; background: rgba(148,168,108,0.22); flex-shrink: 0; }
-.ed-role { font-family: var(--sans); font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(148,168,108,0.42); }
+.ed-rule-lg { width: 36px; height: 1px; background: rgba(247,243,236,0.24); flex-shrink: 0; }
+.ed-role { font-family: var(--sans); font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(247,243,236,0.44); }
+
+/* Small photo fragment + woven mark, offset into the topbar row —
+   the one atmospheric/collaged element in the opening spread */
+.ed-frag {
+  width: 46px; height: 62px; border-radius: 1px; overflow: hidden;
+  margin-left: auto; flex-shrink: 0;
+  box-shadow: 0 6px 18px rgba(14,9,5,0.35);
+}
+.ed-frag img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* Masthead spacer: keeps the topbar/foot rhythm; the name itself now
    floats freely (see .ed-name-row) and follows the cursor via script.js */
@@ -229,15 +285,15 @@ ul, ol { list-style: none; }
   bottom: clamp(32px, 5vh, 52px); right: var(--pad);
   z-index: 10;
   font-family: var(--sans); font-size: 0.82rem;
-  color: rgba(148,168,108,0.35);
+  color: rgba(247,243,236,0.4);
   pointer-events: none; opacity: 0; transition: opacity 0.3s;
   white-space: nowrap;
 }
-.home.dragover .drop-hint { opacity: 1; color: rgba(148,168,108,0.70); }
+.home.dragover .drop-hint { opacity: 1; color: rgba(247,243,236,0.75); }
 .home.dragover .home-bg { filter: brightness(0.42); }
 .home.dragover::before {
   content: ""; position: absolute; inset: 10px;
-  border: 1px dashed rgba(148,168,108,0.35);
+  border: 1px dashed rgba(247,243,236,0.4);
   z-index: 11; pointer-events: none;
 }
 
@@ -250,16 +306,16 @@ ul, ol { list-style: none; }
 .ed-desc {
   font-family: var(--serif); font-style: italic;
   font-size: clamp(0.95rem, 2vw, 1.55rem); font-weight: 300;
-  color: rgba(148,168,108,0.88); line-height: 1.45;
+  color: rgba(247,243,236,0.85); line-height: 1.45;
 }
-.ed-desc strong { font-weight: 600; font-style: normal; color: rgba(148,168,108,1.0); }
+.ed-desc strong { font-weight: 600; font-style: normal; color: var(--rose); }
 .ed-cats { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 .ed-cats a {
   font-family: var(--sans); font-size: 0.8rem; font-weight: 400;
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(148,168,108,0.58); transition: color 0.2s;
+  color: rgba(247,243,236,0.6); transition: color 0.2s;
 }
-.ed-cats a:hover { color: rgb(148,168,108); }
+.ed-cats a:hover { color: var(--rose); }
 
 /* ============================================================
    HOME PAGE — WORK SECTION (bone background, below the cover)
@@ -294,57 +350,58 @@ ul, ol { list-style: none; }
 
 .work {
   max-width: var(--maxw); margin: 0 auto;
-  padding: 0 var(--pad) 80px;
+  padding: 0 var(--pad) 100px;
 }
 
-.entry {
-  display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px;
-  padding: 56px 0; border-top: 1px solid var(--line); align-items: start;
+/* ---- shared pieces every spread draws from ---- */
+.spread { display: block; padding: 76px 0; border-top: 1px solid var(--line); }
+.spread-img { overflow: hidden; border-radius: 1px; background: var(--parchment); position: relative; }
+.spread-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
 }
-.entry:hover .entry-visual { opacity: 0.92; }
-.entry:hover .entry-view { opacity: 0.55; }
-.entry-body {
-  display: flex; flex-direction: column;
-}
-.entry-view { margin-top: auto; padding-top: 20px; }
-.entry:nth-child(even) { grid-template-columns: 1.1fr 0.9fr; }
-.entry:nth-child(even) .entry-visual { order: 2; }
-
-.entry-visual {
-  aspect-ratio: 4/3; border-radius: 2px; position: relative; overflow: hidden;
-  transition: opacity 0.2s;
-}
-.vis-a { background: linear-gradient(160deg, #c9b9a3, var(--moss)); }
-.vis-b { background: linear-gradient(160deg, var(--rose), var(--terracotta)); }
-.vis-c { background: linear-gradient(160deg, var(--stone), var(--rose-deep)); }
-
-.entry-tagline {
+.spread:hover .spread-img img { transform: scale(1.03); }
+.spread-tag {
   position: absolute; top: 14px; left: 14px;
-  font-size: 10px; letter-spacing: 0.1em; color: #fff; opacity: 0.9;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; opacity: 0.9;
   border: 1px solid rgba(255,255,255,0.5); padding: 4px 9px; border-radius: 2px;
 }
-
-.entry-num {
-  font-family: var(--serif); font-style: italic; font-size: 14px;
-  color: var(--rose-deep); margin-bottom: 14px; display: block;
+.spread-title {
+  font-family: var(--serif); font-weight: 500; font-style: italic;
+  font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05; margin: 14px 0 10px;
 }
-.entry-title {
-  font-family: var(--serif); font-weight: 500;
-  font-size: clamp(26px, 3.2vw, 36px); margin-bottom: 10px;
-}
-.entry-meta {
-  font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink-soft); margin-bottom: 18px;
-}
-.entry-desc {
-  font-size: 14.5px; line-height: 1.75; color: var(--ink-soft);
-  max-width: 420px; margin-bottom: 20px;
-}
-.entry-view {
+.spread-desc { font-size: 14.5px; line-height: 1.75; color: var(--ink-soft); }
+.spread-view {
+  display: inline-block; margin-top: 20px;
   font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;
   border-bottom: 1px solid var(--ink); padding-bottom: 2px; transition: opacity 0.2s;
 }
-.entry-view:hover { opacity: 0.55; }
+.spread:hover .spread-view { opacity: 0.55; }
+
+/* 01 — EcoBite: one large image, a narrow column of copy tucked into
+   the bottom-right corner rather than centered underneath it */
+.spread-a {
+  display: grid; grid-template-columns: 1fr 300px; gap: 36px; align-items: end;
+}
+.spread-a .spread-img { grid-column: 1; aspect-ratio: 16/10; }
+.spread-a .spread-copy { grid-column: 2; padding-bottom: 6px; }
+
+/* 02 — SegoStop: small portrait image on the left, wide copy column
+   opposite it, vertically centered — mirrors nothing about spread-a */
+.spread-b {
+  display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: center;
+}
+.spread-b .spread-img { aspect-ratio: 3/4; }
+.spread-b .spread-copy { max-width: 460px; }
+
+/* 03 — ReLume: a wide strip image on top, the title set large and
+   left, metadata + description held in their own narrow column to
+   the right — a third rhythm again */
+.spread-c .spread-img { aspect-ratio: 21/9; margin-bottom: 28px; }
+.spread-c .spread-inner {
+  display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start;
+}
+.spread-c .spread-title { margin-top: 0; }
 
 /* Scroll reveal — one shared easing/timing across the page so content
    settles in rather than snapping into place */
@@ -852,8 +909,10 @@ ul, ol { list-style: none; }
 @media (max-width: 820px) {
   .intro { grid-template-columns: 1fr; gap: 18px; padding-bottom: 70px; }
   .section-head { padding-bottom: 32px; }
-  .entry, .entry:nth-child(even) { grid-template-columns: 1fr; gap: 24px; }
-  .entry:nth-child(even) .entry-visual { order: 0; }
+  .spread-a, .spread-b, .spread-c .spread-inner { grid-template-columns: 1fr; gap: 20px; }
+  .spread-a .spread-copy, .spread-b .spread-copy { max-width: none; }
+  .spread-b .spread-img { aspect-ratio: 4/3; }
+  .ed-frag { display: none; }
   .about-lead { grid-template-columns: 1fr; }
   .about-bio { grid-template-columns: 1fr; gap: 18px; }
   .cv-grid { grid-template-columns: repeat(2, 1fr); }
