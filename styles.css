@@ -346,21 +346,6 @@ ul, ol { list-style: none; }
 }
 .entry-view:hover { opacity: 0.55; }
 
-/* Process strip — a quiet filmstrip of real fabrication photos (sketching,
-   cutting, hands mid-assembly) between the Note and Selected Work, so the
-   home page shows process, not just finished outcomes. Full width, small
-   in visual weight relative to the project cards below it. */
-.process-strip {
-  display: grid; grid-template-columns: repeat(10, 1fr);
-  gap: 3px;
-}
-.process-strip img {
-  width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block;
-  filter: sepia(0.14) saturate(0.8) contrast(1.03) brightness(0.99);
-  transition: filter 0.3s;
-}
-.process-strip img:hover { filter: sepia(0.04) saturate(0.95) contrast(1.02) brightness(1.02); }
-
 /* Scroll reveal — one shared easing/timing across the page so content
    settles in rather than snapping into place */
 .reveal {
@@ -543,7 +528,7 @@ ul, ol { list-style: none; }
   font-family: var(--serif); font-weight: 400;
   font-size: clamp(1.5rem, 2.8vw, 2.1rem); letter-spacing: -0.01em; margin-bottom: 24px;
 }
-.cs-subh { font-family: var(--serif); font-weight: 500; font-size: 16px; margin: 28px 0 14px; }
+.cs-subh { font-family: var(--serif); font-weight: 500; font-size: 20px; margin: 28px 0 14px; }
 
 .cs-text { max-width: none; }
 .cs-text p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 16px; }
@@ -624,15 +609,22 @@ ul, ol { list-style: none; }
    original — smaller and bordered like a specimen label, with the
    site's warm duotone filter, so a lower-quality drop-in still reads
    as an intentional archival artifact rather than a broken image. */
-.fig-framed { max-width: 420px; margin: 20px 0 28px; }
+.fig-framed { max-width: 620px; margin: 20px auto 28px; }
 .fig-framed img {
   width: 100%; display: block; border-radius: 2px;
   border: 6px solid var(--paper); outline: 1px solid var(--line);
-  filter: sepia(0.18) saturate(0.82) contrast(0.94) brightness(1.03);
+  filter: sepia(0.4) saturate(1.15) contrast(0.97) brightness(1.05);
 }
 .fig-framed figcaption {
   font-family: var(--serif); font-style: italic; font-size: 13px;
   color: var(--ink-soft); margin-top: 10px;
+}
+
+/* Small credit line under a reference-image group sourced from the web,
+   not the designer's own photography */
+.source-note {
+  font-size: 12px; font-style: italic; color: var(--ink-soft); opacity: 0.6;
+  margin-top: -12px; margin-bottom: 20px;
 }
 
 .sego-split {
@@ -649,9 +641,19 @@ ul, ol { list-style: none; }
   color: var(--ink-soft); padding: 10px 14px 14px;
 }
 
-/* Two renders side by side, each on its own paper-tinted card */
+/* Two renders side by side — no card background (renders sit directly
+   on the page), both locked to the same height so they read as the
+   same size and their captions land on the same baseline regardless
+   of each render's native aspect ratio */
 .render-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 20px 0 28px; }
-.render-pair .sego-render { margin: 0; }
+.render-pair .sego-render {
+  margin: 0; background: none;
+  display: flex; flex-direction: column;
+}
+.render-pair .sego-render img {
+  height: clamp(200px, 26vw, 320px); width: 100%;
+  object-fit: contain; display: block;
+}
 
 .sego-hero-fig { margin: 0; overflow: hidden; border-radius: 2px; background: var(--paper); }
 .sego-hero-fig img { width: 100%; display: block; height: auto; }
@@ -733,12 +735,6 @@ ul, ol { list-style: none; }
   font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--ink-soft); margin-top: 8px;
 }
-
-/* Documentary treatment — one uniform filter applied across a set of
-   photos whose original exposure/color temperature doesn't match, so
-   the mismatch reads as an intentional archival tone rather than
-   several unrelated photos. Don't hand-correct individual images. */
-.doc-treatment { filter: sepia(0.35) saturate(0.65) contrast(0.9) brightness(1.08); }
 
 /* Materials & cost block */
 .cost-block {
@@ -856,10 +852,6 @@ ul, ol { list-style: none; }
 @media (max-width: 820px) {
   .intro { grid-template-columns: 1fr; gap: 18px; padding-bottom: 70px; }
   .section-head { padding-bottom: 32px; }
-  .process-strip {
-    grid-template-columns: repeat(10, 110px);
-    overflow-x: auto; -webkit-overflow-scrolling: touch;
-  }
   .entry, .entry:nth-child(even) { grid-template-columns: 1fr; gap: 24px; }
   .entry:nth-child(even) .entry-visual { order: 0; }
   .about-lead { grid-template-columns: 1fr; }
