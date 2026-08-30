@@ -521,7 +521,7 @@ ul, ol { list-style: none; }
 }
 .cs-back:hover { color: var(--ink); }
 
-.cs-section { margin-bottom: clamp(56px, 9vw, 100px); }
+.cs-section { margin-bottom: clamp(32px, 4.5vw, 52px); }
 .cs-section:last-child { margin-bottom: 0; }
 
 .cs-h {
