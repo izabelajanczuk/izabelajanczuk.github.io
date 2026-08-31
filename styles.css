@@ -285,9 +285,9 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
 }
 .intro-text {
   font-family: var(--sans); font-weight: 400;
-  font-size: clamp(28px, 3.8vw, 46px); line-height: 1.3;
+  font-size: clamp(16px, 1.9vw, 26px); line-height: 1.3;
   color: var(--ink-soft);
-  text-wrap: pretty;
+  white-space: nowrap;
 }
 .intro-text em { color: var(--ink); font-style: italic; }
 .intro-text strong { font-weight: 600; }
@@ -885,6 +885,7 @@ main.about-page {
   .marquee-track span { font-size: clamp(2.6rem, 15vw, 4.2rem); }
   .hero-label { font-size: 12px; }
   .intro { grid-template-columns: 1fr; gap: 18px; padding-bottom: 70px; }
+  .intro-text { white-space: normal; font-size: clamp(20px, 5vw, 28px); }
   .section-head { padding-bottom: 32px; }
   .entry, .entry:nth-child(even) { grid-template-columns: 1fr; gap: 24px; }
   .entry-visual, .entry:nth-child(even) .entry-visual { order: -1; }
