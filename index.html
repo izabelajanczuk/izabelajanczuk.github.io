@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="home-page">
+<body>
 <div class="grain"></div>
 
   <header class="site-header">
@@ -20,10 +20,9 @@
       <a class="logo" href="index.html">I.J.</a>
       <button class="menu-toggle" aria-label="Menu">☰</button>
       <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
         <a href="projects.html">Work</a>
-        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Images</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
@@ -31,34 +30,25 @@
 
   <main>
 
-    <!-- Editorial cover: dark photo background, huge name in dusty rose -->
-    <div class="home">
-      <div class="home-bg"></div>
-      <p class="drop-hint" id="drop-hint">select your cover</p>
-      <h1 class="ed-name-row" id="ed-name-row">IZABELA JANCZUK</h1>
-      <div class="ed-canvas wrap">
-        <div class="ed-topbar">
-          <span class="ed-initials">I.J.</span>
-          <span class="ed-rule-sm"></span>
-          <span class="ed-issue">001</span>
-          <span class="ed-rule-sm"></span>
-          <span class="ed-year">2026</span>
-          <span class="weave-mark" aria-hidden="true"></span>
-          <figure class="ed-frag">
-            <img src="images/relume/detail-glow.jpg" alt="" loading="lazy" />
-          </figure>
+    <!-- Opening spread: name + statement beside one large photograph -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy reveal">
+          <p class="hero-label">Design / Environment / Objects / Images</p>
+          <h1 class="hero-name">Izabela<br>Janczuk</h1>
+          <p class="hero-statement">Collected studies in place, object, image &amp; systems.</p>
+          <div class="hero-meta">
+            <span>I.J. 001</span>
+            <span>Seattle, WA</span>
+            <span>2026</span>
+          </div>
         </div>
-        <div class="ed-body"></div>
-        <div class="ed-foot">
-          <p class="ed-desc">Collected studies in place, <strong>object</strong>, image &amp; systems.</p>
-          <nav class="ed-cats">
-            <a href="projects.html">Design</a>
-            <a href="projects.html">Environment + Objects</a>
-            <a href="gallery.html">Images</a>
-          </nav>
-        </div>
+        <figure class="hero-fig reveal" id="hero-fig">
+          <img id="hero-photo" src="images/home-bg.jpg" alt="" />
+          <p class="drop-hint" id="drop-hint">select your cover</p>
+        </figure>
       </div>
-    </div>
+    </section>
 
     <!-- Intro note -->
     <section class="intro reveal">
