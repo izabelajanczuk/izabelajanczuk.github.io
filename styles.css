@@ -282,8 +282,8 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
 .intro {
   padding: 100px var(--pad) 100px;
   max-width: var(--maxw); margin: 0 auto;
-  display: grid; grid-template-columns: 160px 1fr; gap: 40px;
-  align-items: center;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; text-align: center;
 }
 .intro-eyebrow {
   font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
@@ -291,8 +291,9 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
 }
 .intro-text {
   font-family: var(--sans); font-weight: 400;
-  font-size: 18px; line-height: 1.6; max-width: 640px;
+  font-size: 18px; line-height: 1.6; max-width: 100%;
   color: var(--ink-soft);
+  text-wrap: pretty;
 }
 .intro-text em { color: var(--ink); font-style: italic; }
 .intro-text strong { font-weight: 600; }
@@ -394,19 +395,16 @@ body.about-page .menu-toggle { color: var(--bone); }
 body.about-page .footer-meta { color: rgba(243,239,231,0.75); }
 body.about-page .footer-meta a:hover { border-color: var(--accent-blue); }
 
-body.about-page .tag { color: var(--chalk); border-color: rgba(243,239,231,0.4); }
 body.about-page .about-greeting { color: var(--chalk); }
-body.about-page .about-bio-eyebrow,
 body.about-page .about-cv-label { color: rgba(243,239,231,0.7); }
 body.about-page .about-bio-text p { color: rgba(243,239,231,0.82); }
-body.about-page .about-bio,
 body.about-page .about-cv { border-top-color: rgba(243,239,231,0.18); }
 body.about-page .cv-head { color: var(--chalk); }
 body.about-page .cv-col ul li { color: rgba(243,239,231,0.75); }
 body.about-page .cv-entry .t { color: var(--chalk); }
 body.about-page .cv-entry .s { color: rgba(243,239,231,0.7); }
 
-.about-page {
+main.about-page {
   padding-top: clamp(56px, 8vw, 96px);
   padding-bottom: clamp(60px, 9vw, 100px);
 }
@@ -420,7 +418,7 @@ body.about-page .cv-entry .s { color: rgba(243,239,231,0.7); }
 .about-greeting {
   font-family: var(--sans); font-weight: 300;
   font-size: clamp(3.5rem, 9vw, 6.5rem); line-height: 1;
-  margin-top: 20px; color: var(--ink);
+  color: var(--ink); margin-bottom: 28px;
 }
 
 .about-photo img {
@@ -428,16 +426,6 @@ body.about-page .cv-entry .s { color: rgba(243,239,231,0.7); }
   filter: sepia(0.06) brightness(0.97) contrast(1.03);
 }
 
-.about-bio {
-  display: grid; grid-template-columns: 160px 1fr; gap: 40px;
-  border-top: 1px solid var(--line);
-  padding-top: clamp(48px, 7vw, 80px);
-  margin-bottom: clamp(56px, 8vw, 90px);
-}
-.about-bio-eyebrow {
-  font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink-soft); padding-top: 4px;
-}
 .about-bio-text p {
   font-size: 15px; line-height: 1.8; color: var(--ink-soft);
   max-width: 64ch; margin-bottom: 18px;
@@ -580,23 +568,25 @@ body.about-page .cv-entry .s { color: rgba(243,239,231,0.7); }
 .cs-text { max-width: none; }
 .cs-text p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 16px; }
 
-/* Ecobite accent — moss */
-.ecobite-page .cs-h       { color: var(--moss); }
-.ecobite-page .cs-subh    { color: var(--moss); }
+/* Ecobite — text stays the same ink as every other page; moss kept
+   only as a non-text border accent */
+.ecobite-page .cs-h       { color: var(--ink); }
+.ecobite-page .cs-subh    { color: var(--ink); }
 .ecobite-page .acc-group  { border-top: 1px solid rgba(118,122,92,0.3); }
 .ecobite-page .acc        { border-bottom: 1px solid rgba(118,122,92,0.3); }
-.ecobite-page .acc summary { color: var(--moss); }
+.ecobite-page .acc summary { color: var(--ink); }
 
-/* Segostop accent — terracotta */
-.segostop-page .cs-h       { color: var(--terracotta); }
-.segostop-page .cs-subh    { color: var(--terracotta); }
+/* Segostop — text stays ink; terracotta kept only as a non-text
+   border/background accent */
+.segostop-page .cs-h       { color: var(--ink); }
+.segostop-page .cs-subh    { color: var(--ink); }
 .segostop-page .acc-group  { border-top: 1px solid rgba(176,106,69,0.3); }
 .segostop-page .acc        { border-bottom: 1px solid rgba(176,106,69,0.3); }
-.segostop-page .acc summary { color: var(--terracotta); }
-.segostop-page .sego-metric-num { color: var(--terracotta); }
+.segostop-page .acc summary { color: var(--ink); }
+.segostop-page .sego-metric-num { color: var(--ink); }
 .segostop-page .sego-vote-bar   { background: var(--terracotta); }
 .segostop-page .sego-pivot      { border-left-color: var(--terracotta); }
-.segostop-page .sego-pivot-title { color: var(--terracotta); }
+.segostop-page .sego-pivot-title { color: var(--ink); }
 
 /* ReLume accent — ink (dusty rose retired as a text color) */
 .relume-page .cs-h       { color: var(--ink); }
