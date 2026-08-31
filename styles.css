@@ -282,16 +282,10 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
 .intro {
   padding: 100px var(--pad) 100px;
   max-width: var(--maxw); margin: 0 auto;
-  display: flex; flex-direction: column; align-items: center;
-  gap: 20px; text-align: center;
-}
-.intro-eyebrow {
-  font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink-soft);
 }
 .intro-text {
   font-family: var(--sans); font-weight: 400;
-  font-size: 18px; line-height: 1.6; max-width: 100%;
+  font-size: clamp(28px, 3.8vw, 46px); line-height: 1.3;
   color: var(--ink-soft);
   text-wrap: pretty;
 }
