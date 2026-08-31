@@ -412,7 +412,7 @@ main.about-page {
 .about-greeting {
   font-family: var(--sans); font-weight: 300;
   font-size: clamp(3.5rem, 9vw, 6.5rem); line-height: 1;
-  color: var(--ink); margin-top: -0.2em; margin-bottom: 28px;
+  color: var(--ink); margin-top: -0.155em; margin-bottom: 28px;
 }
 
 .about-photo { overflow: hidden; border-radius: 2px; }
@@ -425,6 +425,7 @@ main.about-page {
   font-size: 15px; line-height: 1.8; color: var(--ink-soft);
   max-width: 64ch; margin-bottom: 18px;
 }
+.about-bio-text p:last-child { margin-bottom: 0; }
 
 .about-cv { border-top: 1px solid var(--line); padding-top: clamp(48px, 7vw, 80px); }
 .about-cv-label {
