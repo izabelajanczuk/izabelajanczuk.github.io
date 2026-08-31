@@ -293,7 +293,7 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
 .intro-text strong { font-weight: 600; }
 
 .section-head {
-  padding: 40px var(--pad) 40px;
+  padding: 0 var(--pad) 40px;
   max-width: var(--maxw); margin: 0 auto;
   display: flex; justify-content: space-between; align-items: baseline;
 }
