@@ -240,7 +240,7 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
 .marquee-track span {
   font-family: var(--sans); font-weight: 400; text-transform: uppercase;
   font-size: clamp(3.4rem, 11.5vw, 8.5rem); line-height: 1;
-  letter-spacing: 0.02em; color: #7cb0cc;
+  letter-spacing: 0.02em; color: #8abcd6;
   padding-right: clamp(48px, 6vw, 100px);
 }
 @keyframes marquee-scroll {
