@@ -286,8 +286,8 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
 }
 .intro-text {
   font-family: var(--sans); font-weight: 400;
-  font-size: clamp(20px, 2.4vw, 26px); line-height: 1.5; max-width: 760px;
-  color: var(--rose);
+  font-size: 14px; line-height: 1.5; max-width: 760px;
+  color: var(--ink-soft);
 }
 .intro-text em { color: var(--rose-deep); font-style: italic; }
 .intro-text strong { font-weight: 600; }
