@@ -157,7 +157,11 @@ body.home-page .site-header {
   transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
 }
 body.home-page main { padding-top: 0; }
-body.home-page .site-header .logo,
+body.home-page .site-header .logo {
+  font-family: var(--sans); letter-spacing: 0.1em;
+  color: #8abcd6; text-shadow: 0 1px 6px rgba(0,0,0,0.35);
+  transition: color 0.3s;
+}
 body.home-page .site-header .nav a,
 body.home-page .site-header .menu-toggle {
   color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,0.35);
@@ -170,7 +174,7 @@ body.home-page .site-header.scrolled {
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   border-bottom-color: var(--line);
 }
-body.home-page .site-header.scrolled .logo { color: var(--ink); text-shadow: none; }
+body.home-page .site-header.scrolled .logo { text-shadow: none; }
 body.home-page .site-header.scrolled .nav a,
 body.home-page .site-header.scrolled .menu-toggle { color: var(--ink-soft); text-shadow: none; }
 body.home-page .site-header.scrolled .nav a:hover,
