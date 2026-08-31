@@ -344,7 +344,7 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
 }
 .entry-desc {
   font-family: var(--sans); font-weight: 400; font-style: normal;
-  font-size: 14px; line-height: 1.75; color: var(--ink-soft);
+  font-size: 16px; line-height: 1.6; color: var(--ink-soft);
 }
 .entry-view {
   display: inline-block; margin-top: 20px;
@@ -422,8 +422,8 @@ main.about-page {
 }
 
 .about-bio-text p {
-  font-size: 15px; line-height: 1.8; color: var(--ink-soft);
-  max-width: 64ch; margin-bottom: 18px;
+  font-size: 16px; line-height: 1.6; color: var(--ink-soft);
+  max-width: 64ch; margin-bottom: 14px;
 }
 .about-bio-text p:last-child { margin-bottom: 0; }
 
@@ -446,13 +446,13 @@ main.about-page {
 .cv-col > .cv-head:first-child { margin-top: 0; }
 
 .cv-col ul li {
-  font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 8px;
+  font-size: 15px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 6px;
   text-wrap: pretty;
 }
 
-.cv-entry { margin-bottom: 20px; }
-.cv-entry .t { font-size: 14px; color: var(--ink); font-weight: 500; line-height: 1.4; margin-bottom: 3px; text-wrap: pretty; }
-.cv-entry .s { font-size: 14px; color: var(--ink-soft); line-height: 1.55; text-wrap: pretty; }
+.cv-entry { margin-bottom: 16px; }
+.cv-entry .t { font-size: 15px; color: var(--ink); font-weight: 500; line-height: 1.35; margin-bottom: 2px; text-wrap: pretty; }
+.cv-entry .s { font-size: 14px; color: var(--ink-soft); line-height: 1.45; text-wrap: pretty; }
 
 /* ============================================================
    PROJECTS PAGE
@@ -464,23 +464,23 @@ main.about-page {
 }
 
 .page-head {
-  border-top: 1px solid var(--line); padding-top: 56px; margin-bottom: 48px;
+  border-top: 1px solid var(--line); padding-top: 56px; margin-bottom: 24px;
 }
 
 .page-display {
   font-family: var(--sans); font-weight: 300;
   font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.05;
-  letter-spacing: -0.01em; margin-bottom: 16px;
+  letter-spacing: -0.01em; margin-bottom: 14px;
   color: var(--ink);
 }
 
 .page-lead {
-  font-size: 15px; color: var(--ink-soft); line-height: 1.7;
+  font-size: 16px; color: var(--ink-soft); line-height: 1.6;
 }
 
 .projects-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px; margin-top: 48px;
+  gap: 20px; margin-top: 0;
 }
 
 /* Project cards: gradient thumbnails matching home entry visuals */
@@ -530,7 +530,7 @@ main.about-page {
   color: var(--ink-soft); margin-bottom: 20px;
 }
 .cs-desc {
-  font-size: 15px; line-height: 1.75; color: var(--ink-soft);
+  font-size: 16px; line-height: 1.6; color: var(--ink-soft);
   max-width: 52ch; margin-bottom: 12px;
 }
 .cs-collab { font-size: 14px; color: var(--ink-soft); opacity: 0.65; font-style: italic; text-wrap: pretty; }
@@ -562,7 +562,7 @@ main.about-page {
 .cs-subh { font-family: var(--serif); font-weight: 500; font-size: 20px; margin: 28px 0 14px; }
 
 .cs-text { max-width: none; }
-.cs-text p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 16px; }
+.cs-text p { font-size: 16px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 12px; }
 
 /* Ecobite — text stays the same ink as every other page; moss kept
    only as a non-text border accent */
@@ -601,26 +601,26 @@ main.about-page {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(32px, 5vw, 72px); margin-top: 24px;
 }
-.persona .line { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 12px; }
+.persona .line { font-size: 16px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 8px; }
 
 /* Accordions */
-.acc-group { margin-top: 12px; }
+.acc-group { margin-top: 8px; }
 .acc summary {
   list-style: none; cursor: pointer;
   display: flex; justify-content: space-between; align-items: center; gap: 20px;
-  padding: 14px 0; font-family: var(--serif); font-weight: 500; font-size: 16px;
+  padding: 12px 0; font-family: var(--sans); font-weight: 500; font-size: 16px;
 }
 .acc summary::-webkit-details-marker { display: none; }
 .acc summary::after { content: "+"; font-weight: 300; font-size: 1.1rem; color: var(--ink-soft); }
 .acc[open] summary::after { content: "−"; }
-.acc-body { padding: 4px 0 clamp(20px, 3vw, 32px); max-width: 68ch; }
-.acc-body p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 14px; }
-.acc-body ul { padding-left: 1.4em; margin-top: 8px; }
-.acc-body li { font-size: 15px; color: var(--ink-soft); margin-bottom: 9px; line-height: 1.6; }
+.acc-body { padding: 4px 0 clamp(16px, 2.5vw, 26px); max-width: 68ch; }
+.acc-body p { font-size: 16px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 10px; }
+.acc-body ul { padding-left: 1.4em; margin-top: 6px; }
+.acc-body li { font-size: 16px; color: var(--ink-soft); margin-bottom: 6px; line-height: 1.5; }
 
 /* JTBD */
-.jtbd { max-width: 68ch; margin-bottom: 24px; }
-.jtbd p { font-size: 15px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 12px; }
+.jtbd { max-width: 68ch; margin-bottom: 20px; }
+.jtbd p { font-size: 16px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 8px; }
 
 /* Image layouts */
 .sego-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 20px 0 28px; }
@@ -714,15 +714,15 @@ main.about-page {
 
 /* Terrain pivot callout */
 .sego-pivot { border-left: 2px solid; padding: 12px 0 12px 20px; margin: 20px 0 28px; }
-.sego-pivot-title { font-family: var(--serif); font-weight: 500; font-size: 16px; margin-bottom: 8px; }
-.sego-pivot p { font-size: 15px; color: var(--ink-soft); line-height: 1.7; max-width: 62ch; }
+.sego-pivot-title { font-family: var(--sans); font-weight: 500; font-size: 16px; margin-bottom: 6px; }
+.sego-pivot p { font-size: 16px; color: var(--ink-soft); line-height: 1.6; max-width: 62ch; }
 
 /* Making steps */
-.sego-steps { margin-top: 24px; }
+.sego-steps { margin-top: 20px; }
 .sego-step {
   display: grid; grid-template-columns: 28px 1fr; gap: 22px; align-items: start;
-  padding-bottom: clamp(28px, 4vw, 48px); border-bottom: 1px solid var(--line);
-  margin-bottom: clamp(28px, 4vw, 48px);
+  padding-bottom: clamp(18px, 3vw, 32px); border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(18px, 3vw, 32px);
 }
 .sego-step:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
 .sego-step-n {
@@ -750,7 +750,7 @@ main.about-page {
   font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--ink-soft); opacity: 0.65; margin-bottom: 8px;
 }
-.brief-grid dd { font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
+.brief-grid dd { font-size: 15px; line-height: 1.45; color: var(--ink-soft); }
 
 /* 4-up figure grid (pattern studies etc.) */
 .fig-quad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 20px 0 28px; }
