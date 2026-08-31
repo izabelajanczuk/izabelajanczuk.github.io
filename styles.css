@@ -29,6 +29,7 @@
   --stone: #d8cfbf;
   --line: rgba(37,36,33,0.16);
   --accent-blue: #8abcd6; /* the I.J. mark, site-wide */
+  --ink-blue: #1c2b36;    /* dark blue ground for the About page */
 
   /* Single sans-serif face, site-wide — hierarchy comes from size,
      weight, and italics only. --serif is kept as an alias so existing
@@ -279,14 +280,13 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
    ============================================================ */
 
 .intro {
-  border-top: 1px solid var(--line);
   padding: 56px var(--pad) 56px;
   max-width: var(--maxw); margin: 0 auto;
   display: grid; grid-template-columns: 160px 1fr; gap: 40px;
 }
 .intro-eyebrow {
   font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--moss-deep); padding-top: 6px;
+  color: var(--ink-soft); padding-top: 6px;
 }
 .intro-text {
   font-family: var(--sans); font-weight: 400;
@@ -297,12 +297,14 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
 .intro-text strong { font-weight: 600; }
 
 .section-head {
-  border-top: 1px solid var(--line);
-  padding: 56px var(--pad) 40px;
+  padding: 40px var(--pad) 40px;
   max-width: var(--maxw); margin: 0 auto;
   display: flex; justify-content: space-between; align-items: baseline;
 }
-.section-title { font-family: var(--sans); font-weight: 700; font-size: 15px; letter-spacing: 0.02em; }
+.section-title {
+  font-family: var(--sans); font-weight: 400; font-size: 14px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
+}
 .section-count { font-size: 14px; letter-spacing: 0.12em; color: var(--ink-soft); text-transform: uppercase; }
 
 .work {
@@ -314,7 +316,7 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
    rather than a photograph ---- */
 .entry {
   display: grid; grid-template-columns: 0.85fr 1fr; gap: 56px; align-items: center;
-  padding: 64px 0; border-top: 1px solid var(--line);
+  padding: 64px 0;
 }
 .entry:nth-child(even) { grid-template-columns: 1fr 0.85fr; }
 .entry:nth-child(even) .entry-visual { order: 2; }
@@ -370,10 +372,10 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
    ABOUT PAGE — inverted: dark ground, bone/white text
    ============================================================ */
 
-body.about-page { background: var(--ink); }
+body.about-page { background: var(--ink-blue); }
 body.about-page .site-header,
 body.about-page .site-footer {
-  background: var(--ink);
+  background: var(--ink-blue);
   backdrop-filter: none; -webkit-backdrop-filter: none;
   border-color: rgba(243,239,231,0.15);
 }
