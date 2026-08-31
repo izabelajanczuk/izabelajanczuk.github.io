@@ -418,7 +418,7 @@ main.about-page {
 .about-greeting {
   font-family: var(--sans); font-weight: 300;
   font-size: clamp(3.5rem, 9vw, 6.5rem); line-height: 1;
-  color: var(--ink); margin-bottom: 28px;
+  color: var(--ink); margin-top: -0.2em; margin-bottom: 28px;
 }
 
 .about-photo img {
