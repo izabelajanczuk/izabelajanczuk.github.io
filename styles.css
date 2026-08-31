@@ -271,107 +271,80 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
 }
 
 /* ============================================================
-   HOME PAGE — BELOW THE HERO
-   One quiet system, carried over from the hero: warm ivory ground,
-   ink text, two typefaces, whitespace instead of rules.
+   HOME PAGE — WORK SECTION (bone background, below the cover)
    ============================================================ */
 
 .intro {
-  padding: 80px var(--pad) 64px;
+  border-top: 1px solid var(--line);
+  padding: 56px var(--pad) 56px;
   max-width: var(--maxw); margin: 0 auto;
   display: grid; grid-template-columns: 160px 1fr; gap: 40px;
 }
 .intro-eyebrow {
-  font-family: var(--sans); font-size: 12px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--ink-soft); padding-top: 4px;
+  font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--moss-deep); padding-top: 6px;
 }
 .intro-text {
   font-family: var(--sans); font-weight: 400;
-  font-size: 14px; line-height: 1.6; max-width: 640px;
+  font-size: 14px; line-height: 1.5; max-width: 760px;
   color: var(--ink-soft);
 }
-.intro-text strong { font-weight: 600; color: var(--ink); }
+.intro-text em { color: var(--rose-deep); font-style: italic; }
+.intro-text strong { font-weight: 600; }
 
 .section-head {
-  padding: 40px var(--pad) 48px;
+  border-top: 1px solid var(--line);
+  padding: 56px var(--pad) 40px;
   max-width: var(--maxw); margin: 0 auto;
   display: flex; justify-content: space-between; align-items: baseline;
 }
-.section-title {
-  font-family: var(--sans); font-weight: 500; font-size: 12px;
-  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink);
-}
-.section-count {
-  font-family: var(--sans); font-size: 12px; letter-spacing: 0.12em;
-  color: var(--ink-soft); text-transform: uppercase;
-}
+.section-title { font-family: var(--serif); font-weight: 400; font-size: 15px; letter-spacing: 0.02em; }
+.section-count { font-size: 14px; letter-spacing: 0.12em; color: var(--ink-soft); text-transform: uppercase; }
 
 .work {
   max-width: var(--maxw); margin: 0 auto;
-  padding: 0 var(--pad) 130px;
-  display: flex; flex-direction: column; gap: clamp(80px, 10vw, 140px);
+  padding: 0 var(--pad) 100px;
 }
 
-/* ---- one project system, varied only by composition ---- */
-.entry-side {
-  display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(40px, 6vw, 80px); align-items: center;
+/* ---- alternating entries, each visual a pulsing circular aura
+   rather than a photograph ---- */
+.entry {
+  display: grid; grid-template-columns: 0.85fr 1fr; gap: 56px; align-items: center;
+  padding: 64px 0; border-top: 1px solid var(--line);
 }
-.entry-reverse .entry-visual { order: 2; }
-.entry-reverse .entry-copy { order: 1; }
-.entry-stack .entry-visual { margin-bottom: 36px; }
-.entry-stack .entry-copy { max-width: 560px; }
+.entry:nth-child(even) { grid-template-columns: 1fr 0.85fr; }
+.entry:nth-child(even) .entry-visual { order: 2; }
+.entry:nth-child(even) .entry-copy { order: 1; }
 
-.entry-visual { position: relative; }
-.entry-visual img {
-  position: relative; z-index: 1; width: 100%; display: block;
-  aspect-ratio: 4/3; object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
-}
-.entry:hover .entry-visual img { transform: scale(1.015); }
-.entry-stack .entry-visual img { aspect-ratio: 21/9; }
-
-/* the aura: a soft wash of light behind the photograph, not a shape
-   in its own right — colors on loan from the hero's own palette */
+.entry-visual { display: flex; justify-content: center; }
 .aura {
-  position: absolute; inset: -25% -20%; z-index: 0;
-  border-radius: 48% 52% 55% 45% / 50% 45% 55% 50%;
-  filter: blur(24px); opacity: 0.9;
-  animation: aura-breathe 9s ease-in-out infinite;
+  width: clamp(220px, 26vw, 360px); aspect-ratio: 1/1; border-radius: 50%;
+  filter: blur(10px);
+  animation: aura-pulse 3s ease-in-out infinite;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
 }
-.aura-sage { background: radial-gradient(circle, #a6c887, transparent 72%); }
-.aura-blue { background: radial-gradient(circle, #a9c3d0, transparent 72%); }
-.aura-rose { background: radial-gradient(circle, #dcb3ab, transparent 72%); }
-@keyframes aura-breathe {
-  0%, 100% { opacity: 0.75; }
-  50% { opacity: 1; }
+.entry:hover .aura { transform: scale(1.04); }
+.aura-a { background: radial-gradient(circle at 36% 32%, #ddc9a3 0%, var(--moss) 42%, transparent 72%); }
+.aura-b { background: radial-gradient(circle at 36% 32%, var(--rose) 0%, var(--terracotta) 42%, transparent 72%); }
+.aura-c { background: radial-gradient(circle at 36% 32%, var(--stone) 0%, var(--rose-deep) 42%, transparent 72%); }
+@keyframes aura-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.62; }
+  50% { transform: scale(1.06); opacity: 0.88; }
 }
 @media (prefers-reduced-motion: reduce) {
   .aura { animation: none; }
 }
 
-.entry-copy { max-width: 420px; }
-.entry-num {
-  font-family: var(--sans); font-size: 12px; letter-spacing: 0.14em;
-  color: var(--ink-soft);
-}
+.entry-copy { max-width: 460px; }
 .entry-title {
   font-family: var(--serif); font-weight: 500; font-style: italic;
-  font-size: clamp(24px, 2.6vw, 32px); line-height: 1.1; margin: 10px 0 8px;
-  color: var(--ink);
+  font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05; margin: 14px 0 10px;
 }
-.entry-meta {
-  font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--ink-soft); line-height: 1.6;
-  margin-bottom: 16px;
-}
-.entry-desc {
-  font-family: var(--sans); font-size: 14px; line-height: 1.7;
-  color: var(--ink-soft); max-width: 42ch;
-}
+.entry-desc { font-size: 14.5px; line-height: 1.75; color: var(--ink-soft); }
 .entry-view {
-  display: inline-block; margin-top: 18px;
-  font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; transition: opacity 0.2s;
+  display: inline-block; margin-top: 20px;
+  font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;
+  border-bottom: 1px solid var(--ink); padding-bottom: 2px; transition: opacity 0.2s;
 }
 .entry:hover .entry-view { opacity: 0.55; }
 
@@ -883,9 +856,9 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
   .hero-label { font-size: 12px; }
   .intro { grid-template-columns: 1fr; gap: 18px; padding-bottom: 70px; }
   .section-head { padding-bottom: 32px; }
-  .entry-side { grid-template-columns: 1fr; gap: 22px; }
-  .entry-reverse .entry-visual, .entry-reverse .entry-copy { order: initial; }
-  .entry-copy, .entry-stack .entry-copy { max-width: none; }
+  .entry, .entry:nth-child(even) { grid-template-columns: 1fr; gap: 24px; }
+  .entry-visual, .entry:nth-child(even) .entry-visual { order: -1; }
+  .entry-copy, .entry:nth-child(even) .entry-copy { order: 2; max-width: none; }
   .ed-frag { display: none; }
   .about-lead { grid-template-columns: 1fr; }
   .about-bio { grid-template-columns: 1fr; gap: 18px; }
