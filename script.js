@@ -241,6 +241,24 @@ function setupHomeDropzone() {
 }
 
 /* ============================================================
+   HOME — the header floats transparent over the full-bleed hero
+   photo, then picks up its normal solid background once the visitor
+   has scrolled past it.
+   ============================================================ */
+function setupHomeHeaderScroll() {
+  const header = document.querySelector(".site-header");
+  const hero = document.querySelector(".hero");
+  if (!header || !hero || !document.body.classList.contains("home-page")) return;
+
+  const onScroll = () => {
+    const threshold = hero.offsetHeight - header.offsetHeight;
+    header.classList.toggle("scrolled", window.scrollY > threshold);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+}
+
+/* ============================================================
    DRAG-AND-DROP IMAGE SLOTS (used on the EcoBite page)
    Each .drop-slot shows, in order of preference:
      1. an image you dragged in (remembered in this browser), or
@@ -397,6 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
   buildGallery();
   setupStaticGallery();
   setupHomeDropzone();
+  setupHomeHeaderScroll();
   setupDropSlots();
   setupVideoAutoplay();
   setupScrollReveal();

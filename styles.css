@@ -147,6 +147,35 @@ ul, ol { list-style: none; }
   color: var(--ink); font-size: 1.5rem; line-height: 1; padding: 4px;
 }
 
+/* Home page: header floats transparent over the full-bleed hero photo
+   until the visitor scrolls past it, then it picks up the same solid
+   bar every other page always has */
+body.home-page .site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+  transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+}
+body.home-page main { padding-top: 0; }
+body.home-page .site-header .logo,
+body.home-page .site-header .nav a,
+body.home-page .site-header .menu-toggle {
+  color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,0.35);
+  transition: color 0.3s;
+}
+body.home-page .site-header .nav a:hover,
+body.home-page .site-header .nav a.active { border-color: #fff; }
+body.home-page .site-header.scrolled {
+  background: rgba(244,239,230,0.94);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom-color: var(--line);
+}
+body.home-page .site-header.scrolled .logo { color: var(--ink); text-shadow: none; }
+body.home-page .site-header.scrolled .nav a,
+body.home-page .site-header.scrolled .menu-toggle { color: var(--ink-soft); text-shadow: none; }
+body.home-page .site-header.scrolled .nav a:hover,
+body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-color: var(--rose-deep); }
+
 /* ============================================================
    FOOTER
    ============================================================ */
@@ -177,39 +206,41 @@ ul, ol { list-style: none; }
    with the name scrolling over it in a slow right-to-left marquee.
    ============================================================ */
 
-.hero { position: relative; overflow: hidden; }
+.hero {
+  position: relative; overflow: hidden;
+  height: 100vh; height: 100dvh; min-height: 560px;
+}
 
 .hero-fig {
-  width: 100%; aspect-ratio: 16/9; max-height: 82vh;
-  overflow: hidden; position: relative; margin: 0; background: var(--parchment);
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  overflow: hidden; margin: 0; background: var(--parchment);
 }
 .hero-fig img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hero-fig::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(37,36,33,0.05) 0%, rgba(37,36,33,0.4) 100%);
+  background: linear-gradient(180deg, rgba(37,36,33,0.12) 0%, rgba(37,36,33,0.22) 50%, rgba(37,36,33,0.32) 100%);
 }
 
 .hero-overlay {
   position: absolute; inset: 0; z-index: 2;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 0 0 clamp(20px, 4vh, 44px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(10px, 2vh, 20px); text-align: center;
 }
 .hero-label {
   font-family: var(--sans); font-size: 12px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: rgba(232,236,220,0.92);
-  padding: 0 var(--pad); margin-bottom: clamp(6px, 1.5vh, 14px);
+  text-transform: uppercase; color: #fff;
 }
 
 .marquee { width: 100%; overflow: hidden; white-space: nowrap; }
 .marquee-track {
   display: inline-flex; width: max-content;
-  animation: marquee-scroll 20s linear infinite;
+  animation: marquee-scroll 12s linear infinite;
   will-change: transform;
 }
 .marquee-track span {
-  font-family: var(--sans); font-weight: 300;
+  font-family: var(--sans); font-weight: 400; text-transform: uppercase;
   font-size: clamp(2.6rem, 9vw, 6.5rem); line-height: 1;
-  letter-spacing: 0.01em; color: rgba(148,168,108,0.92);
+  letter-spacing: 0.02em; color: #8bffb0;
   padding-right: clamp(48px, 6vw, 100px);
 }
 @keyframes marquee-scroll {
@@ -283,17 +314,21 @@ ul, ol { list-style: none; }
 
 .entry-visual { display: flex; justify-content: center; }
 .aura {
-  width: clamp(180px, 22vw, 300px); aspect-ratio: 1/1; border-radius: 50%;
-  animation: aura-pulse 6s ease-in-out infinite;
+  width: clamp(220px, 26vw, 360px); aspect-ratio: 1/1; border-radius: 50%;
+  filter: blur(10px);
+  animation: aura-pulse 3.6s ease-in-out infinite;
   transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
 }
 .entry:hover .aura { transform: scale(1.04); }
-.aura-a { background: radial-gradient(circle at 34% 30%, #ddc9a3, var(--moss) 78%); }
-.aura-b { background: radial-gradient(circle at 34% 30%, var(--rose), var(--terracotta) 78%); }
-.aura-c { background: radial-gradient(circle at 34% 30%, var(--stone), var(--rose-deep) 78%); }
+.aura-a { background: radial-gradient(circle at 36% 32%, #ddc9a3 0%, var(--moss) 42%, transparent 72%); }
+.aura-b { background: radial-gradient(circle at 36% 32%, var(--rose) 0%, var(--terracotta) 42%, transparent 72%); }
+.aura-c { background: radial-gradient(circle at 36% 32%, var(--stone) 0%, var(--rose-deep) 42%, transparent 72%); }
 @keyframes aura-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(37,36,33,0); filter: brightness(1); }
-  50% { box-shadow: 0 0 40px 6px rgba(37,36,33,0.06); filter: brightness(1.05); }
+  0%, 100% { transform: scale(1); opacity: 0.62; }
+  8%  { transform: scale(1.05); opacity: 0.85; }
+  16% { transform: scale(0.99); opacity: 0.6; }
+  24% { transform: scale(1.07); opacity: 0.9; }
+  40% { transform: scale(1); opacity: 0.62; }
 }
 @media (prefers-reduced-motion: reduce) {
   .aura { animation: none; }
