@@ -145,7 +145,7 @@ ul, ol { list-style: none; }
   border-bottom: 1px solid transparent; padding-bottom: 3px;
   transition: color 0.2s, border-color 0.2s;
 }
-.nav a:hover, .nav a.active { color: var(--ink); border-color: var(--rose-deep); }
+.nav a:hover, .nav a.active { color: var(--ink); border-color: var(--accent-blue); }
 
 .menu-toggle {
   display: none; background: none; border: none;
@@ -182,7 +182,7 @@ body.home-page .site-header.scrolled .logo { text-shadow: none; }
 body.home-page .site-header.scrolled .nav a,
 body.home-page .site-header.scrolled .menu-toggle { color: var(--ink-soft); text-shadow: none; }
 body.home-page .site-header.scrolled .nav a:hover,
-body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-color: var(--rose-deep); }
+body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-color: var(--accent-blue); }
 
 /* ============================================================
    FOOTER
@@ -280,17 +280,18 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
    ============================================================ */
 
 .intro {
-  padding: 56px var(--pad) 56px;
+  padding: 100px var(--pad) 100px;
   max-width: var(--maxw); margin: 0 auto;
   display: grid; grid-template-columns: 160px 1fr; gap: 40px;
+  align-items: center;
 }
 .intro-eyebrow {
   font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink-soft); padding-top: 6px;
+  color: var(--ink-soft);
 }
 .intro-text {
   font-family: var(--sans); font-weight: 400;
-  font-size: 14px; line-height: 1.5; max-width: 760px;
+  font-size: 18px; line-height: 1.6; max-width: 640px;
   color: var(--ink-soft);
 }
 .intro-text em { color: var(--ink); font-style: italic; }
@@ -373,16 +374,23 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
    ============================================================ */
 
 body.about-page { background: var(--ink-blue); }
-body.about-page .site-header,
 body.about-page .site-footer {
   background: var(--ink-blue);
   backdrop-filter: none; -webkit-backdrop-filter: none;
   border-color: rgba(243,239,231,0.15);
 }
-body.about-page .nav a { color: rgba(243,239,231,0.75); }
+/* The menu bar itself flips to the light accent blue on this page,
+   with bone text and the I.J. mark in dark blue for contrast */
+body.about-page .site-header {
+  background: var(--accent-blue);
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+  border-color: rgba(28,43,54,0.2);
+}
+body.about-page .site-header .logo { color: var(--ink-blue); }
+body.about-page .nav a { color: var(--bone); }
 body.about-page .nav a:hover,
-body.about-page .nav a.active { color: var(--chalk); border-color: var(--accent-blue); }
-body.about-page .menu-toggle { color: var(--chalk); }
+body.about-page .nav a.active { color: var(--ink-blue); border-color: var(--ink-blue); }
+body.about-page .menu-toggle { color: var(--bone); }
 body.about-page .footer-meta { color: rgba(243,239,231,0.75); }
 body.about-page .footer-meta a:hover { border-color: var(--accent-blue); }
 
@@ -449,16 +457,18 @@ body.about-page .cv-entry .s { color: rgba(243,239,231,0.7); }
 .cv-head {
   font-family: var(--sans); font-style: italic; font-size: 18px; font-weight: 400;
   color: var(--ink); margin-bottom: 16px; margin-top: 32px;
+  text-wrap: pretty;
 }
 .cv-col > .cv-head:first-child { margin-top: 0; }
 
 .cv-col ul li {
   font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 8px;
+  text-wrap: pretty;
 }
 
 .cv-entry { margin-bottom: 20px; }
-.cv-entry .t { font-size: 14px; color: var(--ink); font-weight: 500; line-height: 1.4; margin-bottom: 3px; }
-.cv-entry .s { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+.cv-entry .t { font-size: 14px; color: var(--ink); font-weight: 500; line-height: 1.4; margin-bottom: 3px; text-wrap: pretty; }
+.cv-entry .s { font-size: 14px; color: var(--ink-soft); line-height: 1.55; text-wrap: pretty; }
 
 /* ============================================================
    PROJECTS PAGE
