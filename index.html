@@ -20,6 +20,7 @@
       <a class="logo" href="index.html">I.J.</a>
       <button class="menu-toggle" aria-label="Menu">☰</button>
       <nav class="nav">
+        <a href="index.html">Home</a>
         <a href="projects.html">Work</a>
         <a href="about.html">About</a>
         <a href="gallery.html">Images</a>
@@ -30,23 +31,20 @@
 
   <main>
 
-    <!-- Opening spread: name + statement beside one large photograph -->
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="hero-copy reveal">
-          <p class="hero-label">Design / Environment / Objects / Images</p>
-          <h1 class="hero-name">Izabela<br>Janczuk</h1>
-          <p class="hero-statement">Collected studies in place, object, image &amp; systems.</p>
-          <div class="hero-meta">
-            <span>I.J. 001</span>
-            <span>Seattle, WA</span>
-            <span>2026</span>
+    <!-- Opening spread: full-bleed photograph with the name scrolling across it -->
+    <section class="hero reveal">
+      <figure class="hero-fig" id="hero-fig">
+        <img id="hero-photo" src="images/home-bg.jpg" alt="" />
+        <p class="drop-hint" id="drop-hint">select your cover</p>
+      </figure>
+      <div class="hero-overlay">
+        <p class="hero-label">Design / Environment / Objects / Images</p>
+        <div class="marquee">
+          <div class="marquee-track">
+            <span>Izabela Janczuk</span>
+            <span aria-hidden="true">Izabela Janczuk</span>
           </div>
         </div>
-        <figure class="hero-fig reveal" id="hero-fig">
-          <img id="hero-photo" src="images/home-bg.jpg" alt="" />
-          <p class="drop-hint" id="drop-hint">select your cover</p>
-        </figure>
       </div>
     </section>
 
@@ -64,44 +62,33 @@
 
     <section class="work">
 
-      <a class="spread spread-a reveal" href="ecobite.html">
-        <figure class="spread-img">
-          <img src="images/ecobite/hero.jpg" alt="EcoBite app interface" loading="lazy" />
-          <span class="spread-tag">Sustainability · Systems</span>
-        </figure>
-        <div class="spread-copy">
+      <a class="entry reveal" href="ecobite.html">
+        <div class="entry-visual"><div class="aura aura-a"></div></div>
+        <div class="entry-copy">
           <p class="cap-num"><em>01</em>UX / UI — 2024</p>
-          <h3 class="spread-title">EcoBite</h3>
-          <p class="spread-desc">An app surfacing the environmental cost of everyday products on the Amazon rainforest, built around six UN SDGs and biodiversity research.</p>
-          <span class="spread-view">View project</span>
+          <h3 class="entry-title">EcoBite</h3>
+          <p class="entry-desc">An app surfacing the environmental cost of everyday products on the Amazon rainforest, built around six UN SDGs and biodiversity research.</p>
+          <span class="entry-view">View project</span>
         </div>
       </a>
 
-      <a class="spread spread-b reveal" href="segostop.html">
-        <figure class="spread-img">
-          <img src="images/segostop/context-busstop.jpg" alt="Segovia bus stop with the Roman aqueduct in the background" loading="lazy" />
-          <span class="spread-tag">Material · Urban</span>
-        </figure>
-        <div class="spread-copy">
+      <a class="entry reveal" href="segostop.html">
+        <div class="entry-visual"><div class="aura aura-b"></div></div>
+        <div class="entry-copy">
           <p class="cap-num"><em>02</em>Industrial Design — 2025</p>
-          <h3 class="spread-title">SegoStop</h3>
-          <p class="spread-desc">A modular, terrain-adaptive seating system for Segovia's historic bus stops — wood, steel, and cobblestone in conversation.</p>
-          <span class="spread-view">View project</span>
+          <h3 class="entry-title">SegoStop</h3>
+          <p class="entry-desc">A modular, terrain-adaptive seating system for Segovia's historic bus stops — wood, steel, and cobblestone in conversation.</p>
+          <span class="entry-view">View project</span>
         </div>
       </a>
 
-      <a class="spread spread-c reveal" href="relume.html">
-        <figure class="spread-img">
-          <img src="images/relume/hero-full.jpg" alt="ReLume, fully assembled and lit, with a hand lifting the top shade" loading="lazy" />
-          <span class="spread-tag">Product · Modular</span>
-        </figure>
-        <div class="spread-inner">
-          <h3 class="spread-title">ReLume</h3>
-          <div class="spread-copy">
-            <p class="cap-num"><em>03</em>Product Design — 2026</p>
-            <p class="spread-desc">A modular table lamp made from recycled plastic and wood — customizable ambient lighting built around interlocking joints and transparency.</p>
-            <span class="spread-view">View project</span>
-          </div>
+      <a class="entry reveal" href="relume.html">
+        <div class="entry-visual"><div class="aura aura-c"></div></div>
+        <div class="entry-copy">
+          <p class="cap-num"><em>03</em>Product Design — 2026</p>
+          <h3 class="entry-title">ReLume</h3>
+          <p class="entry-desc">A modular table lamp made from recycled plastic and wood — customizable ambient lighting built around interlocking joints and transparency.</p>
+          <span class="entry-view">View project</span>
         </div>
       </a>
 

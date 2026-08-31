@@ -173,49 +173,56 @@ ul, ol { list-style: none; }
 
 /* ============================================================
    HOME PAGE — EDITORIAL OPENING SPREAD
-   A real two-column composition: name + statement beside one large
-   photograph. Header is identical to every other page — no special
-   dark-cover treatment, no floating text, no full-bleed background.
+   One full-bleed photograph stretched across the entire page width,
+   with the name scrolling over it in a slow right-to-left marquee.
    ============================================================ */
 
-.hero { padding: clamp(36px, 5vw, 60px) 0 clamp(64px, 9vw, 100px); }
-
-.hero-grid {
-  display: grid; grid-template-columns: repeat(12, 1fr);
-  gap: clamp(24px, 3vw, 40px); align-items: end;
-}
-
-.hero-copy { grid-column: 1 / 6; display: flex; flex-direction: column; gap: 22px; }
-.hero-label {
-  font-family: var(--sans); font-size: 13px; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--ink-soft);
-}
-.hero-name {
-  font-family: var(--serif); font-weight: 400; font-style: italic;
-  font-size: clamp(2.8rem, 5.6vw, 5rem); line-height: 0.98; letter-spacing: -0.01em;
-  color: var(--ink);
-}
-.hero-statement {
-  font-family: var(--serif); font-weight: 400;
-  font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.55;
-  max-width: 32ch; color: var(--ink-soft);
-}
-.hero-meta {
-  display: flex; gap: 20px; flex-wrap: wrap;
-  font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--ink-soft); opacity: 0.75;
-}
+.hero { position: relative; overflow: hidden; }
 
 .hero-fig {
-  grid-column: 6 / 13; aspect-ratio: 4/5; overflow: hidden;
-  position: relative; background: var(--parchment);
+  width: 100%; aspect-ratio: 16/9; max-height: 82vh;
+  overflow: hidden; position: relative; margin: 0; background: var(--parchment);
 }
 .hero-fig img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-fig::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(37,36,33,0.05) 0%, rgba(37,36,33,0.4) 100%);
+}
 
-/* Drag a new photo onto the hero image to preview a replacement —
-   scoped to the image itself now, not the whole viewport */
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 0 clamp(20px, 4vh, 44px);
+}
+.hero-label {
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(232,236,220,0.92);
+  padding: 0 var(--pad); margin-bottom: clamp(6px, 1.5vh, 14px);
+}
+
+.marquee { width: 100%; overflow: hidden; white-space: nowrap; }
+.marquee-track {
+  display: inline-flex; width: max-content;
+  animation: marquee-scroll 20s linear infinite;
+  will-change: transform;
+}
+.marquee-track span {
+  font-family: var(--sans); font-weight: 300;
+  font-size: clamp(2.6rem, 9vw, 6.5rem); line-height: 1;
+  letter-spacing: 0.01em; color: rgba(148,168,108,0.92);
+  padding-right: clamp(48px, 6vw, 100px);
+}
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* Drag a new photo onto the hero image to preview a replacement */
 .drop-hint {
-  position: absolute; bottom: 16px; right: 16px;
+  position: absolute; bottom: 16px; right: 16px; z-index: 3;
   font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.06em;
   color: rgba(243,239,231,0.9); background: rgba(37,36,33,0.55);
   padding: 4px 10px; border-radius: 1px;
@@ -223,8 +230,8 @@ ul, ol { list-style: none; }
 }
 .hero-fig.dragover .drop-hint { opacity: 1; }
 .hero-fig.dragover img { filter: brightness(0.6); }
-.hero-fig.dragover::after {
-  content: ""; position: absolute; inset: 8px;
+.hero-fig.dragover::before {
+  content: ""; position: absolute; inset: 8px; z-index: 3;
   border: 1px dashed rgba(243,239,231,0.7); pointer-events: none;
 }
 
@@ -264,55 +271,46 @@ ul, ol { list-style: none; }
   padding: 0 var(--pad) 100px;
 }
 
-/* ---- shared pieces every spread draws from ---- */
-.spread { display: block; padding: 76px 0; border-top: 1px solid var(--line); }
-.spread-img { overflow: hidden; border-radius: 1px; background: var(--parchment); position: relative; }
-.spread-img img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+/* ---- alternating entries, each visual a pulsing circular aura
+   rather than a photograph ---- */
+.entry {
+  display: grid; grid-template-columns: 0.85fr 1fr; gap: 56px; align-items: center;
+  padding: 64px 0; border-top: 1px solid var(--line);
 }
-.spread:hover .spread-img img { transform: scale(1.03); }
-.spread-tag {
-  position: absolute; top: 14px; left: 14px;
-  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; opacity: 0.9;
-  border: 1px solid rgba(255,255,255,0.5); padding: 4px 9px; border-radius: 2px;
+.entry:nth-child(even) { grid-template-columns: 1fr 0.85fr; }
+.entry:nth-child(even) .entry-visual { order: 2; }
+.entry:nth-child(even) .entry-copy { order: 1; }
+
+.entry-visual { display: flex; justify-content: center; }
+.aura {
+  width: clamp(180px, 22vw, 300px); aspect-ratio: 1/1; border-radius: 50%;
+  animation: aura-pulse 6s ease-in-out infinite;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
 }
-.spread-title {
+.entry:hover .aura { transform: scale(1.04); }
+.aura-a { background: radial-gradient(circle at 34% 30%, #ddc9a3, var(--moss) 78%); }
+.aura-b { background: radial-gradient(circle at 34% 30%, var(--rose), var(--terracotta) 78%); }
+.aura-c { background: radial-gradient(circle at 34% 30%, var(--stone), var(--rose-deep) 78%); }
+@keyframes aura-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37,36,33,0); filter: brightness(1); }
+  50% { box-shadow: 0 0 40px 6px rgba(37,36,33,0.06); filter: brightness(1.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aura { animation: none; }
+}
+
+.entry-copy { max-width: 460px; }
+.entry-title {
   font-family: var(--serif); font-weight: 500; font-style: italic;
   font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05; margin: 14px 0 10px;
 }
-.spread-desc { font-size: 14.5px; line-height: 1.75; color: var(--ink-soft); }
-.spread-view {
+.entry-desc { font-size: 14.5px; line-height: 1.75; color: var(--ink-soft); }
+.entry-view {
   display: inline-block; margin-top: 20px;
   font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;
   border-bottom: 1px solid var(--ink); padding-bottom: 2px; transition: opacity 0.2s;
 }
-.spread:hover .spread-view { opacity: 0.55; }
-
-/* 01 — EcoBite: one large image, a narrow column of copy tucked into
-   the bottom-right corner rather than centered underneath it */
-.spread-a {
-  display: grid; grid-template-columns: 1fr 300px; gap: 36px; align-items: end;
-}
-.spread-a .spread-img { grid-column: 1; aspect-ratio: 16/10; }
-.spread-a .spread-copy { grid-column: 2; padding-bottom: 6px; }
-
-/* 02 — SegoStop: small portrait image on the left, wide copy column
-   opposite it, vertically centered — mirrors nothing about spread-a */
-.spread-b {
-  display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: center;
-}
-.spread-b .spread-img { aspect-ratio: 3/4; }
-.spread-b .spread-copy { max-width: 460px; }
-
-/* 03 — ReLume: a wide strip image on top, the title set large and
-   left, metadata + description held in their own narrow column to
-   the right — a third rhythm again */
-.spread-c .spread-img { aspect-ratio: 21/9; margin-bottom: 28px; }
-.spread-c .spread-inner {
-  display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start;
-}
-.spread-c .spread-title { margin-top: 0; }
+.entry:hover .entry-view { opacity: 0.55; }
 
 /* Scroll reveal — one shared easing/timing across the page so content
    settles in rather than snapping into place */
@@ -818,14 +816,13 @@ ul, ol { list-style: none; }
    ============================================================ */
 
 @media (max-width: 820px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-copy, .hero-fig { grid-column: 1 / -1; }
-  .hero-fig { aspect-ratio: 4/3; order: -1; }
+  .hero-fig { aspect-ratio: 3/4; max-height: none; }
+  .marquee-track span { font-size: clamp(2.1rem, 12vw, 3.4rem); }
   .intro { grid-template-columns: 1fr; gap: 18px; padding-bottom: 70px; }
   .section-head { padding-bottom: 32px; }
-  .spread-a, .spread-b, .spread-c .spread-inner { grid-template-columns: 1fr; gap: 20px; }
-  .spread-a .spread-copy, .spread-b .spread-copy { max-width: none; }
-  .spread-b .spread-img { aspect-ratio: 4/3; }
+  .entry, .entry:nth-child(even) { grid-template-columns: 1fr; gap: 24px; }
+  .entry-visual, .entry:nth-child(even) .entry-visual { order: -1; }
+  .entry-copy, .entry:nth-child(even) .entry-copy { order: 2; max-width: none; }
   .ed-frag { display: none; }
   .about-lead { grid-template-columns: 1fr; }
   .about-bio { grid-template-columns: 1fr; gap: 18px; }
