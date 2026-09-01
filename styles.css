@@ -29,6 +29,7 @@
   --stone: #d8cfbf;
   --line: rgba(37,36,33,0.16);
   --accent-blue: #8abcd6; /* the I.J. mark, site-wide */
+  --blue-deep: #3e5f78;   /* mid-dark blue — between accent-blue and ink-blue */
   --ink-blue: #1c2b36;    /* dark blue ground for the About page */
 
   /* Single sans-serif face, site-wide — hierarchy comes from size,
@@ -326,9 +327,9 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
   transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
 }
 .entry:hover .aura { transform: scale(1.04); }
-.aura-a { background: radial-gradient(circle at 36% 32%, #ddc9a3 0%, var(--moss) 42%, transparent 72%); }
-.aura-b { background: radial-gradient(circle at 36% 32%, var(--rose) 0%, var(--terracotta) 42%, transparent 72%); }
-.aura-c { background: radial-gradient(circle at 36% 32%, var(--stone) 0%, var(--rose-deep) 42%, transparent 72%); }
+.aura-a { background: radial-gradient(circle at 36% 32%, var(--pale-blue) 0%, var(--denim) 42%, transparent 72%); }
+.aura-b { background: radial-gradient(circle at 36% 32%, var(--accent-blue) 0%, var(--blue-deep) 42%, transparent 72%); }
+.aura-c { background: radial-gradient(circle at 36% 32%, var(--denim) 0%, var(--ink-blue) 42%, transparent 72%); }
 @keyframes aura-pulse {
   0%, 100% { transform: scale(1); opacity: 0.62; }
   50% { transform: scale(1.06); opacity: 0.88; }
@@ -488,9 +489,9 @@ main.about-page {
 .project-card .thumb { aspect-ratio: 4/3; overflow: hidden; }
 .project-card .thumb img { display: none; }
 
-.project-card:nth-child(1) .thumb { background: linear-gradient(160deg, #c9b9a3, var(--moss)); }
-.project-card:nth-child(2) .thumb { background: linear-gradient(160deg, var(--rose), var(--terracotta)); }
-.project-card:nth-child(3) .thumb { background: linear-gradient(160deg, var(--stone), var(--rose-deep)); }
+.project-card:nth-child(1) .thumb { background: linear-gradient(160deg, var(--pale-blue), var(--denim)); }
+.project-card:nth-child(2) .thumb { background: linear-gradient(160deg, var(--accent-blue), var(--blue-deep)); }
+.project-card:nth-child(3) .thumb { background: linear-gradient(160deg, var(--denim), var(--ink-blue)); }
 
 .project-overlay {
   position: absolute; inset: 0;
