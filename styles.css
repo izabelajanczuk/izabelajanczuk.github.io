@@ -465,7 +465,7 @@ main.about-page {
 }
 
 .page-head {
-  border-top: 1px solid var(--line); padding-top: 56px; margin-bottom: 24px;
+  padding-top: 24px; margin-bottom: 24px;
 }
 
 .page-display {
@@ -790,7 +790,7 @@ main.about-page {
   padding-bottom: clamp(60px, 9vw, 100px);
 }
 
-.gallery-intro { border-top: 1px solid var(--line); padding-top: 56px; margin-bottom: 28px; }
+.gallery-intro { padding-top: 24px; margin-bottom: 28px; }
 
 .gallery-cat { margin-bottom: clamp(48px, 7vw, 80px); }
 .gallery-cat-label {
