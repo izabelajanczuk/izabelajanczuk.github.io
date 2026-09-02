@@ -639,15 +639,9 @@ main.about-page {
 .sego-lead { margin: 20px 0 28px; overflow: hidden; border-radius: 2px; }
 .sego-lead img { width: 100%; height: auto; display: block; }
 
-/* Framed treatment for a photo that can't be swapped for a better
-   original — smaller and bordered like a specimen label, with the
-   site's warm duotone filter, so a lower-quality drop-in still reads
-   as an intentional archival artifact rather than a broken image. */
 .fig-framed { max-width: 620px; margin: 20px auto 28px; }
 .fig-framed img {
   width: 100%; display: block; border-radius: 2px;
-  border: 6px solid var(--paper); outline: 1px solid var(--line);
-  filter: sepia(0.4) saturate(1.15) contrast(0.97) brightness(1.05);
 }
 .fig-framed figcaption {
   font-family: var(--serif); font-style: italic; font-size: 13px;
@@ -693,9 +687,9 @@ main.about-page {
 .sego-hero-fig img { width: 100%; display: block; height: auto; }
 
 /* Ecobite image figures */
-.cs-fig { margin: 20px 0 28px; overflow: hidden; border-radius: 2px; }
+.cs-fig { margin: 20px 0; overflow: hidden; border-radius: 2px; }
 .cs-fig img { width: 100%; height: auto; display: block; }
-.cs-fig-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 20px 0 28px; }
+.cs-fig-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
 .cs-fig-pair figure { margin: 0; overflow: hidden; border-radius: 2px; }
 .cs-fig-pair img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
 .cs-fig-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 20px 0 28px; }
@@ -716,7 +710,7 @@ main.about-page {
 /* Terrain pivot callout */
 .sego-pivot { border-left: 2px solid; padding: 12px 0 12px 20px; margin: 20px 0 28px; }
 .sego-pivot-title { font-family: var(--sans); font-weight: 500; font-size: 16px; margin-bottom: 6px; }
-.sego-pivot p { font-size: 16px; color: var(--ink-soft); line-height: 1.6; max-width: 62ch; }
+.sego-pivot p { font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
 
 /* Making steps */
 .sego-steps { margin-top: 20px; }
