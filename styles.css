@@ -624,7 +624,7 @@ main.about-page {
 .jtbd p { font-size: 16px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 8px; }
 
 /* Image layouts */
-.sego-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 20px 0 28px; }
+.sego-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
 .sego-pair figure { margin: 0; overflow: hidden; border-radius: 2px; }
 .sego-pair img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
 .sego-pair figcaption {
@@ -632,7 +632,7 @@ main.about-page {
   color: var(--ink-soft); margin-top: 8px;
 }
 
-.sego-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 20px 0 28px; }
+.sego-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0; }
 .sego-trio figure { margin: 0; overflow: hidden; border-radius: 2px; }
 .sego-trio img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
 
@@ -692,7 +692,7 @@ main.about-page {
 .cs-fig-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
 .cs-fig-pair figure { margin: 0; overflow: hidden; border-radius: 2px; }
 .cs-fig-pair img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
-.cs-fig-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 20px 0 28px; }
+.cs-fig-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0; }
 .cs-fig-trio figure { margin: 0; overflow: hidden; border-radius: 2px; }
 .cs-fig-trio img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
 
@@ -748,7 +748,7 @@ main.about-page {
 .brief-grid dd { font-size: 15px; line-height: 1.45; color: var(--ink-soft); }
 
 /* 4-up figure grid (pattern studies etc.) */
-.fig-quad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 20px 0 28px; }
+.fig-quad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 20px 0; }
 .fig-quad figure { margin: 0; overflow: hidden; border-radius: 2px; }
 .fig-quad img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
 
