@@ -759,6 +759,7 @@ main.about-page {
 .ar-tall.sego-pair img, .ar-tall.sego-trio img, .ar-tall.fig-quad img { aspect-ratio: 3/4; }
 .ar-square.sego-pair img, .ar-square.sego-trio img { aspect-ratio: 1/1; }
 .ar-wide.sego-pair img, .ar-wide.cs-fig-pair img { aspect-ratio: 3/1; }
+.ar-16-9.sego-pair img { aspect-ratio: 16/9; }
 .fig-quad figcaption {
   font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--ink-soft); margin-top: 8px;
