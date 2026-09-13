@@ -492,6 +492,7 @@ main.about-page {
 .project-card:nth-child(1) .thumb { background: linear-gradient(160deg, var(--pale-blue), var(--denim)); }
 .project-card:nth-child(2) .thumb { background: linear-gradient(160deg, var(--accent-blue), var(--blue-deep)); }
 .project-card:nth-child(3) .thumb { background: linear-gradient(160deg, var(--denim), var(--ink-blue)); }
+.project-card:nth-child(4) .thumb { background: linear-gradient(160deg, var(--accent-blue), var(--ink-blue)); }
 
 .project-overlay {
   position: absolute; inset: 0;
@@ -594,6 +595,11 @@ main.about-page {
 .relume-page .sego-pivot      { border-left-color: var(--rose-deep); }
 .relume-page .sego-pivot-title { color: var(--ink); }
 
+/* Edmund Szyc Stadium accent — forest green, non-text only */
+.edmundszyc-page .acc-group  { border-top: 1px solid rgba(101,117,104,0.3); }
+.edmundszyc-page .acc        { border-bottom: 1px solid rgba(101,117,104,0.3); }
+.edmundszyc-page .sego-pivot { border-left-color: var(--forest); }
+
 /* ============================================================
    SHARED CASE STUDY COMPONENTS
    ============================================================ */
@@ -653,6 +659,13 @@ main.about-page {
 .source-note {
   font-size: 12px; font-style: italic; color: var(--ink-soft); opacity: 0.6;
   margin-top: -12px; margin-bottom: 20px;
+}
+/* ...but when it's used as a figcaption sitting directly inside the
+   figure it credits, it needs normal flow spacing instead of the
+   negative margin meant for a caption trailing a whole image group */
+figure > figcaption.source-note {
+  margin-top: 8px; margin-bottom: 0;
+  text-transform: none; letter-spacing: normal;
 }
 
 .sego-split {

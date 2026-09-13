@@ -48,6 +48,15 @@ const PROJECTS = [
     blurb: "A modular table lamp made from recycled plastic and wood.",
     body: [],
     images: []
+  },
+  {
+    slug: "edmundszyc",
+    title: "Edmund Szyc Stadium",
+    link: "edmundszyc.html",
+    cover: "images/edmundszyc/hero.jpg",
+    blurb: "A regenerative design proposal for Poznań's abandoned Edmund Szyc Stadium.",
+    body: [],
+    images: []
   }
 ];
 
