@@ -17,6 +17,15 @@
    ----------------------------------------------------------- */
 const PROJECTS = [
   {
+    slug: "edmundszyc",
+    title: "Edmund Szyc Stadium",
+    link: "edmundszyc.html",
+    cover: "images/edmundszyc/hero.jpg",
+    blurb: "A regenerative design proposal for Poznań's abandoned Edmund Szyc Stadium.",
+    body: [],
+    images: []
+  },
+  {
     slug: "ecobite",
     title: "EcoBite",
     link: "ecobite.html",          // EcoBite has its own full case-study page
@@ -32,15 +41,6 @@ const PROJECTS = [
     ]
   },
   {
-    slug: "segostop",
-    title: "SegoStop",
-    link: "segostop.html",
-    cover: "images/segostop/hero-assembly.png",
-    blurb: "Modular bus stop seating for Segovia's historic streets.",
-    body: [],
-    images: []
-  },
-  {
     slug: "relume",
     title: "ReLume",
     link: "relume.html",
@@ -50,11 +50,11 @@ const PROJECTS = [
     images: []
   },
   {
-    slug: "edmundszyc",
-    title: "Edmund Szyc Stadium",
-    link: "edmundszyc.html",
-    cover: "images/edmundszyc/hero.jpg",
-    blurb: "A regenerative design proposal for Poznań's abandoned Edmund Szyc Stadium.",
+    slug: "segostop",
+    title: "SegoStop",
+    link: "segostop.html",
+    cover: "images/segostop/hero-assembly.png",
+    blurb: "Modular bus stop seating for Segovia's historic streets.",
     body: [],
     images: []
   }

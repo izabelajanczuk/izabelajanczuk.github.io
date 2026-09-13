@@ -330,6 +330,7 @@ body.home-page .site-header.scrolled .nav a.active { color: var(--ink); border-c
 .aura-a { background: radial-gradient(circle at 36% 32%, var(--pale-blue) 0%, var(--denim) 42%, transparent 72%); }
 .aura-b { background: radial-gradient(circle at 36% 32%, var(--accent-blue) 0%, var(--blue-deep) 42%, transparent 72%); }
 .aura-c { background: radial-gradient(circle at 36% 32%, var(--denim) 0%, var(--ink-blue) 42%, transparent 72%); }
+.aura-d { background: radial-gradient(circle at 36% 32%, var(--accent-blue) 0%, var(--ink-blue) 42%, transparent 72%); }
 @keyframes aura-pulse {
   0%, 100% { transform: scale(1); opacity: 0.62; }
   50% { transform: scale(1.06); opacity: 0.88; }
